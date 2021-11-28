@@ -9,7 +9,7 @@ public class ProductTypes {
 
     @Override
     public String toString() {
-        return " " + this.id + " - " + description;
+        return description;
     }
 // Contructor
 

@@ -113,7 +113,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         // Thêm vào panel danh sách áo
         pnlTaiKhoan.add(new PanelAccount());
         pnlQLTaiKhoan.add(new PanelAccountManager());
-//        pnlQLSanPham.add(new PanelListPageProduct(XConstant.ID_QUAN));
+        pnlQLSanPham.add(new PanelProductManager());
 //        pnlQLHoaDon.add(new PanelListPageProduct(XConstant.ID_PHUKIEN));
 //        pnlTKChiTiet.add(new PanelListPageProduct(XConstant.ID_GIAY));
     } 

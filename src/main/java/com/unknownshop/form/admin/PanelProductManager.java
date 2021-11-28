@@ -1,9 +1,14 @@
 package com.unknownshop.form.admin;
 
 import com.unknownshop.constant.XConstant;
+import com.unknownshop.dao.ProductDAO;
+import com.unknownshop.dao.ProductTypeDAO;
 import com.unknownshop.dao.UserDAO;
+import com.unknownshop.entity.ProductTypes;
+import com.unknownshop.entity.Products;
 import com.unknownshop.entity.Users;
 import com.unknownshop.swing.table.RowTableAccount;
+import com.unknownshop.swing.table.RowTableProduct;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
@@ -24,15 +29,16 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
-public class PanelAccountManager extends javax.swing.JPanel {
+public class PanelProductManager extends javax.swing.JPanel {
 
-    UserDAO dao = new UserDAO();
-    List<Users> listUser = new ArrayList<>();
-    List<Users> listUserDeleted = new ArrayList<>();
+    ProductDAO proDao = new ProductDAO();
+    List<Products> list = new ArrayList<>();
+    List<Products> listDeleted = new ArrayList<>();
+    ProductTypeDAO proTypeDao = new ProductTypeDAO();
     int row = -1;
-    byte[] userImg;
+    byte[] proImage;
     
-    public PanelAccountManager() {
+    public PanelProductManager() {
         initComponents();
         init();
     }
@@ -41,45 +47,34 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         pnlTabButton = new javax.swing.JPanel();
         btnDanhSachTK = new javax.swing.JButton();
         btnTKDaXoa = new javax.swing.JButton();
         btnTaiKhoan = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
-        pnlDanhSachTK = new javax.swing.JPanel();
-        cboChucVu = new javax.swing.JComboBox<>();
-        lblChucVu = new javax.swing.JLabel();
+        pnlDanhSachSP = new javax.swing.JPanel();
+        cboLoai = new javax.swing.JComboBox<>();
+        lblLoai = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDanhSachTK = new com.unknownshop.swing.table.Table();
-        pnlTKDaXoa = new javax.swing.JPanel();
-        cboChucVu1 = new javax.swing.JComboBox<>();
-        lblChucVu1 = new javax.swing.JLabel();
+        pnlSPDaXoa = new javax.swing.JPanel();
+        cboLoai1 = new javax.swing.JComboBox<>();
+        lblLoai1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTKDaXoa = new com.unknownshop.swing.table.Table();
-        pnlTaiKhoan = new javax.swing.JPanel();
+        pnlSanPham = new javax.swing.JPanel();
         pnlForm = new javax.swing.JPanel();
         pnlImage = new javax.swing.JPanel();
         btnImage = new javax.swing.JButton();
-        txtUsername = new javax.swing.JTextField();
-        lblIconUsername = new javax.swing.JLabel();
-        lblErrorUsername = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        lblIconPassword = new javax.swing.JLabel();
-        txtRePassword = new javax.swing.JPasswordField();
-        lblIconRePassword = new javax.swing.JLabel();
-        lblErrorPassword = new javax.swing.JLabel();
-        txtFullname = new javax.swing.JTextField();
-        lblIconFullname = new javax.swing.JLabel();
-        lblErrorRePassword = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        lblIconEmail = new javax.swing.JLabel();
-        lblErrorFullname = new javax.swing.JLabel();
-        lblErrorEmail = new javax.swing.JLabel();
-        lblIconEmail1 = new javax.swing.JLabel();
-        rdoKhachHang = new javax.swing.JRadioButton();
-        rdoNhanVien = new javax.swing.JRadioButton();
-        rdoQuanLy = new javax.swing.JRadioButton();
+        txtTenSP = new javax.swing.JTextField();
+        lblIconTenSP = new javax.swing.JLabel();
+        lblErrorTenSP = new javax.swing.JLabel();
+        lblIconGiaSP = new javax.swing.JLabel();
+        lblIconSoLuong = new javax.swing.JLabel();
+        lblErrorGiaSP = new javax.swing.JLabel();
+        lblErrorSoLuong = new javax.swing.JLabel();
+        lblIconLoaiSP = new javax.swing.JLabel();
+        lblErrorLoaiSP = new javax.swing.JLabel();
         pnlControl = new javax.swing.JPanel();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -89,6 +84,9 @@ public class PanelAccountManager extends javax.swing.JPanel {
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        txtGiaSP = new javax.swing.JTextField();
+        txtSoLuong = new javax.swing.JTextField();
+        cboLoaiSP = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -184,19 +182,19 @@ public class PanelAccountManager extends javax.swing.JPanel {
         pnlCard.setOpaque(false);
         pnlCard.setLayout(new java.awt.CardLayout());
 
-        pnlDanhSachTK.setOpaque(false);
+        pnlDanhSachSP.setOpaque(false);
 
-        cboChucVu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboChucVu.addActionListener(new java.awt.event.ActionListener() {
+        cboLoai.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cboLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboChucVuActionPerformed(evt);
+                cboLoaiActionPerformed(evt);
             }
         });
 
-        lblChucVu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblChucVu.setForeground(new java.awt.Color(51, 51, 51));
-        lblChucVu.setText("Chức vụ:");
+        lblLoai.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblLoai.setForeground(new java.awt.Color(51, 51, 51));
+        lblLoai.setText("Loại:");
 
         tblDanhSachTK.setBackground(new java.awt.Color(255, 255, 255));
         tblDanhSachTK.setForeground(new java.awt.Color(51, 51, 51));
@@ -208,7 +206,7 @@ public class PanelAccountManager extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Ảnh", "Tên Tài Khoản", "Học Và Tên", "Email", "Vai Trò", "Chỉnh Sửa"
+                "Ảnh", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số Lượng", "Giá", "Chỉnh Sửa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -228,56 +226,56 @@ public class PanelAccountManager extends javax.swing.JPanel {
             tblDanhSachTK.getColumnModel().getColumn(1).setResizable(false);
             tblDanhSachTK.getColumnModel().getColumn(1).setPreferredWidth(200);
             tblDanhSachTK.getColumnModel().getColumn(2).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tblDanhSachTK.getColumnModel().getColumn(2).setPreferredWidth(450);
             tblDanhSachTK.getColumnModel().getColumn(3).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(3).setPreferredWidth(350);
+            tblDanhSachTK.getColumnModel().getColumn(3).setPreferredWidth(150);
             tblDanhSachTK.getColumnModel().getColumn(4).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblDanhSachTK.getColumnModel().getColumn(4).setPreferredWidth(200);
             tblDanhSachTK.getColumnModel().getColumn(5).setResizable(false);
             tblDanhSachTK.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
-        javax.swing.GroupLayout pnlDanhSachTKLayout = new javax.swing.GroupLayout(pnlDanhSachTK);
-        pnlDanhSachTK.setLayout(pnlDanhSachTKLayout);
-        pnlDanhSachTKLayout.setHorizontalGroup(
-            pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDanhSachTKLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDanhSachSPLayout = new javax.swing.GroupLayout(pnlDanhSachSP);
+        pnlDanhSachSP.setLayout(pnlDanhSachSPLayout);
+        pnlDanhSachSPLayout.setHorizontalGroup(
+            pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addGroup(pnlDanhSachTKLayout.createSequentialGroup()
-                        .addComponent(lblChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
+                        .addComponent(lblLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(912, Short.MAX_VALUE))))
         );
-        pnlDanhSachTKLayout.setVerticalGroup(
-            pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachTKLayout.createSequentialGroup()
+        pnlDanhSachSPLayout.setVerticalGroup(
+            pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachSPLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblChucVu))
+                .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLoai))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        pnlCard.add(pnlDanhSachTK, "DanhSachTK");
+        pnlCard.add(pnlDanhSachSP, "DanhSachTK");
 
-        pnlTKDaXoa.setOpaque(false);
+        pnlSPDaXoa.setOpaque(false);
 
-        cboChucVu1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboChucVu1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboChucVu1.addActionListener(new java.awt.event.ActionListener() {
+        cboLoai1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cboLoai1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoai1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboChucVu1ActionPerformed(evt);
+                cboLoai1ActionPerformed(evt);
             }
         });
 
-        lblChucVu1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblChucVu1.setForeground(new java.awt.Color(51, 51, 51));
-        lblChucVu1.setText("Chức vụ:");
+        lblLoai1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblLoai1.setForeground(new java.awt.Color(51, 51, 51));
+        lblLoai1.setText("Chức vụ:");
 
         tblTKDaXoa.setBackground(new java.awt.Color(255, 255, 255));
         tblTKDaXoa.setForeground(new java.awt.Color(51, 51, 51));
@@ -315,45 +313,46 @@ public class PanelAccountManager extends javax.swing.JPanel {
             tblTKDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
-        javax.swing.GroupLayout pnlTKDaXoaLayout = new javax.swing.GroupLayout(pnlTKDaXoa);
-        pnlTKDaXoa.setLayout(pnlTKDaXoaLayout);
-        pnlTKDaXoaLayout.setHorizontalGroup(
-            pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTKDaXoaLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlSPDaXoaLayout = new javax.swing.GroupLayout(pnlSPDaXoa);
+        pnlSPDaXoa.setLayout(pnlSPDaXoaLayout);
+        pnlSPDaXoaLayout.setHorizontalGroup(
+            pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSPDaXoaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
-                    .addGroup(pnlTKDaXoaLayout.createSequentialGroup()
-                        .addComponent(lblChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlSPDaXoaLayout.createSequentialGroup()
+                        .addComponent(lblLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        pnlTKDaXoaLayout.setVerticalGroup(
-            pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTKDaXoaLayout.createSequentialGroup()
+        pnlSPDaXoaLayout.setVerticalGroup(
+            pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSPDaXoaLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblChucVu1))
+                .addGroup(pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLoai1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        pnlCard.add(pnlTKDaXoa, "TKDaXoa");
+        pnlCard.add(pnlSPDaXoa, "TKDaXoa");
 
-        pnlTaiKhoan.setOpaque(false);
+        pnlSanPham.setOpaque(false);
 
         pnlForm.setBackground(new java.awt.Color(51, 51, 51));
+        pnlForm.setForeground(new java.awt.Color(255, 255, 255));
 
         pnlImage.setBackground(new java.awt.Color(51, 51, 51));
 
         btnImage.setBackground(new java.awt.Color(51, 51, 51));
         btnImage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnImage.setForeground(new java.awt.Color(255, 255, 255));
-        btnImage.setText("Hình Ảnh");
+        btnImage.setText("Hình ảnh");
         btnImage.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 102, 204)));
         btnImage.setContentAreaFilled(false);
         btnImage.setOpaque(true);
@@ -388,123 +387,46 @@ public class PanelAccountManager extends javax.swing.JPanel {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsername.setText("Tên tài khoản");
-        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtTenSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTenSP.setForeground(new java.awt.Color(255, 255, 255));
+        txtTenSP.setText("Tên Sản Phẩm");
+        txtTenSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txtTenSP.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusGained(evt);
+                txtTenSPFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusLost(evt);
+                txtTenSPFocusLost(evt);
             }
         });
 
-        lblIconUsername.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconUsername.png"))); // NOI18N
+        lblIconTenSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconUsername.png"))); // NOI18N
 
-        lblErrorUsername.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorUsername.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorUsername.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorUsername.setText("Error!");
+        lblErrorTenSP.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblErrorTenSP.setForeground(new java.awt.Color(255, 51, 51));
+        lblErrorTenSP.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblErrorTenSP.setText("Error!");
 
-        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(255, 255, 255));
-        txtPassword.setText("Mật khẩu");
-        txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPasswordFocusLost(evt);
-            }
-        });
+        lblIconGiaSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
 
-        lblIconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
+        lblIconSoLuong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
 
-        txtRePassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtRePassword.setForeground(new java.awt.Color(255, 255, 255));
-        txtRePassword.setText("Mật khẩu");
-        txtRePassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtRePassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtRePasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRePasswordFocusLost(evt);
-            }
-        });
+        lblErrorGiaSP.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblErrorGiaSP.setForeground(new java.awt.Color(255, 51, 51));
+        lblErrorGiaSP.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblErrorGiaSP.setText("Error!");
 
-        lblIconRePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
+        lblErrorSoLuong.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblErrorSoLuong.setForeground(new java.awt.Color(255, 51, 51));
+        lblErrorSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblErrorSoLuong.setText("Error!");
 
-        lblErrorPassword.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorPassword.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorPassword.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorPassword.setText("Error!");
+        lblIconLoaiSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconEmail.png"))); // NOI18N
 
-        txtFullname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFullname.setForeground(new java.awt.Color(255, 255, 255));
-        txtFullname.setText("Họ tên");
-        txtFullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtFullname.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtFullnameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtFullnameFocusLost(evt);
-            }
-        });
-
-        lblIconFullname.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconName.png"))); // NOI18N
-
-        lblErrorRePassword.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorRePassword.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorRePassword.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorRePassword.setText("Error!");
-
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
-        txtEmail.setText("Email");
-        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtEmailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
-            }
-        });
-
-        lblIconEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconEmail.png"))); // NOI18N
-
-        lblErrorFullname.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorFullname.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorFullname.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorFullname.setText("Error!");
-
-        lblErrorEmail.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorEmail.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorEmail.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorEmail.setText("Error!");
-
-        lblIconEmail1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconEmail.png"))); // NOI18N
-
-        buttonGroup1.add(rdoKhachHang);
-        rdoKhachHang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdoKhachHang.setForeground(new java.awt.Color(255, 255, 255));
-        rdoKhachHang.setSelected(true);
-        rdoKhachHang.setText("Khách hàng");
-
-        buttonGroup1.add(rdoNhanVien);
-        rdoNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdoNhanVien.setForeground(new java.awt.Color(255, 255, 255));
-        rdoNhanVien.setText("Nhân Viên");
-
-        buttonGroup1.add(rdoQuanLy);
-        rdoQuanLy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdoQuanLy.setForeground(new java.awt.Color(255, 255, 255));
-        rdoQuanLy.setText("Quản lý");
+        lblErrorLoaiSP.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblErrorLoaiSP.setForeground(new java.awt.Color(255, 51, 51));
+        lblErrorLoaiSP.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblErrorLoaiSP.setText("Error!");
 
         pnlControl.setOpaque(false);
 
@@ -711,6 +633,46 @@ public class PanelAccountManager extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txtGiaSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtGiaSP.setForeground(new java.awt.Color(255, 255, 255));
+        txtGiaSP.setText("Giá Sản Phẩm");
+        txtGiaSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txtGiaSP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtGiaSPFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtGiaSPFocusLost(evt);
+            }
+        });
+
+        txtSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSoLuong.setForeground(new java.awt.Color(255, 255, 255));
+        txtSoLuong.setText("Số Lượng Nhập Kho");
+        txtSoLuong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txtSoLuong.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSoLuongFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSoLuongFocusLost(evt);
+            }
+        });
+
+        cboLoaiSP.setBackground(new java.awt.Color(51, 51, 51));
+        cboLoaiSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboLoaiSP.setForeground(new java.awt.Color(255, 255, 255));
+        cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Chọn loại sản phẩm ---", "Áo", "Quần", "Phụ Kiện", "Giày" }));
+        cboLoaiSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        cboLoaiSP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cboLoaiSPFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cboLoaiSPFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
         pnlFormLayout.setHorizontalGroup(
@@ -723,38 +685,25 @@ public class PanelAccountManager extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIconSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtFullname))
+                                .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIconGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblErrorUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblErrorTenSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIconTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblErrorPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblErrorRePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblErrorFullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblErrorGiaSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblErrorSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtEmail))
-                            .addComponent(lblErrorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdoKhachHang)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdoNhanVien)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdoQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(cboLoaiSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblErrorLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
                         .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -763,68 +712,59 @@ public class PanelAccountManager extends javax.swing.JPanel {
         pnlFormLayout.setVerticalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFormLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblIconTenSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorUsername)
+                        .addComponent(lblErrorTenSP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIconGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorPassword)
+                        .addComponent(lblErrorGiaSP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblIconRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblIconSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorRePassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconFullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorFullname)
+                        .addComponent(lblErrorSoLuong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rdoNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rdoKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblIconEmail1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rdoQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblErrorLoaiSP)
+                        .addGap(41, 41, 41)))
                 .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout pnlTaiKhoanLayout = new javax.swing.GroupLayout(pnlTaiKhoan);
-        pnlTaiKhoan.setLayout(pnlTaiKhoanLayout);
-        pnlTaiKhoanLayout.setHorizontalGroup(
-            pnlTaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTaiKhoanLayout.createSequentialGroup()
-                .addGap(324, 324, 324)
+        javax.swing.GroupLayout pnlSanPhamLayout = new javax.swing.GroupLayout(pnlSanPham);
+        pnlSanPham.setLayout(pnlSanPhamLayout);
+        pnlSanPhamLayout.setHorizontalGroup(
+            pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSanPhamLayout.createSequentialGroup()
+                .addContainerGap(326, Short.MAX_VALUE)
                 .addComponent(pnlForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addGap(321, 321, 321))
         );
-        pnlTaiKhoanLayout.setVerticalGroup(
-            pnlTaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTaiKhoanLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+        pnlSanPhamLayout.setVerticalGroup(
+            pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSanPhamLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addComponent(pnlForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        pnlCard.add(pnlTaiKhoan, "TaiKhoan");
+        pnlCard.add(pnlSanPham, "TaiKhoan");
 
         add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1260, 520));
     }// </editor-fold>//GEN-END:initComponents
@@ -872,21 +812,15 @@ public class PanelAccountManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTaiKhoanMouseExited
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboChucVu(DSTK)">
-    private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
+    private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
         selectCombobox();
-    }//GEN-LAST:event_cboChucVuActionPerformed
+    }//GEN-LAST:event_cboLoaiActionPerformed
 
    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1(DSTK đã xóa)">
-    private void cboChucVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVu1ActionPerformed
+    private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
         selectCombobox1();
-    }//GEN-LAST:event_cboChucVu1ActionPerformed
-
-   // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnImage">
-    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
-        this.getImage();
-    }//GEN-LAST:event_btnImageActionPerformed
+    }//GEN-LAST:event_cboLoai1ActionPerformed
 
     private void btnImageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseEntered
         XHover.enterButton(btnImage, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -895,143 +829,25 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnImageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseExited
         XHover.exitButton(btnImage);
     }//GEN-LAST:event_btnImageMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Username">
-    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        if(txtUsername.getText().trim().equalsIgnoreCase("Tên tài khoản")){
-             txtUsername.setText("");
+
+    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
+        this.getImage();
+    }//GEN-LAST:event_btnImageActionPerformed
+
+    private void txtTenSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusGained
+        if (txtTenSP.getText().trim().equalsIgnoreCase("Tên Sản Phẩm")) {
+            txtTenSP.setText("");
         }
-    }//GEN-LAST:event_txtUsernameFocusGained
+    }//GEN-LAST:event_txtTenSPFocusGained
 
-    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        if(txtUsername.getText().trim().length()==0){
-            txtUsername.setText("Tên tài khoản");
-            lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }else{
-            lblErrorUsername.setText(" ");
+    private void txtTenSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusLost
+        if (txtTenSP.getText().trim().length() == 0) {
+            txtTenSP.setText("Tên Sản Phẩm");
+            lblErrorTenSP.setText("Chưa nhập tên sản phẩm!");
+        } else {
+            lblErrorTenSP.setText(" ");
         }
-    }//GEN-LAST:event_txtUsernameFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Password">
-    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        if(txtPassword.getText().trim().equals("Mật khẩu")){
-             txtPassword.setText("");
-        }
-    }//GEN-LAST:event_txtPasswordFocusGained
-
-    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        if(txtPassword.getText().trim().length()==0){
-            txtPassword.setText("Mật khẩu");
-            lblErrorPassword.setText("Chưa nhập mật khẩu!");
-        }else{
-            lblErrorPassword.setText(" ");
-        }
-    }//GEN-LAST:event_txtPasswordFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi RePassword">
-    private void txtRePasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRePasswordFocusGained
-        if(txtRePassword.getText().trim().equals("Mật khẩu")){
-             txtRePassword.setText("");
-        }
-    }//GEN-LAST:event_txtRePasswordFocusGained
-
-    private void txtRePasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRePasswordFocusLost
-        if(txtRePassword.getText().trim().length()==0){
-            txtRePassword.setText("Mật khẩu");
-            lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
-        }else if(!txtRePassword.getText().equals(txtPassword.getText())){
-            lblErrorRePassword.setText("Mật khẩu nhập lại không trùng khớp!");
-        }else{
-             lblErrorRePassword.setText(" ");
-        }
-    }//GEN-LAST:event_txtRePasswordFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Fullname">
-    private void txtFullnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullnameFocusGained
-        if(txtFullname.getText().trim().equalsIgnoreCase("Họ tên")){
-             txtFullname.setText("");
-        }
-    }//GEN-LAST:event_txtFullnameFocusGained
-
-    private void txtFullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullnameFocusLost
-        String kt = "^([^[!@#$%&*()_+=|<>?{}\\[\\]~-]|^\\d|^\\s]*\\s?)*$";
-        if(txtFullname.getText().trim().length()==0){
-            txtFullname.setText("Họ tên");
-            lblErrorFullname.setText("Chưa nhập họ tên!");
-        }else{
-            if(txtFullname.getText().matches(kt)==false){
-                lblErrorFullname.setText("Tên không được chứa số hoặc ký tự đặc biệt!");
-            }else{
-                lblErrorFullname.setText(" ");
-            }
-        }
-    }//GEN-LAST:event_txtFullnameFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Email">
-    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
-        if(txtEmail.getText().trim().equalsIgnoreCase("Email")){
-             txtEmail.setText("");
-        }
-    }//GEN-LAST:event_txtEmailFocusGained
-
-    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        String kt_email = "\\w+\\@\\w+(\\.\\w+)+";
-        if(txtEmail.getText().trim().length()==0){
-            txtEmail.setText("Email");
-            lblErrorEmail.setText("Chưa nhập Email!");
-        }else{
-           if(txtEmail.getText().matches(kt_email)==false){
-                lblErrorEmail.setText("Email không đúng định dạng");
-            }else{
-                lblErrorEmail.setText(" ");
-            }
-        }
-    }//GEN-LAST:event_txtEmailFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnMoi">
-    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        this.clearForm();
-        this.clearError();
-    }//GEN-LAST:event_btnMoiActionPerformed
-
-    private void btnMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseEntered
-        XHover.enterButton(btnMoi, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnMoiMouseEntered
-
-    private void btnMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseExited
-        XHover.exitButton(btnMoi);
-    }//GEN-LAST:event_btnMoiMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnThem">
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        this.insert();
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private void btnThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseEntered
-        XHover.enterButton(btnThem, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnThemMouseEntered
-
-    private void btnThemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseExited
-        XHover.exitButton(btnThem);
-    }//GEN-LAST:event_btnThemMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnSua">
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        update();
-    }//GEN-LAST:event_btnSuaActionPerformed
-
-    private void btnSuaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseEntered
-        XHover.enterButton(btnSua, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnSuaMouseEntered
-
-    private void btnSuaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseExited
-        XHover.exitButton(btnSua);
-    }//GEN-LAST:event_btnSuaMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnXoa">
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        delete();
-    }//GEN-LAST:event_btnXoaActionPerformed
+    }//GEN-LAST:event_txtTenSPFocusLost
 
     private void btnXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseEntered
         XHover.enterButton(btnXoa, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -1040,11 +856,46 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseExited
         XHover.exitButton(btnXoa);
     }//GEN-LAST:event_btnXoaMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnFirst">
-    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        first();
-    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseEntered
+        XHover.enterButton(btnSua, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnSuaMouseEntered
+
+    private void btnSuaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseExited
+        XHover.exitButton(btnSua);
+    }//GEN-LAST:event_btnSuaMouseExited
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        this.update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseEntered
+        XHover.enterButton(btnMoi, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnMoiMouseEntered
+
+    private void btnMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseExited
+        XHover.exitButton(btnMoi);
+    }//GEN-LAST:event_btnMoiMouseExited
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        this.clearForm();
+    }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void btnThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseEntered
+        XHover.enterButton(btnThem, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnThemMouseEntered
+
+    private void btnThemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseExited
+        XHover.exitButton(btnThem);
+    }//GEN-LAST:event_btnThemMouseExited
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        this.insert();
+    }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnFirstMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseEntered
         XHover.enterButton(btnFirst, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -1053,11 +904,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnFirstMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseExited
         XHover.exitButton(btnFirst);
     }//GEN-LAST:event_btnFirstMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnPrev">
-    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        prev();
-    }//GEN-LAST:event_btnPrevActionPerformed
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        first();
+    }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
         XHover.enterButton(btnPrev, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -1066,11 +916,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
         XHover.exitButton(btnPrev);
     }//GEN-LAST:event_btnPrevMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnNext">
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        next();
-    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        prev();
+    }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseEntered
         XHover.enterButton(btnNext, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -1079,11 +928,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnNextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseExited
         XHover.exitButton(btnNext);
     }//GEN-LAST:event_btnNextMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnLast">
-    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        last();
-    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        next();
+    }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLastMouseEntered
         XHover.enterButton(btnLast, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -1092,7 +940,52 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnLastMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLastMouseExited
         XHover.exitButton(btnLast);
     }//GEN-LAST:event_btnLastMouseExited
-    // </editor-fold> 
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        last();
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void txtGiaSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaSPFocusGained
+        if (txtGiaSP.getText().trim().equalsIgnoreCase("Giá Sản Phẩm")) {
+            txtGiaSP.setText("");
+        }
+    }//GEN-LAST:event_txtGiaSPFocusGained
+
+    private void txtGiaSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaSPFocusLost
+        if (txtGiaSP.getText().trim().length() == 0) {
+            txtGiaSP.setText("Giá Sản Phẩm");
+            lblErrorGiaSP.setText("Chưa nhập giá sản phẩm!");
+        } else {
+            lblErrorGiaSP.setText(" ");
+        }
+    }//GEN-LAST:event_txtGiaSPFocusLost
+
+    private void txtSoLuongFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusGained
+        if (txtSoLuong.getText().trim().equalsIgnoreCase("Số Lượng Nhập Kho")) {
+            txtSoLuong.setText("");
+        }
+    }//GEN-LAST:event_txtSoLuongFocusGained
+
+    private void txtSoLuongFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusLost
+        if (txtSoLuong.getText().trim().length() == 0) {
+            txtSoLuong.setText("Số Lượng Nhập Kho");
+            lblErrorSoLuong.setText("Chưa nhập số lượng sản phẩm!");
+        } else {
+            lblErrorSoLuong.setText(" ");
+        }
+    }//GEN-LAST:event_txtSoLuongFocusLost
+
+    private void cboLoaiSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboLoaiSPFocusGained
+        lblErrorLoaiSP.setText(" ");
+    }//GEN-LAST:event_cboLoaiSPFocusGained
+
+    private void cboLoaiSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboLoaiSPFocusLost
+        if (cboLoaiSP.getSelectedIndex() == 0) {
+            lblErrorLoaiSP.setText("Chưa chọn loại sản phẩm!");
+        }
+    }//GEN-LAST:event_cboLoaiSPFocusLost
+
+   // </editor-fold> 
     
     // -------------------- End Event --------------------
     
@@ -1109,62 +1002,53 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private javax.swing.JButton btnTaiKhoan;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cboChucVu;
-    private javax.swing.JComboBox<String> cboChucVu1;
+    private javax.swing.JComboBox<String> cboLoai;
+    private javax.swing.JComboBox<String> cboLoai1;
+    private javax.swing.JComboBox<String> cboLoaiSP;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblChucVu;
-    private javax.swing.JLabel lblChucVu1;
-    private javax.swing.JLabel lblErrorEmail;
-    private javax.swing.JLabel lblErrorFullname;
-    private javax.swing.JLabel lblErrorPassword;
-    private javax.swing.JLabel lblErrorRePassword;
-    private javax.swing.JLabel lblErrorUsername;
-    private javax.swing.JLabel lblIconEmail;
-    private javax.swing.JLabel lblIconEmail1;
-    private javax.swing.JLabel lblIconFullname;
-    private javax.swing.JLabel lblIconPassword;
-    private javax.swing.JLabel lblIconRePassword;
-    private javax.swing.JLabel lblIconUsername;
+    private javax.swing.JLabel lblErrorGiaSP;
+    private javax.swing.JLabel lblErrorLoaiSP;
+    private javax.swing.JLabel lblErrorSoLuong;
+    private javax.swing.JLabel lblErrorTenSP;
+    private javax.swing.JLabel lblIconGiaSP;
+    private javax.swing.JLabel lblIconLoaiSP;
+    private javax.swing.JLabel lblIconSoLuong;
+    private javax.swing.JLabel lblIconTenSP;
+    private javax.swing.JLabel lblLoai;
+    private javax.swing.JLabel lblLoai1;
     private javax.swing.JPanel pnlCard;
     private javax.swing.JPanel pnlControl;
-    private javax.swing.JPanel pnlDanhSachTK;
+    private javax.swing.JPanel pnlDanhSachSP;
     private javax.swing.JPanel pnlForm;
     private javax.swing.JPanel pnlImage;
-    private javax.swing.JPanel pnlTKDaXoa;
+    private javax.swing.JPanel pnlSPDaXoa;
+    private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlTabButton;
-    private javax.swing.JPanel pnlTaiKhoan;
-    private javax.swing.JRadioButton rdoKhachHang;
-    private javax.swing.JRadioButton rdoNhanVien;
-    private javax.swing.JRadioButton rdoQuanLy;
     private com.unknownshop.swing.table.Table tblDanhSachTK;
     private com.unknownshop.swing.table.Table tblTKDaXoa;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtFullname;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JPasswordField txtRePassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtGiaSP;
+    private javax.swing.JTextField txtSoLuong;
+    private javax.swing.JTextField txtTenSP;
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
-        txtUsername.setBackground(new Color(0, 0, 0, 0));
-        txtPassword.setBackground(new Color(0, 0, 0, 0));
-        txtEmail.setBackground(new Color(0, 0, 0, 0));
-        txtFullname.setBackground(new Color(0, 0, 0, 0));
-        txtRePassword.setBackground(new Color(0, 0, 0, 0));
+        txtTenSP.setBackground(new Color(0, 0, 0, 0));
+        txtGiaSP.setBackground(new Color(0, 0, 0, 0));
+        txtSoLuong.setBackground(new Color(0, 0, 0, 0));
+        cboLoaiSP.setBackground(new Color(0, 0, 0, 0));
         XTable.setCellAlignmentCenter(tblDanhSachTK,0);
         XTable.setCellAlignmentCenter(tblTKDaXoa,0);
         this.clearError();
-        fillCboChucVu(cboChucVu,cboChucVu1);
+        fillCboLoai(cboLoai,cboLoai1);
         fillTableUser(true);
         fillTableUserDeleted(true);
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         // gán vào lớp tiện ích
-        XPanel.pnlAccManager = this;
+        XPanel.pnlProManager = this;
     }
     // </editor-fold>  
     
@@ -1193,48 +1077,47 @@ public class PanelAccountManager extends javax.swing.JPanel {
     } 
     // </editor-fold> 
     
-// _____________________ DS Tài Khoản _____________________
+// _____________________ DS Sản Phẩm _____________________
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào combobox chức vụ"> 
-    private void fillCboChucVu(JComboBox... combo){
+    // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào combobox loại"> 
+    private void fillCboLoai(JComboBox... combo){
         for (JComboBox cbo : combo) {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbo.getModel();
             model.removeAllElements();
-            model.addElement("-- Chọn chức vụ --");
-            List<Object[]> list = dao.selectRoles();
-            for (Object[] us : list) {
-                model.addElement(us[0]);
+            model.addElement("--- Chọn loại sản phẩm ---");
+            List<ProductTypes> list = proTypeDao.getList();
+            for (ProductTypes proType : list) {
+                model.addElement(proType);
             }
         }
     }
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng tài khoản">
+    // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm">
     private void fillTableUser(boolean check) {
-        cboChucVu.setSelectedIndex(0);
+        cboLoai.setSelectedIndex(0);
         DefaultTableModel model = (DefaultTableModel) tblDanhSachTK.getModel();
         model.setRowCount(0);
         if(check) {
-            listUser = dao.selectUsers(null);
+            list = proDao.selectByIdPro(0);
         }
-        for (Users us : listUser) {
-            model.addRow(new RowTableAccount(us).toRowTable(0));
+        for (Products pro : list) {
+            model.addRow(new RowTableProduct(pro).toRowTable(0));
         }
     }
     // </editor-fold>  
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox ChucVu">
+    // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox Loai">
     private void selectCombobox() {
         DefaultTableModel model = (DefaultTableModel) tblDanhSachTK.getModel();
         model.setRowCount(0);
-        String role;
-        if(cboChucVu.getSelectedIndex() == 0){
+        if(cboLoai.getSelectedIndex() == 0){
             fillTableUser(false);
-        }else{
-            role = (String) cboChucVu.getSelectedItem();
-            for (Users us : listUser) {
-                if(us.getRole().equals(role)){
-                    model.addRow(new RowTableAccount(us).toRowTable(0));
+        }else if (cboLoai.getSelectedIndex() > 0){
+            ProductTypes proType = (ProductTypes) cboLoai.getSelectedItem();
+            for (Products pro : list) {
+                if(pro.getTypeId() == proType.getId()){
+                    model.addRow(new RowTableProduct(pro).toRowTable(0));
                 }
             }
         }
@@ -1242,27 +1125,18 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên form">
-    private void setForm(Users user){
+    private void setForm(Products product){
         // Chuyển lỗi về dạng 1 dấu cách
-        lblErrorEmail.setText(" ");
-        lblErrorFullname.setText(" ");
-        lblErrorPassword.setText(" ");
-        lblErrorRePassword.setText(" ");
-        lblErrorUsername.setText(" ");
-        // Lấy thông tin từ user điền lên form
-        txtUsername.setText(user.getUsername());
-        txtFullname.setText(user.getFullname());
-        txtPassword.setText(user.getPassword());
-        txtRePassword.setText(user.getPassword());
-        txtEmail.setText(user.getEmail());
-        if(user.getRole().equals("Khách hàng")){
-            rdoKhachHang.setSelected(true);
-        }else if(user.getRole().equals("Nhân viên")){
-            rdoNhanVien.setSelected(true);
-        }else{
-            rdoQuanLy.setSelected(true);
-        }
-        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(user.getImgUrl(), 175, 225)));
+        lblErrorTenSP.setText(" ");
+        lblErrorLoaiSP.setText(" ");
+        lblErrorSoLuong.setText(" ");
+        lblErrorGiaSP.setText(" ");
+        // Lấy thông tin từ sản phẩm điền lên form
+        txtTenSP.setText(product.getName());
+        txtGiaSP.setText(String.valueOf(product.getPrice()));
+        txtSoLuong.setText(String.valueOf(product.getQuantity()));
+        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(product.getImgUrl(), 175, 225)));
+        cboLoaiSP.setSelectedIndex(product.getTypeId());
         btnImage.setText("");
     }
     // </editor-fold> 
@@ -1270,8 +1144,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức đưa thông tin tài khoản lên form">
     public void edit(){
         row = tblDanhSachTK.getSelectedRow();
-        Users user = listUser.get(row);
-        setForm(user);
+        Products pro = list.get(row);
+        setForm(pro);
         pressTabButton(btnTaiKhoan);
         XHover.enableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         XHover.disableButton(btnThem);
@@ -1281,36 +1155,32 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa hàng được chọn">
     public void removeRow(){
         row = tblDanhSachTK.getSelectedRow();
-        Users user = listUser.get(row);
-        if(Auth.user.getUsername().equals(user.getUsername())){
-            XMess.alert(null, "Bạn không thể xóa bản thân!");
-        }else if(XMess.confirm(null, "Bạn có chắc muốn xóa nhan viên này")){
-            if(dao.delete(user.getUsername()) == 0){
-                XMess.alert(null, "Xóa tài khoản thất bại!");
+        Products pro = list.get(row);
+        if(XMess.confirm(null, "Bạn có chắc muốn xóa sản phẩm này")){
+            if(proDao.delete(pro.getId()) == 0){
+                XMess.alert(null, "Xóa sản phẩm thất bại!");
             }else{
-                XMess.alert(null, "Xóa tài khoản thành công");
-                listUser.remove(row);
-                listUserDeleted.add(user);
+                XMess.alert(null, "Xóa sản phẩm thành công");
+                list.remove(row);
                 fillTableUser(false);
-                fillTableUserDeleted(false);
+                fillTableUserDeleted(true);
             }
         }
     }
     // </editor-fold>
     
-// _______________________ TK Đã xóa ______________________
-      
+// _______________________ SP Đã xóa ______________________
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng tài khoản đã xóa">
+    // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm đã xóa">
     private void fillTableUserDeleted(boolean check) {
-        cboChucVu1.setSelectedIndex(0);
+        cboLoai1.setSelectedIndex(0);
         DefaultTableModel model = (DefaultTableModel) tblTKDaXoa.getModel();
         model.setRowCount(0);
         if(check) {
-            listUserDeleted = dao.selectUsersDeleted(null);
+            listDeleted = proDao.getListDelete(0);
         }
-        for (Users us : listUserDeleted) {
-            model.addRow(new RowTableAccount(us).toRowTable(1));
+        for (Products pro : listDeleted) {
+            model.addRow(new RowTableProduct(pro).toRowTable(1));
         }
     }
     
@@ -1320,138 +1190,118 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void selectCombobox1() {
         DefaultTableModel model = (DefaultTableModel) tblTKDaXoa.getModel();
         model.setRowCount(0);
-        String role;
-        if(cboChucVu1.getSelectedIndex() == 0){
+        if(cboLoai1.getSelectedIndex() == 0){
             fillTableUser(false);
-        }else{
-            role = (String) cboChucVu1.getSelectedItem();
-            for (Users us : listUserDeleted) {
-                if(us.getRole().equals(role)){
-                    model.addRow(new RowTableAccount(us).toRowTable(1));
+        }else if (cboLoai1.getSelectedIndex() > 0){
+            ProductTypes proType = (ProductTypes) cboLoai1.getSelectedItem();
+            for (Products pro : listDeleted) {
+                if(pro.getTypeId()== proType.getId()){
+                    model.addRow(new RowTableProduct(pro).toRowTable(1));
                 }
             }
         }
     }
     // </editor-fold>  
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi tài khoản">  
+    // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi sản phẩm">  
     public void restore(){
         int row1 = tblTKDaXoa.getSelectedRow();
-        Users user = listUserDeleted.get(row1);
-        if(XMess.confirm(this, "Bạn muốn phục hồi nhân viên này?")){
-            if(dao.restoreUser(user.getId()) == 0){
-                XMess.alert(this,"Phục hồi tài khoản thất bại!");
+        Products pro = listDeleted.get(row1);
+        if(XMess.confirm(this, "Bạn muốn phục hồi sản phẩm này?")){
+            if(proDao.restore(pro.getId()) == 0){
+                XMess.alert(this,"Phục hồi sản phẩm thất bại!");
             }else{
-                XMess.alert(this,"Phục hồi tài khoản thành công!");
-                listUserDeleted.remove(row1);
-                listUser.add(user);
+                XMess.alert(this,"Phục hồi sản phẩm thành công!");
+                listDeleted.remove(row1);
                 fillTableUserDeleted(false);
-                fillTableUser(false);
+                fillTableUser(true);
             }
         }
     }
     // </editor-fold>
     
-// _____________________ Form Tài Khoản ___________________
+// _____________________ Form Sản Phẩm ___________________
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lable lỗi"> 
     private void clearError() {
-        lblErrorPassword.setText("  ");
-        lblErrorUsername.setText("  ");
-        lblErrorEmail.setText("  ");
-        lblErrorFullname.setText("  ");
-        lblErrorRePassword.setText("  ");
+        lblErrorGiaSP.setText("  ");
+        lblErrorLoaiSP.setText("  ");
+        lblErrorSoLuong.setText("  ");
+        lblErrorTenSP.setText("  ");
     }
     // </editor-fold>    
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
     private void nonError(){
-        if(lblErrorUsername.getText().equals("  ")){
-            lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }  
-        if(lblErrorPassword.getText().equals("  ")){
-            lblErrorPassword.setText("Chưa nhập mật khẩu!");
+        if (lblErrorTenSP.getText().equals("  ")) {
+            lblErrorTenSP.setText("Chưa nhập tên sản phẩm!");
         }
-        if(lblErrorRePassword.getText().equals("  ")){
-            lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
+        if (lblErrorGiaSP.getText().equals("  ")) {
+            lblErrorGiaSP.setText("Chưa nhập giá sản phẩm!");
         }
-        if(lblErrorEmail.getText().equals("  ")){
-            lblErrorEmail.setText("Chưa nhập email!");
+        if (lblErrorSoLuong.getText().equals("  ")) {
+            lblErrorSoLuong.setText("Chưa nhập số lượng sản phẩm!");
         }
-        if(lblErrorFullname.getText().equals("  ")){
-            lblErrorFullname.setText("Chưa nhập tên ngươi dùng!");
+        if (lblErrorLoaiSP.getText().equals("  ")) {
+            lblErrorLoaiSP.setText("Chưa chọn loại sản phẩm!");
         }
     }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form">  
-    private Users getForm(){
-        Users user = new Users();
-        user.setUsername(txtUsername.getText());
-        user.setFullname(txtFullname.getText());
-        user.setPassword(txtPassword.getText());
-        user.setPassword(txtRePassword.getText());
-        user.setEmail(txtEmail.getText());
-        user.setImgUrl(userImg);
-        if(rdoKhachHang.isSelected()){
-            user.setRole("Khách hàng");
-        }else if(rdoNhanVien.isSelected()){
-            user.setRole("Nhân viên");
-        }else{
-            user.setRole("Trưởng phòng");
-        }
-        
-        return user;
+    private Products getForm(){
+        Products product = new Products();
+        product.setName(txtTenSP.getText());
+        product.setPrice(Float.parseFloat(txtGiaSP.getText()));
+        product.setQuantity(Integer.valueOf(txtSoLuong.getText()));
+        product.setImgUrl(proImage);
+        Integer typeId = (Integer) cboLoaiSP.getSelectedIndex();
+        product.setTypeId(typeId);
+        return product;
     }
     // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa trắng form"> 
     private void clearForm() {
         clearError();
-        txtUsername.setText("Tên Tài Khoản");
-        txtPassword.setText("Mật khẩu");
-        txtRePassword.setText("Mật khẩu");
-        txtFullname.setText("Họ tên");
-        txtEmail.setText("Email");
+        txtGiaSP.setText("Giá Sản Phẩm");
+        txtSoLuong.setText("Số Lượng Nhập Kho");
+        txtTenSP.setText("Tên Sản Phẩm");
+        cboLoaiSP.setSelectedIndex(0);
         btnImage.setIcon(null);
-        btnImage.setText("Hình Ảnh");
-        rdoKhachHang.setSelected(true);
-        // Điều chỉnh nút
-        XHover.enableButton(btnThem);
+        btnImage.setText("Hình ảnh");
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
+        XHover.enableButton(btnThem);
     }
     // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
     private boolean checkError(){
-        if(!(lblErrorEmail.getText().equals(" ") &&
-                    lblErrorFullname.getText().equals(" ") &&  
-                    lblErrorPassword.getText().equals(" ") &&
-                    lblErrorRePassword.getText().equals(" ") &&
-                    lblErrorUsername.getText().equals(" "))) return true;
+        if(!(lblErrorGiaSP.getText().equals(" ")
+                && lblErrorLoaiSP.getText().equals(" ")
+                && lblErrorSoLuong.getText().equals(" ")
+                && lblErrorTenSP.getText().equals(" "))) return true;
         else if(btnImage.getIcon() == null){
-            XMess.alert(this, "Bạn chưa chọn ảnh đại diện!");
+            XMess.alert(this, "Bạn chưa chọn ảnh sản phẩm!");
             return true;
         }
         return false;
     }
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức thêm tài khoản">  
+    // <editor-fold defaultstate="collapsed" desc="Phương thức thêm sản phẩm">  
     private void insert(){
         nonError();
         if(checkError()) return;
-        Users user = getForm();
-        int result = XMess.confirm(this, "Bạn muốn thêm nhân viên này?")
-                    ? dao.insert(user) : -2;
+        Products product = getForm();
+        int result = XMess.confirm(this, "Bạn muốn thêm sản phẩm này?")
+                    ? proDao.insert(product) : -2;
         if( result == -2){
             return;
         }else if(result == 0){
-            lblErrorUsername.setText("Tài khoản này đã có trong hệ thống!");
-        }else if(result == -1){
-            lblErrorEmail.setText("Email đã được sử dụng!");
+            XMess.alert(this,"Thêm sản phẩm thành công!");
         }else{
-            XMess.alert(this,"Thêm tài khoản thành công!");
+            XMess.alert(this,"Thêm sản phẩm thành công!");
             fillTableUser(true);
             pressTabButton(btnDanhSachTK);
             clearForm();
@@ -1459,16 +1309,16 @@ public class PanelAccountManager extends javax.swing.JPanel {
     }
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức cập nhập tài khoản">  
+    // <editor-fold defaultstate="collapsed" desc="Phương thức cập nhập sản phẩm">  
     private void update(){
         nonError();
         if(checkError()) return;
-        Users user = getForm();
-        if(XMess.confirm(this, "Bạn muốn cập nhật nhân viên này?")){
-            if(dao.update(user) == 0){
-                XMess.alert(this,"Cập nhập tài khoản thất bại!");
+        Products product = getForm();
+        if(XMess.confirm(this, "Bạn muốn cập nhật sản phẩm này?")){
+            if(proDao.update(product) == 0){
+                XMess.alert(this,"Cập nhập sản phẩm thất bại!");
             }else{
-                XMess.alert(this,"Cập nhập tài khoản thành công!");
+                XMess.alert(this,"Cập nhập sản phẩm thành công!");
                 fillTableUser(true);
                 pressTabButton(btnDanhSachTK);
                 clearForm();
@@ -1477,20 +1327,17 @@ public class PanelAccountManager extends javax.swing.JPanel {
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa tài khoản">  
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa sản phẩm">  
     private void delete(){
-        String username = txtUsername.getText();
-        if(username.equals(Auth.user.getUsername())){
-            XMess.alert(this, "Bạn không được xóa chính bạn!");
-        }
-        else if(XMess.confirm(this, "Bạn muốn xóa nhân viên này?")){
-            if (dao.delete(username) == 0) {
-                XMess.alert(this, "Xóa tài khoản thất bại!");
+        Products pro = list.get(row);
+        if(XMess.confirm(this, "Bạn muốn xóa sản phẩm này?")){
+            if (proDao.delete(pro.getId()) == 0) {
+                XMess.alert(this, "Xóa sản phẩm thất bại!");
             } else {
                 fillTableUserDeleted(true);
                 fillTableUser(true);
                 pressTabButton(btnTKDaXoa);
-                XMess.alert(this,"Xóa tài khoản thành công!");
+                XMess.alert(this,"Xóa sản phẩm thành công!");
                 clearForm();
             }
         }
@@ -1503,7 +1350,7 @@ public class PanelAccountManager extends javax.swing.JPanel {
         if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
             try {
                 File file = fileChooser.getSelectedFile();
-                userImg = XImage.convertImageToBytes(file);
+                proImage = XImage.convertImageToBytes(file);
                 ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
                         getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
                 btnImage.setIcon(icon);
@@ -1530,17 +1377,17 @@ public class PanelAccountManager extends javax.swing.JPanel {
         }
         if(row == 0){
             XHover.disableButton(btnPrev, btnFirst);
-        }else if(row == listUser.size()-2){
+        }else if(row == list.size()-2){
             XHover.enableButton(btnNext, btnLast);
         }
     }
     
     private void next(){
-        if(row < listUser.size()-1){
+        if(row < list.size()-1){
             tblDanhSachTK.setRowSelectionInterval(++row, row);
             edit();
         }
-        if(row == listUser.size()-1){
+        if(row == list.size()-1){
             XHover.disableButton(btnNext, btnLast);
         }else if(row == 1){
             XHover.enableButton(btnPrev, btnFirst);

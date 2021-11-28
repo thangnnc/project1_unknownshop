@@ -80,10 +80,10 @@ public class ProductDAO extends EntityDAO<Products, Integer> {
     }
 
     public List<Products> selectByIdPro(Integer key) {
-        String select_byId_Sql = "{CALL sp_selectProductByTypeId(?)}";
-        List<Products> list = this.selectBySql(select_byId_Sql, key);
+        String sql = "{CALL sp_selectProductByTypeId(?)}";
+        List<Products> list = this.selectBySql(sql, key);
         if (list.isEmpty()) {
-            return null;
+            return new ArrayList<Products>();
         }
         return list;
     }
@@ -112,10 +112,13 @@ public class ProductDAO extends EntityDAO<Products, Integer> {
         return this.getListOfArray(sql, cols, typeId);
     }
 
-    public List<Object[]> getListDelete(int typeId) {
+    public List<Products> getListDelete(Integer typeId) {
         String sql = "{CALL sp_selectProductsDeleted(?)}";
-        String[] cols = {"id", "name", "price", "quantity"};
-        return this.getListOfArray(sql, cols, typeId);
+        List<Products> list = this.selectBySql(sql, typeId);
+        if (list.isEmpty()) {
+            return new ArrayList<Products>();
+        }
+        return list;
     }
     
     public int restore(Integer key) {

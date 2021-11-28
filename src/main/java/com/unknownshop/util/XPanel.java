@@ -2,6 +2,7 @@ package com.unknownshop.util;
 
 import com.unknownshop.form.DialogWelcome;
 import com.unknownshop.form.admin.PanelAccountManager;
+import com.unknownshop.form.admin.PanelProductManager;
 import com.unknownshop.form.user.PanelCart;
 import com.unknownshop.fragment.header.Header;
 import com.unknownshop.main.MainForm;
@@ -28,5 +29,6 @@ public class XPanel {
     public static JPanel panelCardAdmin;
     public static JPanel panelOrders;
     public static PanelAccountManager pnlAccManager;
+    public static PanelProductManager pnlProManager;
     
 }

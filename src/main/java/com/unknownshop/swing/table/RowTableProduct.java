@@ -21,20 +21,20 @@ public class RowTableProduct{
             update.getBtnUpdate().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    XPanel.pnlProManager.edit();
+                    XPanel.panelProManager.edit();
                 }
             });
             update.getBtnDelete().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    XPanel.pnlProManager.removeRow();
+                    XPanel.panelProManager.removeRow();
                 }
             });
         }else {
             restore.getBtnRestore().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    XPanel.pnlProManager.restore();
+                    XPanel.panelProManager.restore();
                 }
             });
         }

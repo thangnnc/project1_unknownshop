@@ -21,20 +21,20 @@ public class RowTableAccount{
             update.getBtnUpdate().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    XPanel.pnlAccManager.edit();
+                    XPanel.panelAccManager.edit();
                 }
             });
             update.getBtnDelete().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    XPanel.pnlAccManager.removeRow();
+                    XPanel.panelAccManager.removeRow();
                 }
             });
         }else {
             restore.getBtnRestore().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    XPanel.pnlAccManager.restore();
+                    XPanel.panelAccManager.restore();
                 }
             });
         }

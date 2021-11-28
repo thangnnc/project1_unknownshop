@@ -86,7 +86,6 @@ public class OrderDAO extends EntityDAO<Orders, Integer> {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
-
         }
     }
 
@@ -111,6 +110,12 @@ public class OrderDAO extends EntityDAO<Orders, Integer> {
     public List<Object[]> getListUnconfirmOrders() {
         String sql = "{CALL sp_unconfirmedOrders}";
         String[] cols = {"id", "username", "phone", "address", "totalQuantity", "totalPrice"};
+        return this.getListOfArray(sql, cols);
+    }
+    
+    public List<Object[]> getListConfirmOrders() {
+        String sql = "{CALL sp_selectConfirmedOrders}";
+        String[] cols = {"id", "fullname", "phone", "address", "totalQuantity", "totalPrice"};
         return this.getListOfArray(sql, cols);
     }
     

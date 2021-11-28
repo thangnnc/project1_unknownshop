@@ -63,7 +63,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -74,7 +74,7 @@ public class HomeAdmin extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlCard, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -98,7 +98,6 @@ public class HomeAdmin extends javax.swing.JPanel {
     private void init(){
         // Gán panel vào lớp tiện ích
         XPanel.panelCardAdmin = pnlCard;
-        XPanel.panelOrders = pnlQLHoaDon;
         XPanel.panelTaiKhoan = pnlTaiKhoan;
         XPanel.panelHeader = pnlHeader;
         XPanel.panelHeader.setSign();
@@ -114,7 +113,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         pnlTaiKhoan.add(new PanelAccount());
         pnlQLTaiKhoan.add(new PanelAccountManager());
         pnlQLSanPham.add(new PanelProductManager());
-//        pnlQLHoaDon.add(new PanelListPageProduct(XConstant.ID_PHUKIEN));
+        pnlQLHoaDon.add(new PanelBillManager());
 //        pnlTKChiTiet.add(new PanelListPageProduct(XConstant.ID_GIAY));
     } 
     // </editor-fold> 

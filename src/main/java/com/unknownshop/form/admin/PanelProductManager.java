@@ -3,13 +3,9 @@ package com.unknownshop.form.admin;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.ProductDAO;
 import com.unknownshop.dao.ProductTypeDAO;
-import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.ProductTypes;
 import com.unknownshop.entity.Products;
-import com.unknownshop.entity.Users;
-import com.unknownshop.swing.table.RowTableAccount;
 import com.unknownshop.swing.table.RowTableProduct;
-import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMess;
@@ -48,20 +44,20 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void initComponents() {
 
         pnlTabButton = new javax.swing.JPanel();
-        btnDanhSachTK = new javax.swing.JButton();
-        btnTKDaXoa = new javax.swing.JButton();
-        btnTaiKhoan = new javax.swing.JButton();
+        btnDanhSachSP = new javax.swing.JButton();
+        btnSPDaXoa = new javax.swing.JButton();
+        btnSanPham = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
         pnlDanhSachSP = new javax.swing.JPanel();
         cboLoai = new javax.swing.JComboBox<>();
         lblLoai = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblDanhSachTK = new com.unknownshop.swing.table.Table();
+        tblDanhSachSP = new com.unknownshop.swing.table.Table();
         pnlSPDaXoa = new javax.swing.JPanel();
         cboLoai1 = new javax.swing.JComboBox<>();
         lblLoai1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTKDaXoa = new com.unknownshop.swing.table.Table();
+        tblSPDaXoa = new com.unknownshop.swing.table.Table();
         pnlSanPham = new javax.swing.JPanel();
         pnlForm = new javax.swing.JPanel();
         pnlImage = new javax.swing.JPanel();
@@ -94,65 +90,65 @@ public class PanelProductManager extends javax.swing.JPanel {
 
         pnlTabButton.setBackground(new java.awt.Color(0, 102, 204));
 
-        btnDanhSachTK.setBackground(new java.awt.Color(51, 51, 51));
-        btnDanhSachTK.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDanhSachTK.setForeground(new java.awt.Color(255, 255, 255));
-        btnDanhSachTK.setText("Danh Sách Tài Khoản");
-        btnDanhSachTK.setToolTipText("DanhSachTK");
-        btnDanhSachTK.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 5, 0, new java.awt.Color(255, 255, 255)));
-        btnDanhSachTK.setContentAreaFilled(false);
-        btnDanhSachTK.setOpaque(true);
-        btnDanhSachTK.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDanhSachSP.setBackground(new java.awt.Color(51, 51, 51));
+        btnDanhSachSP.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDanhSachSP.setForeground(new java.awt.Color(255, 255, 255));
+        btnDanhSachSP.setText("Danh Sách Sản Phẩm");
+        btnDanhSachSP.setToolTipText("DanhSachSP");
+        btnDanhSachSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 5, 0, new java.awt.Color(255, 255, 255)));
+        btnDanhSachSP.setContentAreaFilled(false);
+        btnDanhSachSP.setOpaque(true);
+        btnDanhSachSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDanhSachTKMouseEntered(evt);
+                btnDanhSachSPMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDanhSachTKMouseExited(evt);
+                btnDanhSachSPMouseExited(evt);
             }
         });
-        btnDanhSachTK.addActionListener(new java.awt.event.ActionListener() {
+        btnDanhSachSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDanhSachTKActionPerformed(evt);
+                btnDanhSachSPActionPerformed(evt);
             }
         });
 
-        btnTKDaXoa.setBackground(new java.awt.Color(51, 51, 51));
-        btnTKDaXoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnTKDaXoa.setForeground(new java.awt.Color(51, 51, 51));
-        btnTKDaXoa.setText("Danh Sách Tài Khoản Đã Xóa");
-        btnTKDaXoa.setToolTipText("TKDaXoa");
-        btnTKDaXoa.setContentAreaFilled(false);
-        btnTKDaXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSPDaXoa.setBackground(new java.awt.Color(51, 51, 51));
+        btnSPDaXoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSPDaXoa.setForeground(new java.awt.Color(51, 51, 51));
+        btnSPDaXoa.setText("Danh Sách Sản Phẩm Đã Xóa");
+        btnSPDaXoa.setToolTipText("SPDaXoa");
+        btnSPDaXoa.setContentAreaFilled(false);
+        btnSPDaXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnTKDaXoaMouseEntered(evt);
+                btnSPDaXoaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnTKDaXoaMouseExited(evt);
+                btnSPDaXoaMouseExited(evt);
             }
         });
-        btnTKDaXoa.addActionListener(new java.awt.event.ActionListener() {
+        btnSPDaXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTKDaXoaActionPerformed(evt);
+                btnSPDaXoaActionPerformed(evt);
             }
         });
 
-        btnTaiKhoan.setBackground(new java.awt.Color(51, 51, 51));
-        btnTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnTaiKhoan.setForeground(new java.awt.Color(51, 51, 51));
-        btnTaiKhoan.setText("Tài Khoản");
-        btnTaiKhoan.setToolTipText("TaiKhoan");
-        btnTaiKhoan.setContentAreaFilled(false);
-        btnTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSanPham.setBackground(new java.awt.Color(51, 51, 51));
+        btnSanPham.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSanPham.setForeground(new java.awt.Color(51, 51, 51));
+        btnSanPham.setText("Sản Phẩm");
+        btnSanPham.setToolTipText("SanPham");
+        btnSanPham.setContentAreaFilled(false);
+        btnSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnTaiKhoanMouseEntered(evt);
+                btnSanPhamMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnTaiKhoanMouseExited(evt);
+                btnSanPhamMouseExited(evt);
             }
         });
-        btnTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+        btnSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaiKhoanActionPerformed(evt);
+                btnSanPhamActionPerformed(evt);
             }
         });
 
@@ -161,19 +157,19 @@ public class PanelProductManager extends javax.swing.JPanel {
         pnlTabButtonLayout.setHorizontalGroup(
             pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabButtonLayout.createSequentialGroup()
-                .addComponent(btnDanhSachTK, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addComponent(btnDanhSachSP, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTKDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSPDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlTabButtonLayout.setVerticalGroup(
             pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabButtonLayout.createSequentialGroup()
                 .addGroup(pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTKDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDanhSachTK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSPDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDanhSachSP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -196,9 +192,9 @@ public class PanelProductManager extends javax.swing.JPanel {
         lblLoai.setForeground(new java.awt.Color(51, 51, 51));
         lblLoai.setText("Loại:");
 
-        tblDanhSachTK.setBackground(new java.awt.Color(255, 255, 255));
-        tblDanhSachTK.setForeground(new java.awt.Color(51, 51, 51));
-        tblDanhSachTK.setModel(new javax.swing.table.DefaultTableModel(
+        tblDanhSachSP.setBackground(new java.awt.Color(255, 255, 255));
+        tblDanhSachSP.setForeground(new java.awt.Color(51, 51, 51));
+        tblDanhSachSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -217,22 +213,22 @@ public class PanelProductManager extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblDanhSachTK.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        tblDanhSachTK.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setViewportView(tblDanhSachTK);
-        if (tblDanhSachTK.getColumnModel().getColumnCount() > 0) {
-            tblDanhSachTK.getColumnModel().getColumn(0).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblDanhSachTK.getColumnModel().getColumn(1).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tblDanhSachTK.getColumnModel().getColumn(2).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(2).setPreferredWidth(450);
-            tblDanhSachTK.getColumnModel().getColumn(3).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(3).setPreferredWidth(150);
-            tblDanhSachTK.getColumnModel().getColumn(4).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tblDanhSachTK.getColumnModel().getColumn(5).setResizable(false);
-            tblDanhSachTK.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tblDanhSachSP.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        tblDanhSachSP.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(tblDanhSachSP);
+        if (tblDanhSachSP.getColumnModel().getColumnCount() > 0) {
+            tblDanhSachSP.getColumnModel().getColumn(0).setResizable(false);
+            tblDanhSachSP.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblDanhSachSP.getColumnModel().getColumn(1).setResizable(false);
+            tblDanhSachSP.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblDanhSachSP.getColumnModel().getColumn(2).setResizable(false);
+            tblDanhSachSP.getColumnModel().getColumn(2).setPreferredWidth(450);
+            tblDanhSachSP.getColumnModel().getColumn(3).setResizable(false);
+            tblDanhSachSP.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblDanhSachSP.getColumnModel().getColumn(4).setResizable(false);
+            tblDanhSachSP.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tblDanhSachSP.getColumnModel().getColumn(5).setResizable(false);
+            tblDanhSachSP.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
         javax.swing.GroupLayout pnlDanhSachSPLayout = new javax.swing.GroupLayout(pnlDanhSachSP);
@@ -261,7 +257,7 @@ public class PanelProductManager extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        pnlCard.add(pnlDanhSachSP, "DanhSachTK");
+        pnlCard.add(pnlDanhSachSP, "DanhSachSP");
 
         pnlSPDaXoa.setOpaque(false);
 
@@ -277,9 +273,9 @@ public class PanelProductManager extends javax.swing.JPanel {
         lblLoai1.setForeground(new java.awt.Color(51, 51, 51));
         lblLoai1.setText("Chức vụ:");
 
-        tblTKDaXoa.setBackground(new java.awt.Color(255, 255, 255));
-        tblTKDaXoa.setForeground(new java.awt.Color(51, 51, 51));
-        tblTKDaXoa.setModel(new javax.swing.table.DefaultTableModel(
+        tblSPDaXoa.setBackground(new java.awt.Color(255, 255, 255));
+        tblSPDaXoa.setForeground(new java.awt.Color(51, 51, 51));
+        tblSPDaXoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -295,22 +291,22 @@ public class PanelProductManager extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblTKDaXoa.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        tblTKDaXoa.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(tblTKDaXoa);
-        if (tblTKDaXoa.getColumnModel().getColumnCount() > 0) {
-            tblTKDaXoa.getColumnModel().getColumn(0).setResizable(false);
-            tblTKDaXoa.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblTKDaXoa.getColumnModel().getColumn(1).setResizable(false);
-            tblTKDaXoa.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tblTKDaXoa.getColumnModel().getColumn(2).setResizable(false);
-            tblTKDaXoa.getColumnModel().getColumn(2).setPreferredWidth(300);
-            tblTKDaXoa.getColumnModel().getColumn(3).setResizable(false);
-            tblTKDaXoa.getColumnModel().getColumn(3).setPreferredWidth(350);
-            tblTKDaXoa.getColumnModel().getColumn(4).setResizable(false);
-            tblTKDaXoa.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tblTKDaXoa.getColumnModel().getColumn(5).setResizable(false);
-            tblTKDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tblSPDaXoa.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        tblSPDaXoa.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(tblSPDaXoa);
+        if (tblSPDaXoa.getColumnModel().getColumnCount() > 0) {
+            tblSPDaXoa.getColumnModel().getColumn(0).setResizable(false);
+            tblSPDaXoa.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblSPDaXoa.getColumnModel().getColumn(1).setResizable(false);
+            tblSPDaXoa.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblSPDaXoa.getColumnModel().getColumn(2).setResizable(false);
+            tblSPDaXoa.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tblSPDaXoa.getColumnModel().getColumn(3).setResizable(false);
+            tblSPDaXoa.getColumnModel().getColumn(3).setPreferredWidth(350);
+            tblSPDaXoa.getColumnModel().getColumn(4).setResizable(false);
+            tblSPDaXoa.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblSPDaXoa.getColumnModel().getColumn(5).setResizable(false);
+            tblSPDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
         javax.swing.GroupLayout pnlSPDaXoaLayout = new javax.swing.GroupLayout(pnlSPDaXoa);
@@ -340,7 +336,7 @@ public class PanelProductManager extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        pnlCard.add(pnlSPDaXoa, "TKDaXoa");
+        pnlCard.add(pnlSPDaXoa, "SPDaXoa");
 
         pnlSanPham.setOpaque(false);
 
@@ -764,7 +760,7 @@ public class PanelProductManager extends javax.swing.JPanel {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        pnlCard.add(pnlSanPham, "TaiKhoan");
+        pnlCard.add(pnlSanPham, "SanPham");
 
         add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1260, 520));
     }// </editor-fold>//GEN-END:initComponents
@@ -772,44 +768,44 @@ public class PanelProductManager extends javax.swing.JPanel {
 // -------------------- Start Event --------------------
     
     // <editor-fold defaultstate="collapsed" desc="Event btnDanhSachTK"> 
-    private void btnDanhSachTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachTKActionPerformed
-        pressTabButton(btnDanhSachTK);
-    }//GEN-LAST:event_btnDanhSachTKActionPerformed
+    private void btnDanhSachSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachSPActionPerformed
+        pressTabButton(btnDanhSachSP);
+    }//GEN-LAST:event_btnDanhSachSPActionPerformed
 
-    private void btnDanhSachTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDanhSachTKMouseEntered
-        XHover.enterTabButton(btnDanhSachTK, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnDanhSachTKMouseEntered
+    private void btnDanhSachSPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDanhSachSPMouseEntered
+        XHover.enterTabButton(btnDanhSachSP, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnDanhSachSPMouseEntered
 
-    private void btnDanhSachTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDanhSachTKMouseExited
-        XHover.exitTabButton(btnDanhSachTK);
-    }//GEN-LAST:event_btnDanhSachTKMouseExited
+    private void btnDanhSachSPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDanhSachSPMouseExited
+        XHover.exitTabButton(btnDanhSachSP);
+    }//GEN-LAST:event_btnDanhSachSPMouseExited
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnTKDaXoa"> 
-    private void btnTKDaXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTKDaXoaActionPerformed
-        pressTabButton(btnTKDaXoa);
-    }//GEN-LAST:event_btnTKDaXoaActionPerformed
+    private void btnSPDaXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPDaXoaActionPerformed
+        pressTabButton(btnSPDaXoa);
+    }//GEN-LAST:event_btnSPDaXoaActionPerformed
 
-    private void btnTKDaXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTKDaXoaMouseEntered
-        XHover.enterTabButton(btnTKDaXoa, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnTKDaXoaMouseEntered
+    private void btnSPDaXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSPDaXoaMouseEntered
+        XHover.enterTabButton(btnSPDaXoa, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnSPDaXoaMouseEntered
 
-    private void btnTKDaXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTKDaXoaMouseExited
-        XHover.exitTabButton(btnTKDaXoa);
-    }//GEN-LAST:event_btnTKDaXoaMouseExited
+    private void btnSPDaXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSPDaXoaMouseExited
+        XHover.exitTabButton(btnSPDaXoa);
+    }//GEN-LAST:event_btnSPDaXoaMouseExited
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnTaiKhoan">
-    private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
-        pressTabButton(btnTaiKhoan);
+    private void btnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanPhamActionPerformed
+        pressTabButton(btnSanPham);
         clearForm();
-    }//GEN-LAST:event_btnTaiKhoanActionPerformed
+    }//GEN-LAST:event_btnSanPhamActionPerformed
 
-    private void btnTaiKhoanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaiKhoanMouseEntered
-        XHover.enterTabButton(btnTaiKhoan, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnTaiKhoanMouseEntered
+    private void btnSanPhamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseEntered
+        XHover.enterTabButton(btnSanPham, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnSanPhamMouseEntered
 
-    private void btnTaiKhoanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaiKhoanMouseExited
-        XHover.exitTabButton(btnTaiKhoan);
-    }//GEN-LAST:event_btnTaiKhoanMouseExited
+    private void btnSanPhamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseExited
+        XHover.exitTabButton(btnSanPham);
+    }//GEN-LAST:event_btnSanPhamMouseExited
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboChucVu(DSTK)">
     private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
@@ -990,16 +986,16 @@ public class PanelProductManager extends javax.swing.JPanel {
     // -------------------- End Event --------------------
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDanhSachTK;
+    private javax.swing.JButton btnDanhSachSP;
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnImage;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
+    private javax.swing.JButton btnSPDaXoa;
+    private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnSua;
-    private javax.swing.JButton btnTKDaXoa;
-    private javax.swing.JButton btnTaiKhoan;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cboLoai;
@@ -1025,8 +1021,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private javax.swing.JPanel pnlSPDaXoa;
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlTabButton;
-    private com.unknownshop.swing.table.Table tblDanhSachTK;
-    private com.unknownshop.swing.table.Table tblTKDaXoa;
+    private com.unknownshop.swing.table.Table tblDanhSachSP;
+    private com.unknownshop.swing.table.Table tblSPDaXoa;
     private javax.swing.JTextField txtGiaSP;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenSP;
@@ -1040,15 +1036,15 @@ public class PanelProductManager extends javax.swing.JPanel {
         txtGiaSP.setBackground(new Color(0, 0, 0, 0));
         txtSoLuong.setBackground(new Color(0, 0, 0, 0));
         cboLoaiSP.setBackground(new Color(0, 0, 0, 0));
-        XTable.setCellAlignmentCenter(tblDanhSachTK,0);
-        XTable.setCellAlignmentCenter(tblTKDaXoa,0);
+        XTable.setCellAlignmentCenter(tblDanhSachSP,0);
+        XTable.setCellAlignmentCenter(tblSPDaXoa,0);
         this.clearError();
         fillCboLoai(cboLoai,cboLoai1);
         fillTableUser(true);
         fillTableUserDeleted(true);
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         // gán vào lớp tiện ích
-        XPanel.pnlProManager = this;
+        XPanel.panelProManager = this;
     }
     // </editor-fold>  
     
@@ -1062,7 +1058,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn nút trên thanh tab">    
     private void pressTabButton(JButton btn){
-        JButton button[] = {btnDanhSachTK, btnTKDaXoa, btnTaiKhoan};
+        JButton button[] = {btnDanhSachSP, btnSPDaXoa, btnSanPham};
         for (int i = 0; i < button.length; i++) {
             button[i].setOpaque(false);
             button[i].setBorder(null);
@@ -1096,7 +1092,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm">
     private void fillTableUser(boolean check) {
         cboLoai.setSelectedIndex(0);
-        DefaultTableModel model = (DefaultTableModel) tblDanhSachTK.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
         model.setRowCount(0);
         if(check) {
             list = proDao.selectByIdPro(0);
@@ -1109,7 +1105,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox Loai">
     private void selectCombobox() {
-        DefaultTableModel model = (DefaultTableModel) tblDanhSachTK.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
         model.setRowCount(0);
         if(cboLoai.getSelectedIndex() == 0){
             fillTableUser(false);
@@ -1143,10 +1139,10 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức đưa thông tin tài khoản lên form">
     public void edit(){
-        row = tblDanhSachTK.getSelectedRow();
+        row = tblDanhSachSP.getSelectedRow();
         Products pro = list.get(row);
         setForm(pro);
-        pressTabButton(btnTaiKhoan);
+        pressTabButton(btnSanPham);
         XHover.enableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         XHover.disableButton(btnThem);
     }
@@ -1154,7 +1150,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa hàng được chọn">
     public void removeRow(){
-        row = tblDanhSachTK.getSelectedRow();
+        row = tblDanhSachSP.getSelectedRow();
         Products pro = list.get(row);
         if(XMess.confirm(null, "Bạn có chắc muốn xóa sản phẩm này")){
             if(proDao.delete(pro.getId()) == 0){
@@ -1174,7 +1170,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm đã xóa">
     private void fillTableUserDeleted(boolean check) {
         cboLoai1.setSelectedIndex(0);
-        DefaultTableModel model = (DefaultTableModel) tblTKDaXoa.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
         model.setRowCount(0);
         if(check) {
             listDeleted = proDao.getListDelete(0);
@@ -1188,7 +1184,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox ChucVu1">
     private void selectCombobox1() {
-        DefaultTableModel model = (DefaultTableModel) tblTKDaXoa.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
         model.setRowCount(0);
         if(cboLoai1.getSelectedIndex() == 0){
             fillTableUser(false);
@@ -1205,7 +1201,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi sản phẩm">  
     public void restore(){
-        int row1 = tblTKDaXoa.getSelectedRow();
+        int row1 = tblSPDaXoa.getSelectedRow();
         Products pro = listDeleted.get(row1);
         if(XMess.confirm(this, "Bạn muốn phục hồi sản phẩm này?")){
             if(proDao.restore(pro.getId()) == 0){
@@ -1303,7 +1299,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         }else{
             XMess.alert(this,"Thêm sản phẩm thành công!");
             fillTableUser(true);
-            pressTabButton(btnDanhSachTK);
+            pressTabButton(btnDanhSachSP);
             clearForm();
         }
     }
@@ -1320,7 +1316,7 @@ public class PanelProductManager extends javax.swing.JPanel {
             }else{
                 XMess.alert(this,"Cập nhập sản phẩm thành công!");
                 fillTableUser(true);
-                pressTabButton(btnDanhSachTK);
+                pressTabButton(btnDanhSachSP);
                 clearForm();
             }
         }
@@ -1336,7 +1332,7 @@ public class PanelProductManager extends javax.swing.JPanel {
             } else {
                 fillTableUserDeleted(true);
                 fillTableUser(true);
-                pressTabButton(btnTKDaXoa);
+                pressTabButton(btnSPDaXoa);
                 XMess.alert(this,"Xóa sản phẩm thành công!");
                 clearForm();
             }
@@ -1365,14 +1361,14 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức các nút điều khiển"> 
     private void first(){
-        tblDanhSachTK.setRowSelectionInterval(0, 0);
+        tblDanhSachSP.setRowSelectionInterval(0, 0);
         edit();
         XHover.disableButton(btnPrev, btnFirst);
     }
     
     private void prev(){
         if(row > 0){
-            tblDanhSachTK.setRowSelectionInterval(--row, row);
+            tblDanhSachSP.setRowSelectionInterval(--row, row);
             edit();
         }
         if(row == 0){
@@ -1384,7 +1380,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     private void next(){
         if(row < list.size()-1){
-            tblDanhSachTK.setRowSelectionInterval(++row, row);
+            tblDanhSachSP.setRowSelectionInterval(++row, row);
             edit();
         }
         if(row == list.size()-1){
@@ -1395,8 +1391,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     }
     
     private void last(){
-        int index = tblDanhSachTK.getRowCount() - 1;
-        tblDanhSachTK.setRowSelectionInterval(index, index);
+        int index = tblDanhSachSP.getRowCount() - 1;
+        tblDanhSachSP.setRowSelectionInterval(index, index);
         edit();
         XHover.disableButton(btnNext, btnLast);
     }

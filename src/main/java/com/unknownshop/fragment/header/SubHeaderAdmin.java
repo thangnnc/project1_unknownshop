@@ -191,30 +191,33 @@ public class SubHeaderAdmin extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chuyển form">
     private void changeForm(){
-        DialogLoading dlog = new DialogLoading();
-        dlog.setVisible(true);
-        if(!Auth.check){
-            new Thread(){
-                @Override
-                public void run(){
-                    Auth.check = true;
-                    XPanel.mainForm.setEnabled(false);
-                    XPanel.mainForm.fillHomeAdmin();
-                    XPanel.mainForm.setEnabled(true);
-                    dlog.setVisible(false);
-                }
-            }.start();
-        }else{
-            new Thread(){
-                @Override
-                public void run(){
-                    Auth.check = false;
-                    XPanel.mainForm.setEnabled(false);
-                    XPanel.mainForm.fillHomeUser();
-                    XPanel.mainForm.setEnabled(true);
-                    dlog.setVisible(false);
-                }
-            }.start();
+        if(XMess.confirm(null, "Bạn có muốn chuyển sang form "
+                        + (!Auth.check ? "quản lý?" : "cửa hàng?"))){
+            DialogLoading dlog = new DialogLoading();
+            dlog.setVisible(true);
+            if(!Auth.check){
+                new Thread(){
+                    @Override
+                    public void run(){
+                        Auth.check = true;
+                        XPanel.mainForm.setEnabled(false);
+                        XPanel.mainForm.fillHomeAdmin();
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                    }
+                }.start();
+            }else{
+                new Thread(){
+                    @Override
+                    public void run(){
+                        Auth.check = false;
+                        XPanel.mainForm.setEnabled(false);
+                        XPanel.mainForm.fillHomeUser();
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                    }
+                }.start();
+            }
         }
     }
     // </editor-fold>

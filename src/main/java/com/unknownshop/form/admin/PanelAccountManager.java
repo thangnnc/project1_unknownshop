@@ -1164,7 +1164,7 @@ public class PanelAccountManager extends javax.swing.JPanel {
         fillTableUserDeleted(true);
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         // gán vào lớp tiện ích
-        XPanel.pnlAccManager = this;
+        XPanel.panelAccManager = this;
     }
     // </editor-fold>  
     

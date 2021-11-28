@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="pnlFooter" alignment="0" max="32767" attributes="0"/>
-          <Component id="pnlHeader" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlHeader" alignment="0" pref="1280" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlCard" max="32767" attributes="0"/>
@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="pnlHeader" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pnlCard" max="32767" attributes="0"/>
+              <Component id="pnlCard" min="-2" pref="623" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlFooter" min="-2" max="-2" attributes="0"/>
           </Group>

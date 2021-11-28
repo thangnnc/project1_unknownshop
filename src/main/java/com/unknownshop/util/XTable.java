@@ -25,7 +25,7 @@ public class XTable{
         if(type == 0) {
             start = 1;
             end -= 1;
-        }
+        }else if(type == 1) end -= 1;
         for (int i = start; i <  end; i++) {
             tbl.getColumnModel().getColumn(i).setCellRenderer(render);
         }

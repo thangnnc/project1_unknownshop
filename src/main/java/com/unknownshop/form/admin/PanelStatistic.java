@@ -4,7 +4,6 @@ import com.unknownshop.dao.UserDAO;
 
 public class PanelStatistic extends javax.swing.JPanel {
 
-    private UserDAO dao = new UserDAO();
     
     public PanelStatistic() {
         initComponents();
@@ -22,7 +21,7 @@ public class PanelStatistic extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1260, Short.MAX_VALUE)
+            .addGap(0, 1268, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

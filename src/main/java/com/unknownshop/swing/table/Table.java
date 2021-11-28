@@ -65,7 +65,15 @@ public class Table extends JTable {
                         cell.setBackground(new Color(255, 255, 255));
                     }
                     return cell;
-                } else {
+                }else if (o instanceof ColumnAccept) {
+                    ColumnAccept cell = (ColumnAccept) o;
+                    if (selected) {
+                        cell.setBackground(new Color(51, 51, 51));
+                    } else {
+                        cell.setBackground(new Color(255, 255, 255));
+                    }
+                    return cell;
+                }else {
                     Component com = super.getTableCellRendererComponent(jtable, o, selected, focus, i, i1);
                     setBorder(noFocusBorder);
                     com.setForeground(new Color(102, 102, 102));
@@ -91,6 +99,8 @@ public class Table extends JTable {
             return new TableCellUpdate((ColumnUpdate) obj);
         } else if (obj instanceof ColumnRestore) {
             return new TableCellRestore((ColumnRestore) obj);
+        }else if (obj instanceof ColumnAccept) {
+            return new TableCellAccept((ColumnAccept) obj);
         } else {
             return super.getCellEditor(row, col);
         }

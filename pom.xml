@@ -26,8 +26,6 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>9.4.0.jre8</version>
         </dependency>
-        
-        
     </dependencies>
     
     <build>
@@ -60,7 +58,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs</classpathPrefix>
-                            <mainClass>com.unknownshop.main.Main</mainClass>
+                            <mainClass>com.unknownshop.form.DialogWelcome</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

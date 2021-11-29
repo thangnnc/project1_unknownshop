@@ -34,6 +34,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         pnlCard.setLayout(new java.awt.CardLayout());
 
         pnlTKChung.setBackground(new java.awt.Color(204, 0, 0));
+        pnlTKChung.setOpaque(false);
         pnlTKChung.setLayout(new java.awt.GridLayout(1, 0));
         pnlCard.add(pnlTKChung, "TKChung");
 
@@ -114,6 +115,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         pnlQLTaiKhoan.add(new PanelAccountManager());
         pnlQLSanPham.add(new PanelProductManager());
         pnlQLHoaDon.add(new PanelBillManager());
+        pnlTKChung.add(new PanelStatistic());
 //        pnlTKChiTiet.add(new PanelListPageProduct(XConstant.ID_GIAY));
     } 
     // </editor-fold> 
@@ -126,7 +128,7 @@ public class HomeAdmin extends javax.swing.JPanel {
 
     // <editor-fold defaultstate="collapsed" desc="Phương thức di chuyển cửa sổ"> 
     public void initMoving(JFrame fram) {
-        pnlHeader.initMoving(fram);
+//        pnlHeader.initMoving(fram);
     }
     // </editor-fold> 
 

@@ -1262,7 +1262,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
         }else{
             rdoQuanLy.setSelected(true);
         }
-        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(user.getImgUrl(), 175, 225)));
+        userImg = user.getImgUrl();
+        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(userImg, 175, 225)));
         btnImage.setText("");
     }
     // </editor-fold> 
@@ -1299,7 +1300,6 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // </editor-fold>
     
 // _______________________ TK Đã xóa ______________________
-      
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng tài khoản đã xóa">
     private void fillTableUserDeleted(boolean check) {
@@ -1487,8 +1487,7 @@ public class PanelAccountManager extends javax.swing.JPanel {
             if (dao.delete(username) == 0) {
                 XMess.alert(this, "Xóa tài khoản thất bại!");
             } else {
-                fillTableUserDeleted(true);
-                fillTableUser(true);
+                Users us = listUser.get(WIDTH);
                 pressTabButton(btnTKDaXoa);
                 XMess.alert(this,"Xóa tài khoản thành công!");
                 clearForm();

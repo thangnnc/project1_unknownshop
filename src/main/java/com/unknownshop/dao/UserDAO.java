@@ -119,9 +119,26 @@ public class UserDAO extends EntityDAO<Users, String> {
         }
     }
     
-    public List<Users> selectByUserName(String username){
-        String sql = "{CALL sp_selectByUserName(?)}";
-        return this.selectBySql(sql, username);
+    public int selectByUserName(String username ,Users user){
+        try {
+            String sql = "{CALL sp_selectByUserName(?)}";
+            ResultSet rs = XJdbc.query(sql, username);
+            rs.next();
+            if(rs.getInt(1) > 0){
+                user.setId(rs.getInt(1));
+                user.setUsername(rs.getString(2));
+                user.setFullname(rs.getString(3));
+                user.setPassword(rs.getString(4));
+                user.setEmail(rs.getString(5));
+                user.setImgUrl(rs.getBytes(6));
+                user.setRole(rs.getString(7));
+                user.setIsDeleted(rs.getBoolean(8));
+            }
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
         
     }
     

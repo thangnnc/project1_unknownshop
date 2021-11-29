@@ -1131,7 +1131,8 @@ public class PanelProductManager extends javax.swing.JPanel {
         txtTenSP.setText(product.getName());
         txtGiaSP.setText(String.valueOf(product.getPrice()));
         txtSoLuong.setText(String.valueOf(product.getQuantity()));
-        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(product.getImgUrl(), 175, 225)));
+        proImage = product.getImgUrl();
+        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(proImage, 175, 225)));
         cboLoaiSP.setSelectedIndex(product.getTypeId());
         btnImage.setText("");
     }

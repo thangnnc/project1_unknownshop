@@ -79,5 +79,16 @@ public class XImage {
         return null;
     }
     
+    public static ImageIcon getIconCard(String name){
+        try {
+            File path = new File("src/main/resources/"+name+".png");
+            BufferedImage img = ImageIO.read(path);
+            return new ImageIcon(img);
+            
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
     
 }

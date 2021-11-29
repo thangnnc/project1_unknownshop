@@ -86,10 +86,23 @@ public class PanelSignIn extends javax.swing.JPanel {
 
         lblIconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
 
+        lblQuenMatKhau.setBackground(new java.awt.Color(51, 51, 51));
         lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblQuenMatKhau.setForeground(new java.awt.Color(240, 240, 240));
         lblQuenMatKhau.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblQuenMatKhau.setText("Quên mật khẩu?");
+        lblQuenMatKhau.setOpaque(true);
+        lblQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuenMatKhauMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblQuenMatKhauMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblQuenMatKhauMouseExited(evt);
+            }
+        });
 
         lblTitleDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleDangNhap.setForeground(new java.awt.Color(240, 240, 240));
@@ -132,7 +145,7 @@ public class PanelSignIn extends javax.swing.JPanel {
                             .addGroup(pnlFormDangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                                 .addComponent(txtPassword)))
-                        .addComponent(lblQuenMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblQuenMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlFormDangNhapLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -226,6 +239,22 @@ public class PanelSignIn extends javax.swing.JPanel {
             lblErrorPassword.setText(" ");
         }
     }//GEN-LAST:event_txtPasswordFocusLost
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event lblQuenMatKhau">
+    private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
+        XPanel.mainForm.setEnabled(false);
+        new ForgotPassword().setVisible(true);
+    }//GEN-LAST:event_lblQuenMatKhauMouseClicked
+
+    private void lblQuenMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseEntered
+        lblQuenMatKhau.setBackground(XConstant.WHITE_255);
+        lblQuenMatKhau.setForeground(XConstant.BLACK_51);
+    }//GEN-LAST:event_lblQuenMatKhauMouseEntered
+
+    private void lblQuenMatKhauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseExited
+        lblQuenMatKhau.setBackground(XConstant.BLACK_51);
+        lblQuenMatKhau.setForeground(XConstant.WHITE_240);
+    }//GEN-LAST:event_lblQuenMatKhauMouseExited
     // </editor-fold>
     
 // ---------------------- End Event ----------------------

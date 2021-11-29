@@ -79,7 +79,7 @@ public class OrderDAO extends EntityDAO<Orders, Integer> {
 
     public int deleteAll() {
         try {
-            String sql = "{CALL sp_deleteAllOrders}";
+            String sql = "{CALL sp_deleteAllUnconfirmOrders}";
             ResultSet rs = XJdbc.query(sql);
             rs.next();
             return (int) rs.getObject(1);

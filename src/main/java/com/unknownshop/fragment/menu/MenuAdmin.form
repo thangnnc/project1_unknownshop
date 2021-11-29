@@ -286,6 +286,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnTKChung">
           <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="ThongKeChung"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>

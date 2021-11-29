@@ -1,7 +1,6 @@
 package com.unknownshop.fragment.menu;
 
 import com.unknownshop.constant.XConstant;
-import com.unknownshop.form.user.PanelCart;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XPanel;
@@ -170,6 +169,7 @@ public class MenuAdmin extends javax.swing.JPanel {
         pnlTKChung.setEnabled(false);
         pnlTKChung.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnTKChung.setToolTipText("ThongKeChung");
         btnTKChung.setContentAreaFilled(false);
         btnTKChung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -338,6 +338,7 @@ public class MenuAdmin extends javax.swing.JPanel {
         pnl.setEnabled(false);
         lbl.setIcon(XImage.getIcon(XConstant.ICON_ENTER + lbl.getToolTipText()));
         // Hiện panel tương ứng
+        if(lbl.getToolTipText().equals("TKChung")) XPanel.panelStatistic.setInfo();
         showPanel(lbl.getToolTipText());
         XPanel.nameCard = lbl.getToolTipText();
     } 

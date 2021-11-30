@@ -1487,7 +1487,6 @@ public class PanelAccountManager extends javax.swing.JPanel {
             if (dao.delete(username) == 0) {
                 XMess.alert(this, "Xóa tài khoản thất bại!");
             } else {
-                Users us = listUser.get(WIDTH);
                 pressTabButton(btnTKDaXoa);
                 XMess.alert(this,"Xóa tài khoản thành công!");
                 clearForm();

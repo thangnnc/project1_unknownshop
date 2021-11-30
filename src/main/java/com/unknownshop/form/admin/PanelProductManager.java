@@ -812,12 +812,13 @@ public class PanelProductManager extends javax.swing.JPanel {
         selectCombobox();
     }//GEN-LAST:event_cboLoaiActionPerformed
 
-   // </editor-fold> 
+    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1(DSTK đã xóa)">
     private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
         selectCombobox1();
     }//GEN-LAST:event_cboLoai1ActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnImage">
     private void btnImageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseEntered
         XHover.enterButton(btnImage, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnImageMouseEntered
@@ -827,9 +828,10 @@ public class PanelProductManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnImageMouseExited
 
     private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
-        this.getImage();
+        getImage();
     }//GEN-LAST:event_btnImageActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event Focus txtTenSP">
     private void txtTenSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusGained
         if (txtTenSP.getText().trim().equalsIgnoreCase("Tên Sản Phẩm")) {
             txtTenSP.setText("");
@@ -844,7 +846,8 @@ public class PanelProductManager extends javax.swing.JPanel {
             lblErrorTenSP.setText(" ");
         }
     }//GEN-LAST:event_txtTenSPFocusLost
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnXoa">
     private void btnXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseEntered
         XHover.enterButton(btnXoa, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnXoaMouseEntered
@@ -856,7 +859,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         delete();
     }//GEN-LAST:event_btnXoaActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnSua">
     private void btnSuaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseEntered
         XHover.enterButton(btnSua, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnSuaMouseEntered
@@ -866,9 +870,10 @@ public class PanelProductManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaMouseExited
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        this.update();
+        update();
     }//GEN-LAST:event_btnSuaActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnMoi">
     private void btnMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseEntered
         XHover.enterButton(btnMoi, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnMoiMouseEntered
@@ -878,9 +883,10 @@ public class PanelProductManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiMouseExited
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        this.clearForm();
+        clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnThem">
     private void btnThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseEntered
         XHover.enterButton(btnThem, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnThemMouseEntered
@@ -890,9 +896,10 @@ public class PanelProductManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemMouseExited
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        this.insert();
+        insert();
     }//GEN-LAST:event_btnThemActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnFirst">
     private void btnFirstMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseEntered
         XHover.enterButton(btnFirst, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnFirstMouseEntered
@@ -904,7 +911,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         first();
     }//GEN-LAST:event_btnFirstActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnPrev">
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
         XHover.enterButton(btnPrev, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnPrevMouseEntered
@@ -916,7 +924,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
         prev();
     }//GEN-LAST:event_btnPrevActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnNext">
     private void btnNextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseEntered
         XHover.enterButton(btnNext, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnNextMouseEntered
@@ -928,7 +937,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         next();
     }//GEN-LAST:event_btnNextActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event btnLast">
     private void btnLastMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLastMouseEntered
         XHover.enterButton(btnLast, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnLastMouseEntered
@@ -940,7 +950,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         last();
     }//GEN-LAST:event_btnLastActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event Focus txtGiaSP">
     private void txtGiaSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaSPFocusGained
         if (txtGiaSP.getText().trim().equalsIgnoreCase("Giá Sản Phẩm")) {
             txtGiaSP.setText("");
@@ -955,7 +966,8 @@ public class PanelProductManager extends javax.swing.JPanel {
             lblErrorGiaSP.setText(" ");
         }
     }//GEN-LAST:event_txtGiaSPFocusLost
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event Focus txtSoLuong">
     private void txtSoLuongFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusGained
         if (txtSoLuong.getText().trim().equalsIgnoreCase("Số Lượng Nhập Kho")) {
             txtSoLuong.setText("");
@@ -970,7 +982,8 @@ public class PanelProductManager extends javax.swing.JPanel {
             lblErrorSoLuong.setText(" ");
         }
     }//GEN-LAST:event_txtSoLuongFocusLost
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event Focus cboLoai">
     private void cboLoaiSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboLoaiSPFocusGained
         lblErrorLoaiSP.setText(" ");
     }//GEN-LAST:event_cboLoaiSPFocusGained

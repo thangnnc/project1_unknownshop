@@ -1248,6 +1248,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form">  
     private Products getForm(){
         Products product = new Products();
+        int id = (int) tblDanhSachSP.getValueAt(this.row, 1);
+        product.setId(id);
         product.setName(txtTenSP.getText());
         product.setPrice(Float.parseFloat(txtGiaSP.getText()));
         product.setQuantity(Integer.valueOf(txtSoLuong.getText()));

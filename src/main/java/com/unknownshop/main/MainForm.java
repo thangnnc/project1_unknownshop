@@ -6,6 +6,7 @@ import com.unknownshop.form.user.HomeUser;
 import com.unknownshop.fragment.menu.MenuAdminLayout;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -102,6 +103,7 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo các giá trị trên form"> 
     public void init(){
         XPanel.mainForm = this;
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.jpg")));
         fillHomeUser();
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -111,6 +113,7 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         });
+        
     }
     // </editor-fold> 
     

@@ -1319,10 +1319,10 @@ public class PanelProductManager extends javax.swing.JPanel {
                     XPanel.mainForm.setEnabled(false);
                     fillTableProduct(true);
                     XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
                     XMess.alert(null,"Thêm sản phẩm thành công!");
                     pressTabButton(btnDanhSachSP);
                     clearForm();
-                    dlog.setVisible(false);
                 }
             }.start();
         }
@@ -1347,10 +1347,10 @@ public class PanelProductManager extends javax.swing.JPanel {
                         XPanel.mainForm.setEnabled(false);
                         fillTableProduct(true);
                         XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
                         XMess.alert(null,"Cập nhập sản phẩm thành công!");
                         pressTabButton(btnDanhSachSP);
                         clearForm();
-                        dlog.setVisible(false);
                     }
                 }.start();
             }
@@ -1375,10 +1375,10 @@ public class PanelProductManager extends javax.swing.JPanel {
                         fillTableProduct(true);
                         fillTableProductDeleted(true);
                         XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
                         XMess.alert(null ,"Xóa sản phẩm thành công!");
                         pressTabButton(btnSPDaXoa);
                         clearForm();
-                        dlog.setVisible(false);
                     }
                 }.start();
             }

@@ -413,7 +413,7 @@ public class PanelBillManager extends javax.swing.JPanel {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnDuyet"> 
     private void btnDuyetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDuyetMouseEntered
-        XHover.enterButton(btnDuyet, XConstant.RED_102, XConstant.BLACK_51);
+        XHover.enterButton(btnDuyet, XConstant.LIGHT_BLUE, XConstant.BLACK_51);
     }//GEN-LAST:event_btnDuyetMouseEntered
 
     private void btnDuyetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDuyetMouseExited
@@ -426,7 +426,7 @@ public class PanelBillManager extends javax.swing.JPanel {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnHuy"> 
     private void btnHuyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseEntered
-        XHover.enterButton(btnHuy, XConstant.RED_102, XConstant.BLACK_51);
+        XHover.enterButton(btnHuy, XConstant.LIGHT_BLUE, XConstant.BLACK_51);
     }//GEN-LAST:event_btnHuyMouseEntered
 
     private void btnHuyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseExited
@@ -481,7 +481,7 @@ public class PanelBillManager extends javax.swing.JPanel {
         modelProduct = (DefaultTableModel) tblHDChiTiet.getModel();
         XTable.setCellAlignmentCenter(tblDanhSachHD, 1);
         XTable.setCellAlignmentCenter(tblDSHoaDonXN, 2);
-        XTable.setCellAlignmentCenter(tblHDChiTiet, 1);
+        XTable.setCellAlignmentCenter(tblHDChiTiet, 3);
         fillTabelDS(true);
         fillTabelDSDXN(true);
         XPanel.panelBillManager = this;

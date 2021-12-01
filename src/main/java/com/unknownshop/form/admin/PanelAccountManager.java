@@ -1461,10 +1461,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
                     XPanel.mainForm.setEnabled(false);
                     fillTableUser(true);
                     XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
                     XMess.alert(null,"Thêm tài khoản thành công!");
                     pressTabButton(btnDanhSachTK);
                     clearForm();
-                    dlog.setVisible(false);
                 }
             }.start();
         }
@@ -1489,10 +1489,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
                         XPanel.mainForm.setEnabled(false);
                         fillTableUser(true);
                         XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
                         XMess.alert(null,"Cập nhập tài khoản thành công!");
                         pressTabButton(btnDanhSachTK);
                         clearForm();
-                        dlog.setVisible(false);
                     }
                 }.start();
             }
@@ -1520,10 +1520,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
                         fillTableUser(true);
                         fillTableUserDeleted(true);
                         XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
                         XMess.alert(null ,"Xóa tài khoản thành công!");
                         pressTabButton(btnTKDaXoa);
                         clearForm();
-                        dlog.setVisible(false);
                     }
                 }.start();
             }

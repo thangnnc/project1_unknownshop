@@ -7,14 +7,14 @@ import java.util.List;
 
 public class ThongKeDAO {
     // Doanh thu sản phẩm
-    public List<Object[]> getProductRevenue(int nam , int thang, String id){ 
+    public List<Object[]> getProductRevenue(int nam , int thang, int id){ 
         String sql = "{Call sp_productRevenue(?,?,?)}";
         String[] cols = {"name","totalprice","quantity"};
         return this.getListOfArray(sql, cols, nam, thang ,id);
     }
     
     // Lấy danh thu theo năm
-    public List<Object[]> getRevenueByYear(String year ){
+    public List<Object[]> getRevenueByYear(int year ){
         String sql = "{Call sp_revenueByYear(?)}";
         String[] cols = {"description","quantity","total"};
         return this.getListOfArray(sql, cols, year);

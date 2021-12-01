@@ -2,10 +2,8 @@ package com.unknownshop.fragment.menu;
 
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.form.DialogLoading;
-import com.unknownshop.form.admin.PanelStatistic;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
-import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -349,10 +347,8 @@ public class MenuAdmin extends javax.swing.JPanel {
                 @Override
                 public void run(){
                     XPanel.mainForm.setEnabled(false);
-                    XPanel.panelStatistic.removeAll();
-                    XPanel.panelStatistic.add(new PanelStatistic());
-                    XPanel.panelStatistic.repaint();
-                    XPanel.panelStatistic.revalidate();
+                    XPanel.panelStatistic.setChart();
+                    XPanel.panelStatistic.setInfo();
                     XPanel.mainForm.setEnabled(true);
                     dlog.setVisible(false);
                 }

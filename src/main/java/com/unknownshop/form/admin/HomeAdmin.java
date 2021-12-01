@@ -4,7 +4,6 @@ import com.unknownshop.form.PanelAccount;
 import com.unknownshop.util.XPanel;
 import java.awt.Component;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 
 public class HomeAdmin extends javax.swing.JPanel {
 
@@ -103,7 +102,6 @@ public class HomeAdmin extends javax.swing.JPanel {
         XPanel.panelHeader = pnlHeader;
         XPanel.panelHeader.setSign();
         XPanel.nameCard = "TKChung";
-        XPanel.panelStatistic = pnlTKChung;
         // Thêm các panel vào form
         addPanelIntoFrame();
     } 
@@ -117,7 +115,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         pnlQLSanPham.add(new PanelProductManager());
         pnlQLHoaDon.add(new PanelBillManager());
         pnlTKChung.add(new PanelStatistic());
-//        pnlTKChiTiet.add(new PanelListPageProduct(XConstant.ID_GIAY));
+        pnlTKChiTiet.add(new PanelStatisticDetails());
     } 
     // </editor-fold> 
 

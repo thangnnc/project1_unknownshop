@@ -84,7 +84,6 @@ public class Header extends javax.swing.JPanel {
     }
     // </editor-fold>
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unknownshop.swing.Button cmdMenu;
     private com.unknownshop.fragment.header.SubHeaderNone headerNone1;
@@ -93,25 +92,6 @@ public class Header extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức di chuyển cửa sổ">
-    public void initMoving(JFrame fram) {
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent me) {
-                x = me.getX();
-                y = me.getY();
-            }
-
-        });
-        this.addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent me) {
-                fram.setLocation(me.getXOnScreen() - x, me.getYOnScreen() - y);
-            }
-        });
-    }
-    // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức thêm sự kiện vào header">
     public void addEventMenu(ActionListener event) {

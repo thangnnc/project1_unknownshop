@@ -32,6 +32,6 @@ public class XPanel {
     public static PanelAccountManager panelAccManager;
     public static PanelProductManager panelProManager;
     public static PanelBillManager panelBillManager;
-    public static PanelStatistic panelStatistic;
+    public static JPanel panelStatistic;
     
 }

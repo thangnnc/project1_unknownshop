@@ -1,5 +1,6 @@
 package com.unknownshop.fragment;
 
+import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -21,17 +22,7 @@ public class Card extends javax.swing.JPanel {
 
     public Card() {
         initComponents();
-        setOpaque(false);
-        setBackground(new Color(112, 69, 246));
-        colorGradient = new Color(255, 255, 255);
-        lblStatus.setForeground(Color.WHITE);
-        lblTitle.setForeground(Color.WHITE);
-    }
-
-    public void setData(String title, String status, Icon icon) {
-        lblStatus.setText(status);
-        lblTitle.setText(title);
-        lbIcon.setIcon(icon);
+        init();
     }
 
     @SuppressWarnings("unchecked")
@@ -80,6 +71,7 @@ public class Card extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Override paintComponent">  
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
@@ -89,10 +81,33 @@ public class Card extends javax.swing.JPanel {
         g2.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(grphcs);
     }
+    // </editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbIcon;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
+
+// ---------------------- Start Method ----------------------
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
+    private void init() {
+        setOpaque(false);
+        setBackground(new Color(112, 69, 246));
+        colorGradient = new Color(255, 255, 255);
+        lblStatus.setForeground(Color.WHITE);
+        lblTitle.setForeground(Color.WHITE);
+    }
+    // </editor-fold>  
+
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xét các label">  
+    public void setData(String title, String status, Icon icon) {
+        lblStatus.setText(status);
+        lblTitle.setText(title);
+        lbIcon.setIcon(icon);
+    }
+    // </editor-fold>  
+    
+// ---------------------- End Method ----------------------
 }

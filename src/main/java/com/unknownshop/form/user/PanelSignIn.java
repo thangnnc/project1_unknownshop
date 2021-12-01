@@ -243,7 +243,7 @@ public class PanelSignIn extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Event lblQuenMatKhau">
     private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
         XPanel.mainForm.setEnabled(false);
-        new ForgotPassword().setVisible(true);
+        new DialogForgotPassword().setVisible(true);
     }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
     private void lblQuenMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseEntered

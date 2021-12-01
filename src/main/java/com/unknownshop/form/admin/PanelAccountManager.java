@@ -3,6 +3,7 @@ package com.unknownshop.form.admin;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
+import com.unknownshop.form.DialogLoading;
 import com.unknownshop.swing.table.RowTableAccount;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
@@ -1451,10 +1452,21 @@ public class PanelAccountManager extends javax.swing.JPanel {
         }else if(result == -1){
             lblErrorEmail.setText("Email đã được sử dụng!");
         }else{
-            XMess.alert(this,"Thêm tài khoản thành công!");
-            fillTableUser(true);
-            pressTabButton(btnDanhSachTK);
-            clearForm();
+            // Tạo luồng và hiện dialog loading
+            DialogLoading dlog = new DialogLoading();
+            dlog.setVisible(true);
+            new Thread(){
+                @Override
+                public void run(){
+                    XPanel.mainForm.setEnabled(false);
+                    fillTableUser(true);
+                    XPanel.mainForm.setEnabled(true);
+                    XMess.alert(null,"Thêm tài khoản thành công!");
+                    pressTabButton(btnDanhSachTK);
+                    clearForm();
+                    dlog.setVisible(false);
+                }
+            }.start();
         }
     }
     // </editor-fold> 
@@ -1468,10 +1480,21 @@ public class PanelAccountManager extends javax.swing.JPanel {
             if(dao.update(user) == 0){
                 XMess.alert(this,"Cập nhập tài khoản thất bại!");
             }else{
-                XMess.alert(this,"Cập nhập tài khoản thành công!");
-                fillTableUser(true);
-                pressTabButton(btnDanhSachTK);
-                clearForm();
+                // Tạo luồng và hiện dialog loading
+                DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        XPanel.mainForm.setEnabled(false);
+                        fillTableUser(true);
+                        XPanel.mainForm.setEnabled(true);
+                        XMess.alert(null,"Cập nhập tài khoản thành công!");
+                        pressTabButton(btnDanhSachTK);
+                        clearForm();
+                        dlog.setVisible(false);
+                    }
+                }.start();
             }
         }
     }
@@ -1487,9 +1510,22 @@ public class PanelAccountManager extends javax.swing.JPanel {
             if (dao.delete(username) == 0) {
                 XMess.alert(this, "Xóa tài khoản thất bại!");
             } else {
-                pressTabButton(btnTKDaXoa);
-                XMess.alert(this,"Xóa tài khoản thành công!");
-                clearForm();
+                // Tạo luồng và hiện dialog loading
+                DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        XPanel.mainForm.setEnabled(false);
+                        fillTableUser(true);
+                        fillTableUserDeleted(true);
+                        XPanel.mainForm.setEnabled(true);
+                        XMess.alert(null ,"Xóa tài khoản thành công!");
+                        pressTabButton(btnTKDaXoa);
+                        clearForm();
+                        dlog.setVisible(false);
+                    }
+                }.start();
             }
         }
     }

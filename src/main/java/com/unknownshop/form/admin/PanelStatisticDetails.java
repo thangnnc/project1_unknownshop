@@ -7,10 +7,8 @@ import com.unknownshop.form.DialogLoading;
 import com.unknownshop.swing.table.RowTableBill;
 import com.unknownshop.swing.table.RowTableBillDetails;
 import com.unknownshop.util.XHover;
-import com.unknownshop.util.XMess;
 import com.unknownshop.util.XMoney;
 import com.unknownshop.util.XPanel;
-import com.unknownshop.util.XTable;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -18,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 
-public class PanelBillManager extends javax.swing.JPanel {
+public class PanelStatisticDetails extends javax.swing.JPanel {
 
     DefaultTableModel modelCXN;
     DefaultTableModel modelDXN;
@@ -29,7 +27,7 @@ public class PanelBillManager extends javax.swing.JPanel {
     OrderDAO dao = new OrderDAO();
     OrderDetailDAO daoDetail = new OrderDetailDAO();
     
-    public PanelBillManager() {
+    public PanelStatisticDetails() {
         initComponents();
         init();
     }
@@ -46,14 +44,18 @@ public class PanelBillManager extends javax.swing.JPanel {
         DanhSachHD = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDanhSachHD = new com.unknownshop.swing.table.Table();
-        btnDuyet = new javax.swing.JButton();
-        btnHuy = new javax.swing.JButton();
+        btnExcel1 = new javax.swing.JButton();
+        btnPDF1 = new javax.swing.JButton();
         DSHoaDonXN = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSHoaDonXN = new com.unknownshop.swing.table.Table();
+        btnExcel2 = new javax.swing.JButton();
+        btnPDF2 = new javax.swing.JButton();
         pnlHDChiTiet = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblHDChiTiet = new com.unknownshop.swing.table.Table();
+        btnExcel3 = new javax.swing.JButton();
+        btnPDF3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -184,43 +186,43 @@ public class PanelBillManager extends javax.swing.JPanel {
             tblDanhSachHD.getColumnModel().getColumn(5).setPreferredWidth(150);
         }
 
-        btnDuyet.setBackground(new java.awt.Color(51, 51, 51));
-        btnDuyet.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDuyet.setForeground(new java.awt.Color(255, 255, 255));
-        btnDuyet.setText("Duyệt tất cả");
-        btnDuyet.setContentAreaFilled(false);
-        btnDuyet.setOpaque(true);
-        btnDuyet.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnExcel1.setBackground(new java.awt.Color(51, 51, 51));
+        btnExcel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setText("Xuất File Excel");
+        btnExcel1.setContentAreaFilled(false);
+        btnExcel1.setOpaque(true);
+        btnExcel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDuyetMouseEntered(evt);
+                btnExcel1MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDuyetMouseExited(evt);
+                btnExcel1MouseExited(evt);
             }
         });
-        btnDuyet.addActionListener(new java.awt.event.ActionListener() {
+        btnExcel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDuyetActionPerformed(evt);
+                btnExcel1ActionPerformed(evt);
             }
         });
 
-        btnHuy.setBackground(new java.awt.Color(51, 51, 51));
-        btnHuy.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnHuy.setForeground(new java.awt.Color(255, 255, 255));
-        btnHuy.setText("Hủy tất cả");
-        btnHuy.setContentAreaFilled(false);
-        btnHuy.setOpaque(true);
-        btnHuy.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPDF1.setBackground(new java.awt.Color(51, 51, 51));
+        btnPDF1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPDF1.setForeground(new java.awt.Color(255, 255, 255));
+        btnPDF1.setText("Xuất File PDF");
+        btnPDF1.setContentAreaFilled(false);
+        btnPDF1.setOpaque(true);
+        btnPDF1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHuyMouseEntered(evt);
+                btnPDF1MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHuyMouseExited(evt);
+                btnPDF1MouseExited(evt);
             }
         });
-        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+        btnPDF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuyActionPerformed(evt);
+                btnPDF1ActionPerformed(evt);
             }
         });
 
@@ -234,9 +236,9 @@ public class PanelBillManager extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DanhSachHDLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         DanhSachHDLayout.setVerticalGroup(
@@ -246,8 +248,8 @@ public class PanelBillManager extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPDF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -289,20 +291,70 @@ public class PanelBillManager extends javax.swing.JPanel {
             tblDSHoaDonXN.getColumnModel().getColumn(4).setPreferredWidth(200);
         }
 
+        btnExcel2.setBackground(new java.awt.Color(51, 51, 51));
+        btnExcel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExcel2.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel2.setText("Xuất File Excel");
+        btnExcel2.setContentAreaFilled(false);
+        btnExcel2.setOpaque(true);
+        btnExcel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExcel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExcel2MouseExited(evt);
+            }
+        });
+        btnExcel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcel2ActionPerformed(evt);
+            }
+        });
+
+        btnPDF2.setBackground(new java.awt.Color(51, 51, 51));
+        btnPDF2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPDF2.setForeground(new java.awt.Color(255, 255, 255));
+        btnPDF2.setText("Xuất File PDF");
+        btnPDF2.setContentAreaFilled(false);
+        btnPDF2.setOpaque(true);
+        btnPDF2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPDF2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPDF2MouseExited(evt);
+            }
+        });
+        btnPDF2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDF2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DSHoaDonXNLayout = new javax.swing.GroupLayout(DSHoaDonXN);
         DSHoaDonXN.setLayout(DSHoaDonXNLayout);
         DSHoaDonXNLayout.setHorizontalGroup(
             DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DSHoaDonXNLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
+                .addGroup(DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DSHoaDonXNLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExcel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPDF2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         DSHoaDonXNLayout.setVerticalGroup(
             DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DSHoaDonXNLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPDF2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -344,20 +396,70 @@ public class PanelBillManager extends javax.swing.JPanel {
             tblHDChiTiet.getColumnModel().getColumn(4).setPreferredWidth(200);
         }
 
+        btnExcel3.setBackground(new java.awt.Color(51, 51, 51));
+        btnExcel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExcel3.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel3.setText("Xuất File Excel");
+        btnExcel3.setContentAreaFilled(false);
+        btnExcel3.setOpaque(true);
+        btnExcel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExcel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExcel3MouseExited(evt);
+            }
+        });
+        btnExcel3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcel3ActionPerformed(evt);
+            }
+        });
+
+        btnPDF3.setBackground(new java.awt.Color(51, 51, 51));
+        btnPDF3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPDF3.setForeground(new java.awt.Color(255, 255, 255));
+        btnPDF3.setText("Xuất File PDF");
+        btnPDF3.setContentAreaFilled(false);
+        btnPDF3.setOpaque(true);
+        btnPDF3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPDF3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPDF3MouseExited(evt);
+            }
+        });
+        btnPDF3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDF3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlHDChiTietLayout = new javax.swing.GroupLayout(pnlHDChiTiet);
         pnlHDChiTiet.setLayout(pnlHDChiTietLayout);
         pnlHDChiTietLayout.setHorizontalGroup(
             pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHDChiTietLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
+                .addGroup(pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHDChiTietLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExcel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPDF3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlHDChiTietLayout.setVerticalGroup(
             pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHDChiTietLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPDF3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -412,30 +514,30 @@ public class PanelBillManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHDChiTietActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnDuyet"> 
-    private void btnDuyetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDuyetMouseEntered
-        XHover.enterButton(btnDuyet, XConstant.RED_102, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnDuyetMouseEntered
+    private void btnExcel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcel1MouseEntered
+        XHover.enterButton(btnExcel1, XConstant.RED_102, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnExcel1MouseEntered
 
-    private void btnDuyetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDuyetMouseExited
-        XHover.exitButton(btnDuyet);
-    }//GEN-LAST:event_btnDuyetMouseExited
+    private void btnExcel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcel1MouseExited
+        XHover.exitButton(btnExcel1);
+    }//GEN-LAST:event_btnExcel1MouseExited
 
-    private void btnDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuyetActionPerformed
-        confirmAll();
-    }//GEN-LAST:event_btnDuyetActionPerformed
+    private void btnExcel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcel1ActionPerformed
+        
+    }//GEN-LAST:event_btnExcel1ActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnHuy"> 
-    private void btnHuyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseEntered
-        XHover.enterButton(btnHuy, XConstant.RED_102, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnHuyMouseEntered
+    private void btnPDF1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDF1MouseEntered
+        XHover.enterButton(btnPDF1, XConstant.RED_102, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnPDF1MouseEntered
 
-    private void btnHuyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseExited
-        XHover.exitButton(btnHuy);
-    }//GEN-LAST:event_btnHuyMouseExited
+    private void btnPDF1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDF1MouseExited
+        XHover.exitButton(btnPDF1);
+    }//GEN-LAST:event_btnPDF1MouseExited
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-        cancelAll();
-    }//GEN-LAST:event_btnHuyActionPerformed
+    private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
+        
+    }//GEN-LAST:event_btnPDF1ActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnDSHoaDOnXN"> 
     private void btnDSHoaDonXNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDSHoaDonXNMouseEntered
@@ -449,6 +551,54 @@ public class PanelBillManager extends javax.swing.JPanel {
     private void btnDSHoaDonXNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSHoaDonXNActionPerformed
         pressTabButton(btnDSHoaDonXN);
     }//GEN-LAST:event_btnDSHoaDonXNActionPerformed
+
+    private void btnExcel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcel2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcel2MouseEntered
+
+    private void btnExcel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcel2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcel2MouseExited
+
+    private void btnExcel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcel2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcel2ActionPerformed
+
+    private void btnPDF2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDF2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPDF2MouseEntered
+
+    private void btnPDF2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDF2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPDF2MouseExited
+
+    private void btnPDF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPDF2ActionPerformed
+
+    private void btnExcel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcel3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcel3MouseEntered
+
+    private void btnExcel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcel3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcel3MouseExited
+
+    private void btnExcel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcel3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcel3ActionPerformed
+
+    private void btnPDF3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDF3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPDF3MouseEntered
+
+    private void btnPDF3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDF3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPDF3MouseExited
+
+    private void btnPDF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPDF3ActionPerformed
     // </editor-fold> 
     
 // ---------------------- End Event ----------------------
@@ -458,9 +608,13 @@ public class PanelBillManager extends javax.swing.JPanel {
     private javax.swing.JPanel DanhSachHD;
     private javax.swing.JButton btnDSHoaDonXN;
     private javax.swing.JButton btnDanhSachHD;
-    private javax.swing.JButton btnDuyet;
+    private javax.swing.JButton btnExcel1;
+    private javax.swing.JButton btnExcel2;
+    private javax.swing.JButton btnExcel3;
     private javax.swing.JButton btnHDChiTiet;
-    private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnPDF1;
+    private javax.swing.JButton btnPDF2;
+    private javax.swing.JButton btnPDF3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -484,7 +638,6 @@ public class PanelBillManager extends javax.swing.JPanel {
         XTable.setCellAlignmentCenter(tblHDChiTiet, 1);
         fillTabelDS(true);
         fillTabelDSDXN(true);
-        XPanel.panelBillManager = this;
     }
     // </editor-fold>  
     
@@ -562,67 +715,6 @@ public class PanelBillManager extends javax.swing.JPanel {
                 }
             }.start();
         
-    }
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa hóa đơn">
-    public void removeRow() {
-        int row = tblDanhSachHD.getSelectedRow();
-        Object[] obj = listCXN.get(row);
-        if(XMess.confirm(null, "Bạn muốn xóa hóa đơn này?")){
-            if (dao.delete(Integer.parseInt(obj[0].toString())) == 0) {
-                XMess.alert(this, "Xóa hóa đơn thất bại!");
-            } else {
-                XMess.alert(null, "Xóa hóa đơn thành công");
-                listCXN.remove(row);
-                fillTabelDS(false);
-            }
-        }
-    }
-    // </editor-fold>
-
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xác nhận hóa đơn">
-    public void confirm() {
-        int row = tblDanhSachHD.getSelectedRow();
-        Object[] obj = listCXN.get(row);
-        if(XMess.confirm(null, "Bạn muốn xác nhận hóa đơn này?")){
-            List<Object[]> list = dao.confirmOrders(Integer.parseInt(obj[0].toString()));
-            String content = "";
-            if (list.size() != 0) {
-                for (Object[] object : list) {
-                    content += "Sản phẩm "+ object[1]+" không đủ số lượng("
-                                +object[2]+" > "+object[3]+")\n";
-                }
-                XMess.alert(this, content);
-            }else {
-                XMess.alert(null, "Xác nhận đơn thành công");
-                listCXN.remove(row);
-                listDXN.add(obj);
-                fillTabelDS(false);
-                fillTabelDSDXN(false);
-            }
-        }
-    }
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa tất cả hóa đơn">
-    private void cancelAll() {
-        if (dao.deleteAll() == 0) {
-            XMess.alert(this, "Xóa hóa đơn thất bại!");
-        } else {
-            XMess.alert(null, "Xóa hóa đơn thành công");
-            listCXN.clear();
-            fillTabelDS(false);
-        }
-    }
-    // </editor-fold>
-
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xác nhận tất cả hóa đơn">
-    private void confirmAll() {
-        dao.confirmAllOrders();
-        fillTabelDS(true);
-        fillTabelDSDXN(true);
-        XMess.alert(null, "Xác nhận đơn thành công");
     }
     // </editor-fold>
     

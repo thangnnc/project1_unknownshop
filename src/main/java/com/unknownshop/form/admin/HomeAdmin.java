@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 
 public class HomeAdmin extends javax.swing.JPanel {
 
-    
     public HomeAdmin() {
         initComponents();
         init();
@@ -93,6 +92,7 @@ public class HomeAdmin extends javax.swing.JPanel {
     private javax.swing.JPanel pnlTKChung;
     private javax.swing.JPanel pnlTaiKhoan;
     // End of variables declaration//GEN-END:variables
+
 // ---------------------- Start Method ----------------------
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
@@ -103,6 +103,7 @@ public class HomeAdmin extends javax.swing.JPanel {
         XPanel.panelHeader = pnlHeader;
         XPanel.panelHeader.setSign();
         XPanel.nameCard = "TKChung";
+        XPanel.panelStatistic = pnlTKChung;
         // Thêm các panel vào form
         addPanelIntoFrame();
     } 
@@ -123,12 +124,6 @@ public class HomeAdmin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức thêm sự kiện menu"> 
     public void addEventMenu(ActionListener event) {
         pnlHeader.addEventMenu(event);
-    }
-    // </editor-fold> 
-
-    // <editor-fold defaultstate="collapsed" desc="Phương thức di chuyển cửa sổ"> 
-    public void initMoving(JFrame fram) {
-//        pnlHeader.initMoving(fram);
     }
     // </editor-fold> 
 

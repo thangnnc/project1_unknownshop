@@ -38,9 +38,6 @@ public final class DialogWelcome extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -64,10 +61,6 @@ public final class DialogWelcome extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(DialogWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        
-        
-
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -83,14 +76,15 @@ public final class DialogWelcome extends javax.swing.JDialog {
         });
     }
 
-    Thread t;
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAo;
     // End of variables declaration//GEN-END:variables
 
+// ---------------------- Start Method ----------------------
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">  
     private void init(){
         XPanel.dlgWelcome = this;
         new Thread(){
@@ -100,4 +94,7 @@ public final class DialogWelcome extends javax.swing.JDialog {
             }
         }.start();
     }
+    // </editor-fold>
+    
+// ----------------------  End Method  ----------------------
 }

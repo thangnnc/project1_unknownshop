@@ -4,6 +4,7 @@ import com.unknownshop.form.admin.HomeAdmin;
 import com.unknownshop.fragment.menu.MenuUserLayout;
 import com.unknownshop.form.user.HomeUser;
 import com.unknownshop.fragment.menu.MenuAdminLayout;
+import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,6 +103,14 @@ public class MainForm extends javax.swing.JFrame {
     public void init(){
         XPanel.mainForm = this;
         fillHomeUser();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                if(XMess.confirm(null, "Bạn muốn đóng ứng dụng này?")){
+                    System.exit(0);
+                }
+            }
+        });
     }
     // </editor-fold> 
     
@@ -111,7 +120,6 @@ public class MainForm extends javax.swing.JFrame {
         layout = new MigLayout("fill", "0[fill]0", "0[fill]0");
         mainUser = new HomeUser();
         menuUser = new MenuUserLayout();
-        mainUser.initMoving(MainForm.this);
         mainPanel.setLayer(menuUser, JLayeredPane.POPUP_LAYER);
         mainPanel.setLayout(layout);
         mainPanel.add(mainUser);
@@ -181,7 +189,6 @@ public class MainForm extends javax.swing.JFrame {
         layout = new MigLayout("fill", "0[fill]0", "0[fill]0");
         mainAdmin = new HomeAdmin();
         menuAdmin = new MenuAdminLayout();
-        mainAdmin.initMoving(MainForm.this);
         mainPanel.setLayer(menuAdmin, JLayeredPane.POPUP_LAYER);
         mainPanel.setLayout(layout);
         mainPanel.add(mainAdmin);

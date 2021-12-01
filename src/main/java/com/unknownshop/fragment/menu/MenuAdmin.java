@@ -1,8 +1,11 @@
 package com.unknownshop.fragment.menu;
 
 import com.unknownshop.constant.XConstant;
+import com.unknownshop.form.DialogLoading;
+import com.unknownshop.form.admin.PanelStatistic;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
+import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -338,7 +341,23 @@ public class MenuAdmin extends javax.swing.JPanel {
         pnl.setEnabled(false);
         lbl.setIcon(XImage.getIcon(XConstant.ICON_ENTER + lbl.getToolTipText()));
         // Hiện panel tương ứng
-        if(lbl.getToolTipText().equals("TKChung")) XPanel.panelStatistic.setInfo();
+        if(lbl.getToolTipText().equals("TKChung")) {
+            // Tạo luồng và hiện dialog loading
+            DialogLoading dlog = new DialogLoading();
+            dlog.setVisible(true);
+            new Thread(){
+                @Override
+                public void run(){
+                    XPanel.mainForm.setEnabled(false);
+                    XPanel.panelStatistic.removeAll();
+                    XPanel.panelStatistic.add(new PanelStatistic());
+                    XPanel.panelStatistic.repaint();
+                    XPanel.panelStatistic.revalidate();
+                    XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
+                }
+            }.start();
+        }
         showPanel(lbl.getToolTipText());
         XPanel.nameCard = lbl.getToolTipText();
     } 

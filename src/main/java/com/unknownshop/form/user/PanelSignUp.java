@@ -69,11 +69,6 @@ public class PanelSignUp extends javax.swing.JPanel {
                 txtUsernameFocusLost(evt);
             }
         });
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
 
         btnDangKy.setBackground(new java.awt.Color(0, 102, 204));
         btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -207,11 +202,6 @@ public class PanelSignUp extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPasswordFocusLost(evt);
-            }
-        });
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
             }
         });
 
@@ -451,14 +441,6 @@ public class PanelSignUp extends javax.swing.JPanel {
     private void btnImageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseExited
         XHover.exitButton(btnImage);
     }//GEN-LAST:event_btnImageMouseExited
-
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
 
    // </editor-fold>
 

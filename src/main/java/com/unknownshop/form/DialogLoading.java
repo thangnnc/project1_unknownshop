@@ -1,6 +1,5 @@
 package com.unknownshop.form;
 
-
 public class DialogLoading extends javax.swing.JDialog {
 
     public DialogLoading() {
@@ -63,9 +62,6 @@ public class DialogLoading extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         new DialogLoading().setVisible(true);
     }
@@ -77,6 +73,7 @@ public class DialogLoading extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 // -------------------- Method --------------------
     
+    // <editor-fold defaultstate="collapsed" desc="Phương thức tạo luồng cho chuỗi loading "> 
     private Thread loading(){
         return new Thread(){
             @Override
@@ -98,6 +95,7 @@ public class DialogLoading extends javax.swing.JDialog {
             }
         };
     }
+    // </editor-fold>
     
 // -------------------- Method --------------------
 }

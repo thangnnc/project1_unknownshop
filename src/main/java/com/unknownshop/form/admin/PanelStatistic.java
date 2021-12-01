@@ -3,7 +3,6 @@ package com.unknownshop.form.admin;
 import com.unknownshop.chart.ModelChart;
 import com.unknownshop.dao.ThongKeDAO;
 import com.unknownshop.util.XImage;
-import com.unknownshop.util.XPanel;
 import java.awt.Color;
 
 public class PanelStatistic extends javax.swing.JPanel {
@@ -90,8 +89,6 @@ public class PanelStatistic extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unknownshop.fragment.Card card1;
     private com.unknownshop.fragment.Card card2;
@@ -105,9 +102,9 @@ public class PanelStatistic extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
-        XPanel.panelStatistic = this;
-        setInfo();
+//        XPanel.panelStatistic = this;
         setChart();
+        setInfo();
     }
     // </editor-fold>  
     
@@ -125,6 +122,7 @@ public class PanelStatistic extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thẻ card">    
     public void setChart() {
+        chart.removeAll();
         chart.addLegend("Sản phẩm bán ra", new Color(12, 84, 175), new Color(0, 108, 247));
         chart.addLegend("Sản phẩm nhập về", new Color(54, 4, 143), new Color(104, 49, 200));
         chart.addLegend("Sản phẩm tồn kho", new Color(5, 125, 0), new Color(95, 209, 69));

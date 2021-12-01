@@ -5,6 +5,7 @@ import com.unknownshop.dao.ProductDAO;
 import com.unknownshop.dao.ProductTypeDAO;
 import com.unknownshop.entity.ProductTypes;
 import com.unknownshop.entity.Products;
+import com.unknownshop.form.DialogLoading;
 import com.unknownshop.swing.table.RowTableProduct;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
@@ -192,7 +193,6 @@ public class PanelProductManager extends javax.swing.JPanel {
         lblLoai.setForeground(new java.awt.Color(51, 51, 51));
         lblLoai.setText("Loại:");
 
-        tblDanhSachSP.setBackground(new java.awt.Color(255, 255, 255));
         tblDanhSachSP.setForeground(new java.awt.Color(51, 51, 51));
         tblDanhSachSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,7 +214,6 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
         tblDanhSachSP.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        tblDanhSachSP.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setViewportView(tblDanhSachSP);
         if (tblDanhSachSP.getColumnModel().getColumnCount() > 0) {
             tblDanhSachSP.getColumnModel().getColumn(0).setResizable(false);
@@ -273,7 +272,6 @@ public class PanelProductManager extends javax.swing.JPanel {
         lblLoai1.setForeground(new java.awt.Color(51, 51, 51));
         lblLoai1.setText("Chức vụ:");
 
-        tblSPDaXoa.setBackground(new java.awt.Color(255, 255, 255));
         tblSPDaXoa.setForeground(new java.awt.Color(51, 51, 51));
         tblSPDaXoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -292,7 +290,6 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
         tblSPDaXoa.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        tblSPDaXoa.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tblSPDaXoa);
         if (tblSPDaXoa.getColumnModel().getColumnCount() > 0) {
             tblSPDaXoa.getColumnModel().getColumn(0).setResizable(false);
@@ -1053,8 +1050,8 @@ public class PanelProductManager extends javax.swing.JPanel {
         XTable.setCellAlignmentCenter(tblSPDaXoa,0);
         this.clearError();
         fillCboLoai(cboLoai,cboLoai1);
-        fillTableUser(true);
-        fillTableUserDeleted(true);
+        fillTableProduct(true);
+        fillTableProductDeleted(true);
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         // gán vào lớp tiện ích
         XPanel.panelProManager = this;
@@ -1103,7 +1100,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm">
-    private void fillTableUser(boolean check) {
+    private void fillTableProduct(boolean check) {
         cboLoai.setSelectedIndex(0);
         DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
         model.setRowCount(0);
@@ -1121,7 +1118,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
         model.setRowCount(0);
         if(cboLoai.getSelectedIndex() == 0){
-            fillTableUser(false);
+            fillTableProduct(false);
         }else if (cboLoai.getSelectedIndex() > 0){
             ProductTypes proType = (ProductTypes) cboLoai.getSelectedItem();
             for (Products pro : list) {
@@ -1170,10 +1167,11 @@ public class PanelProductManager extends javax.swing.JPanel {
             if(proDao.delete(pro.getId()) == 0){
                 XMess.alert(null, "Xóa sản phẩm thất bại!");
             }else{
-                XMess.alert(null, "Xóa sản phẩm thành công");
                 list.remove(row);
-                fillTableUser(false);
-                fillTableUserDeleted(true);
+                listDeleted.add(pro);
+                fillTableProduct(false);
+                fillTableProductDeleted(false);
+                XMess.alert(null, "Xóa sản phẩm thành công");
             }
         }
     }
@@ -1182,7 +1180,7 @@ public class PanelProductManager extends javax.swing.JPanel {
 // _______________________ SP Đã xóa ______________________
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm đã xóa">
-    private void fillTableUserDeleted(boolean check) {
+    private void fillTableProductDeleted(boolean check) {
         cboLoai1.setSelectedIndex(0);
         DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
         model.setRowCount(0);
@@ -1201,7 +1199,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
         model.setRowCount(0);
         if(cboLoai1.getSelectedIndex() == 0){
-            fillTableUser(false);
+            fillTableProduct(false);
         }else if (cboLoai1.getSelectedIndex() > 0){
             ProductTypes proType = (ProductTypes) cboLoai1.getSelectedItem();
             for (Products pro : listDeleted) {
@@ -1223,8 +1221,8 @@ public class PanelProductManager extends javax.swing.JPanel {
             }else{
                 XMess.alert(this,"Phục hồi sản phẩm thành công!");
                 listDeleted.remove(row1);
-                fillTableUserDeleted(false);
-                fillTableUser(true);
+                fillTableProductDeleted(false);
+                fillTableProduct(true);
             }
         }
     }
@@ -1312,10 +1310,21 @@ public class PanelProductManager extends javax.swing.JPanel {
         }else if(result == 0){
             XMess.alert(this,"Thêm sản phẩm thành công!");
         }else{
-            XMess.alert(this,"Thêm sản phẩm thành công!");
-            fillTableUser(true);
-            pressTabButton(btnDanhSachSP);
-            clearForm();
+            // Tạo luồng và hiện dialog loading
+            DialogLoading dlog = new DialogLoading();
+            dlog.setVisible(true);
+            new Thread(){
+                @Override
+                public void run(){
+                    XPanel.mainForm.setEnabled(false);
+                    fillTableProduct(true);
+                    XPanel.mainForm.setEnabled(true);
+                    XMess.alert(null,"Thêm sản phẩm thành công!");
+                    pressTabButton(btnDanhSachSP);
+                    clearForm();
+                    dlog.setVisible(false);
+                }
+            }.start();
         }
     }
     // </editor-fold> 
@@ -1329,10 +1338,21 @@ public class PanelProductManager extends javax.swing.JPanel {
             if(proDao.update(product) == 0){
                 XMess.alert(this,"Cập nhập sản phẩm thất bại!");
             }else{
-                XMess.alert(this,"Cập nhập sản phẩm thành công!");
-                fillTableUser(true);
-                pressTabButton(btnDanhSachSP);
-                clearForm();
+                // Tạo luồng và hiện dialog loading
+                DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        XPanel.mainForm.setEnabled(false);
+                        fillTableProduct(true);
+                        XPanel.mainForm.setEnabled(true);
+                        XMess.alert(null,"Cập nhập sản phẩm thành công!");
+                        pressTabButton(btnDanhSachSP);
+                        clearForm();
+                        dlog.setVisible(false);
+                    }
+                }.start();
             }
         }
     }
@@ -1345,11 +1365,22 @@ public class PanelProductManager extends javax.swing.JPanel {
             if (proDao.delete(pro.getId()) == 0) {
                 XMess.alert(this, "Xóa sản phẩm thất bại!");
             } else {
-                fillTableUserDeleted(true);
-                fillTableUser(true);
-                pressTabButton(btnSPDaXoa);
-                XMess.alert(this,"Xóa sản phẩm thành công!");
-                clearForm();
+                // Tạo luồng và hiện dialog loading
+                DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        XPanel.mainForm.setEnabled(false);
+                        fillTableProduct(true);
+                        fillTableProductDeleted(true);
+                        XPanel.mainForm.setEnabled(true);
+                        XMess.alert(null ,"Xóa sản phẩm thành công!");
+                        pressTabButton(btnSPDaXoa);
+                        clearForm();
+                        dlog.setVisible(false);
+                    }
+                }.start();
             }
         }
     }

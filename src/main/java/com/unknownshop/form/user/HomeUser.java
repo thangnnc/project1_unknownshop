@@ -210,12 +210,6 @@ public class HomeUser extends javax.swing.JPanel {
     }
     // </editor-fold> 
 
-    // <editor-fold defaultstate="collapsed" desc="Phương thức di chuyển cửa sổ"> 
-    public void initMoving(JFrame fram) {
-        pnlHeader.initMoving(fram);
-    }
-    // </editor-fold> 
-
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa và thêm panel mới"> 
     public void show(Component com) {
         pnlCard.removeAll();

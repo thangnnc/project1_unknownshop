@@ -340,19 +340,19 @@ public class MenuAdmin extends javax.swing.JPanel {
         lbl.setIcon(XImage.getIcon(XConstant.ICON_ENTER + lbl.getToolTipText()));
         // Hiện panel tương ứng
         if(lbl.getToolTipText().equals("TKChung")) {
-            // Tạo luồng và hiện dialog loading
-            DialogLoading dlog = new DialogLoading();
-            dlog.setVisible(true);
-            new Thread(){
-                @Override
-                public void run(){
-                    XPanel.mainForm.setEnabled(false);
-                    XPanel.panelStatistic.setChart();
-                    XPanel.panelStatistic.setInfo();
-                    XPanel.mainForm.setEnabled(true);
-                    dlog.setVisible(false);
-                }
-            }.start();
+//            // Tạo luồng và hiện dialog loading
+//            DialogLoading dlog = new DialogLoading();
+//            dlog.setVisible(true);
+//            new Thread(){
+//                @Override
+//                public void run(){
+//                    XPanel.mainForm.setEnabled(false);
+//                    XPanel.panelStatistic.setChart();
+//                    XPanel.panelStatistic.setInfo();
+//                    XPanel.mainForm.setEnabled(true);
+//                    dlog.setVisible(false);
+//                }
+//            }.start();
         }
         showPanel(lbl.getToolTipText());
         XPanel.nameCard = lbl.getToolTipText();

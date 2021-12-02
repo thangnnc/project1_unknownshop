@@ -1,5 +1,8 @@
 package com.unknownshop.entity;
 
+import com.unknownshop.util.XImage;
+import java.io.File;
+
 public class Users {
     private int id;
     private String username;
@@ -16,7 +19,22 @@ public class Users {
     }
 // Contructor
     public Users() {
+        File file = new File(getClass().getResource("/noImage.jpg").getFile());
+        this.imgUrl = XImage.convertImageToBytes(file);
     }
+
+    public Users(int id, String username, String fullname, String password, String email, byte[] imgUrl, String role, boolean isDeleted) {
+        this.id = id;
+        this.username = username;
+        this.fullname = fullname;
+        this.password = password;
+        this.email = email;
+        this.imgUrl = imgUrl;
+        this.role = role;
+        this.isDeleted = isDeleted;
+    }
+
+    
 
 // Getter and Setter    
     public int getId() {

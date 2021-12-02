@@ -44,6 +44,7 @@ public class UserDAO extends EntityDAO<Users, String> {
             String sql = "{CALL sp_signUp(?,?,?,?,?,?)}";
             ResultSet rs = XJdbc.query(sql, us.getUsername(), us.getFullname(), us.getPassword(), us.getEmail(), us.getImgUrl(), us.getRole());
             rs.next();
+            // 1 : Thành công, 2: Trùng tài khoản, 3: Trùng email
             return (int) rs.getObject(1);
         } catch (Exception e) {
             e.printStackTrace();

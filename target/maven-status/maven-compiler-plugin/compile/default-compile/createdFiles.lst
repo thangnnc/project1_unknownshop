@@ -47,6 +47,7 @@ com\unknownshop\main\MainForm$1.class
 com\unknownshop\fragment\product\ProductCardDescription$2.class
 com\unknownshop\form\admin\PanelAccountManager$12.class
 com\unknownshop\form\user\DialogForgotPassword$5.class
+.netbeans_automatic_build
 com\unknownshop\form\admin\PanelBillManager$9.class
 com\unknownshop\form\admin\PanelStatisticDetails$25.class
 com\unknownshop\fragment\header\SubHeaderAdmin$7.class

@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MenuUser extends javax.swing.JPanel {
-
     public MenuUser() {
         initComponents();
         init();
@@ -64,7 +63,6 @@ public class MenuUser extends javax.swing.JPanel {
         jLabel1.setText("Unknown Shop");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 70));
 
-        pnlMenuGiay.setBackground(new java.awt.Color(240, 240, 240));
         pnlMenuGiay.setOpaque(false);
         pnlMenuGiay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,7 +90,6 @@ public class MenuUser extends javax.swing.JPanel {
 
         add(pnlMenuGiay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 280, 50));
 
-        pnlMenuPhuKien.setBackground(new java.awt.Color(240, 240, 240));
         pnlMenuPhuKien.setOpaque(false);
         pnlMenuPhuKien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -120,7 +117,6 @@ public class MenuUser extends javax.swing.JPanel {
 
         add(pnlMenuPhuKien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 280, 50));
 
-        pnlMenuQuan.setBackground(new java.awt.Color(240, 240, 240));
         pnlMenuQuan.setOpaque(false);
         pnlMenuQuan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -148,7 +144,6 @@ public class MenuUser extends javax.swing.JPanel {
 
         add(pnlMenuQuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 280, 50));
 
-        pnlMenuAo.setBackground(new java.awt.Color(240, 240, 240));
         pnlMenuAo.setOpaque(false);
         pnlMenuAo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -190,7 +185,6 @@ public class MenuUser extends javax.swing.JPanel {
 
         add(pnlMenuDanhSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 280, 50));
 
-        pnlMenuHome.setBackground(new java.awt.Color(240, 240, 240));
         pnlMenuHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(51, 51, 51)));
         pnlMenuHome.setEnabled(false);
         pnlMenuHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

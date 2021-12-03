@@ -1,5 +1,9 @@
 package com.unknownshop.form.user;
 
+import com.twilio.Twilio;
+import static com.twilio.example.Example.ACCOUNT_SID;
+import static com.twilio.example.Example.AUTH_TOKEN;
+import com.twilio.rest.api.v2010.account.Message;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.OrderDAO;
 import com.unknownshop.dao.OrderDetailDAO;
@@ -7,6 +11,7 @@ import com.unknownshop.entity.OrderDetails;
 import com.unknownshop.entity.Orders;
 import com.unknownshop.entity.Products;
 import com.unknownshop.fragment.infoCart.InfoCart;
+import com.unknownshop.fragment.menu.MenuUser;
 import com.unknownshop.swing.table.RowTableCart;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XCart;
@@ -16,17 +21,22 @@ import com.unknownshop.util.XMess;
 import com.unknownshop.util.XMoney;
 import com.unknownshop.util.XPanel;
 import com.unknownshop.util.XTable;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelCart extends javax.swing.JPanel {
 
+    private static final String ACCOUNT_SID = "ACb89a1025483a4dcc9a516b52131e21c8";
+    private static final String AUTH_TOKEN = "7935ced5ad2d031061150f2c0ca1bcf4";
     Products products;
     OrderDAO dao = new OrderDAO();
     OrderDetailDAO odDAO = new OrderDetailDAO();
     DefaultTableModel model;
     boolean check = false;
-    
+    public static int OTP = 0;
+
     public PanelCart() {
         initComponents();
         init();
@@ -51,6 +61,7 @@ public class PanelCart extends javax.swing.JPanel {
         txtDiaChi = new javax.swing.JTextField();
         pnlInfo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btnXacThuc = new javax.swing.JButton();
 
         setOpaque(false);
 
@@ -60,7 +71,6 @@ public class PanelCart extends javax.swing.JPanel {
         jLabel1.setText("Danh Sách Sản Phẩm Đã Mua");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(51, 51, 51)));
 
-        tblCart.setBackground(new java.awt.Color(255, 255, 255));
         tblCart.setForeground(new java.awt.Color(51, 51, 51));
         tblCart.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,7 +90,6 @@ public class PanelCart extends javax.swing.JPanel {
         });
         tblCart.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tblCart.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        tblCart.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tblCart);
         if (tblCart.getColumnModel().getColumnCount() > 0) {
             tblCart.getColumnModel().getColumn(0).setResizable(false);
@@ -203,6 +212,27 @@ public class PanelCart extends javax.swing.JPanel {
         jLabel2.setText("Vui lòng đăng nhập để mua hàng");
         pnlInfo.add(jLabel2);
 
+        btnXacThuc.setBackground(new java.awt.Color(51, 51, 51));
+        btnXacThuc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnXacThuc.setForeground(new java.awt.Color(255, 255, 255));
+        btnXacThuc.setText("Xác thực");
+        btnXacThuc.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        btnXacThuc.setContentAreaFilled(false);
+        btnXacThuc.setOpaque(true);
+        btnXacThuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXacThucMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXacThucMouseExited(evt);
+            }
+        });
+        btnXacThuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXacThucActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
@@ -211,9 +241,13 @@ public class PanelCart extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblThongTinKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSdt)
-                    .addComponent(txtDiaChi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                    .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtDiaChi, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnXacThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         roundPanel1Layout.setVerticalGroup(
@@ -222,9 +256,13 @@ public class PanelCart extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(lblThongTinKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addComponent(btnXacThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
                 .addGap(18, 18, 18)
                 .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -256,7 +294,7 @@ public class PanelCart extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +321,6 @@ public class PanelCart extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 // ---------------------- Start Event ----------------------
-    
     // <editor-fold defaultstate="collapsed" desc="Event btnThanhToan"> 
     private void btnThanhToanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseEntered
         XHover.enterButton(btnThanhToan, XConstant.LIGHT_BLUE, XConstant.BLACK_51);
@@ -337,12 +374,25 @@ public class PanelCart extends javax.swing.JPanel {
             txtDiaChi.setText("Nhập địa chỉ nhận hàng");
         }
     }//GEN-LAST:event_txtDiaChiFocusLost
+
+    private void btnXacThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacThucMouseEntered
+       XHover.enterButton(btnXacThuc, XConstant.LIGHT_BLUE, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnXacThucMouseEntered
+
+    private void btnXacThucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacThucMouseExited
+        XHover.exitButton(btnXacThuc);
+    }//GEN-LAST:event_btnXacThucMouseExited
+
+    private void btnXacThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacThucActionPerformed
+        this.sendOTP();
+    }//GEN-LAST:event_btnXacThucActionPerformed
     // </editor-fold> 
-    
+
 // ---------------------- End Event ----------------------
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThanhToan;
+    private javax.swing.JButton btnXacThuc;
     private javax.swing.JButton btnXoaSP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -360,7 +410,6 @@ public class PanelCart extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
-    
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo form"> 
     private void init() {
         XPanel.pnlCart = this;
@@ -371,7 +420,7 @@ public class PanelCart extends javax.swing.JPanel {
         // Định dạng căn giữa cho bảng
         XTable.setCellAlignmentCenter(tblCart, 0);
         // Kiểm tra đăng nhập
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             pnlInfo.removeAll();
             pnlInfo.add(new InfoCart());
             pnlInfo.repaint();
@@ -379,11 +428,11 @@ public class PanelCart extends javax.swing.JPanel {
         }
         fillTable();
         lblSoLuong.setText("" + XCart.totalQuantity);
-        lblTongTien.setText(XMoney.convertMoney(XCart.totalPrice)+" VNĐ");
+        lblTongTien.setText(XMoney.convertMoney(XCart.totalPrice) + " VNĐ");
 
     }
     // </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên bảng">
     private void fillTable() {
         model.setRowCount(0);
@@ -391,7 +440,7 @@ public class PanelCart extends javax.swing.JPanel {
         for (Products product : XCart.listCart.values()) {
             model.addRow(new RowTableCart(product).toRowTable());
         }
-        
+
     }
     // </editor-fold>
 
@@ -400,14 +449,14 @@ public class PanelCart extends javax.swing.JPanel {
         int row = tblCart.getSelectedRow();
         XCart.removeProduct(row);
         model.removeRow(row);
-        if(model.getRowCount() > row){
+        if (model.getRowCount() > row) {
             tblCart.setRowSelectionInterval(row, row);
-        }else if(model.getRowCount() > 0){
-            tblCart.setRowSelectionInterval(row-1, row-1);
+        } else if (model.getRowCount() > 0) {
+            tblCart.setRowSelectionInterval(row - 1, row - 1);
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa sản phẩm">
     private void deleteAllPro() {
         XCart.removeAll();
@@ -416,32 +465,57 @@ public class PanelCart extends javax.swing.JPanel {
         lblTongTien.setText("0 VNĐ");
     }
     // </editor-fold>
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức gửi mã OTP">
+    private void sendOTP() {
+        if (!(txtSdt.getText().equalsIgnoreCase("Nhập số điện thoại"))) {
+            OTP = (int) Math.round((Math.random() * 9999) + 1000);
+            System.out.println(OTP);
+            String body = "Mã xác nhận của bạn là : " + OTP + "\nKhông chia sẻ mã với người khác";
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                    new com.twilio.type.PhoneNumber("+84" + txtSdt.getText()),
+                    "MG04ff40e2ad2124fbf016684b01f4a54f",
+                    body)
+                    .create();
+            OtpAuthentication otp = new OtpAuthentication();
+            otp.setVisible(true);
+        } else {
+            XMess.alert(this,"Chưa nhập số điện thoại");
+        }
+    }
+// </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Phương thức thanh toán">
     private void payment() {
-        if (checkInfo()) {
-            if(XCart.listCart.size() == 0){
-                XMess.alert(null, "Hãy chọn sản phẩm bạn muốn mua trước khi thanh toán!");
-                return;
-            }
-            Orders od = getForm();
-            try {
-                int orderId = dao.insert(od);
-                for (Products product : XCart.listCart.values()) {
-                    OrderDetails ods = new OrderDetails();
-                    ods.setOrderId(orderId);
-                    ods.setProducId(product.getId());
-                    ods.setPrice(product.getPrice());
-                    ods.setQuantity(product.getQuantity());
-                    odDAO.insert(ods);
+        if (OTP == 1) {
+            if (checkInfo()) {
+                if (XCart.listCart.size() == 0) {
+                    XMess.alert(null, "Hãy chọn sản phẩm bạn muốn mua trước khi thanh toán!");
+                    return;
                 }
-                XMess.alert(this, "Thanh toán thành công");
-                deleteAllPro();
-            } catch (Exception e) {
-                e.printStackTrace();
-                XMess.alert(this, "Thanh toán thất bại");
+                Orders od = getForm();
+                try {
+                    int orderId = dao.insert(od);
+                    for (Products product : XCart.listCart.values()) {
+                        OrderDetails ods = new OrderDetails();
+                        ods.setOrderId(orderId);
+                        ods.setProducId(product.getId());
+                        ods.setPrice(product.getPrice());
+                        ods.setQuantity(product.getQuantity());
+                        odDAO.insert(ods);
+                    }
+                    XMess.alert(this, "Thanh toán thành công");
+                    deleteAllPro();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    XMess.alert(this, "Thanh toán thất bại");
+                }
             }
+        } else {
+            XMess.alert(this, "Vui lòng xác thực số điện thoại");
         }
+
     }
     // </editor-fold>
 
@@ -455,14 +529,19 @@ public class PanelCart extends javax.swing.JPanel {
         }
         if (txtSdt.getText().equals("Nhập số điện thoại")) {
             mess += "\nChưa nhập số điện thoại!";
-            if(txt == null) txt = txtSdt;
+            if (txt == null) {
+                txt = txtSdt;
+            }
         }
         if (txtDiaChi.getText().equals("Nhập địa chỉ nhận hàng")) {
             mess += "\nChưa nhập địa chỉ !";
-            if(txt == null) txt = txtDiaChi;
+            if (txt == null) {
+                txt = txtDiaChi;
+            }
         }
-        if(mess.length() == 5) return true;
-        else{
+        if (mess.length() == 5) {
+            return true;
+        } else {
             XMess.alert(null, mess);
             txt.requestFocus();
             return false;

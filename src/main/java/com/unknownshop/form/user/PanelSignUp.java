@@ -5,14 +5,15 @@ import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
+import com.unknownshop.util.XLabel;
 import com.unknownshop.util.XMess;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanelSignUp extends javax.swing.JPanel {
@@ -21,7 +22,7 @@ public class PanelSignUp extends javax.swing.JPanel {
     String name;
     JPanel pnlSignInBar;
     UserDAO dao = new UserDAO();
-    
+
     public PanelSignUp() {
         initComponents();
         init();
@@ -325,36 +326,36 @@ public class PanelSignUp extends javax.swing.JPanel {
 // ---------------------- Start Event ----------------------
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Username">  
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        if(txtUsername.getText().trim().equalsIgnoreCase("Tên tài khoản")){
-             txtUsername.setText("");
+        if (txtUsername.getText().trim().equalsIgnoreCase("Tên tài khoản")) {
+            txtUsername.setText("");
         }
     }//GEN-LAST:event_txtUsernameFocusGained
-     
+
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        if(txtUsername.getText().trim().length()==0){
+        if (txtUsername.getText().trim().length() == 0) {
             txtUsername.setText("Tên tài khoản");
             lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }else{
+        } else {
             lblErrorUsername.setText(" ");
         }
     }//GEN-LAST:event_txtUsernameFocusLost
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Fullname">
     private void txtFullnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullnameFocusGained
-        if(txtFullname.getText().trim().equalsIgnoreCase("Họ tên")){
-             txtFullname.setText("");
+        if (txtFullname.getText().trim().equalsIgnoreCase("Họ tên")) {
+            txtFullname.setText("");
         }
     }//GEN-LAST:event_txtFullnameFocusGained
 
     private void txtFullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullnameFocusLost
         String kt = "^([^[!@#$%&*()_+=|<>?{}\\[\\]~-]|^\\d|^\\s]*\\s?)*$";
-        if(txtFullname.getText().trim().length()==0){
+        if (txtFullname.getText().trim().length() == 0) {
             txtFullname.setText("Họ tên");
             lblErrorFullname.setText("Chưa nhập họ tên!");
-        }else{
-            if(txtFullname.getText().matches(kt)==false){
+        } else {
+            if (txtFullname.getText().matches(kt) == false) {
                 lblErrorFullname.setText("Tên không được chứa số hoặc ký tự đặc biệt!");
-            }else{
+            } else {
                 lblErrorFullname.setText(" ");
             }
         }
@@ -362,20 +363,20 @@ public class PanelSignUp extends javax.swing.JPanel {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Email">
     private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
-        if(txtEmail.getText().trim().equalsIgnoreCase("Email")){
-             txtEmail.setText("");
+        if (txtEmail.getText().trim().equalsIgnoreCase("Email")) {
+            txtEmail.setText("");
         }
     }//GEN-LAST:event_txtEmailFocusGained
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         String kt_email = "\\w+\\@\\w+(\\.\\w+)+";
-        if(txtEmail.getText().trim().length()==0){
+        if (txtEmail.getText().trim().length() == 0) {
             txtEmail.setText("Email");
             lblErrorEmail.setText("Chưa nhập Email!");
-        }else{
-           if(txtEmail.getText().matches(kt_email)==false){
+        } else {
+            if (txtEmail.getText().matches(kt_email) == false) {
                 lblErrorEmail.setText("Email không đúng định dạng");
-            }else{
+            } else {
                 lblErrorEmail.setText(" ");
             }
         }
@@ -383,44 +384,44 @@ public class PanelSignUp extends javax.swing.JPanel {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Password">
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        if(txtPassword.getText().trim().equals("Mật khẩu")){
-             txtPassword.setText("");
+        if (txtPassword.getText().trim().equals("Mật khẩu")) {
+            txtPassword.setText("");
         }
     }//GEN-LAST:event_txtPasswordFocusGained
 
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        if(txtPassword.getText().trim().length()==0){
+        if (txtPassword.getText().trim().length() == 0) {
             txtPassword.setText("Mật khẩu");
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
-        }else{
+        } else {
             lblErrorPassword.setText(" ");
         }
     }//GEN-LAST:event_txtPasswordFocusLost
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi RePassword">
     private void txtRePasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRePasswordFocusGained
-        if(txtRePassword.getText().trim().equals("Mật khẩu")){
-             txtRePassword.setText("");
+        if (txtRePassword.getText().trim().equals("Mật khẩu")) {
+            txtRePassword.setText("");
         }
     }//GEN-LAST:event_txtRePasswordFocusGained
 
     private void txtRePasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRePasswordFocusLost
-        if(txtRePassword.getText().trim().length()==0){
+        if (txtRePassword.getText().trim().length() == 0) {
             txtRePassword.setText("Mật khẩu");
             lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
-        }else if(!txtRePassword.getText().equals(txtPassword.getText())){
+        } else if (!txtRePassword.getText().equals(txtPassword.getText())) {
             lblErrorRePassword.setText("Mật khẩu nhập lại không trùng khớp!");
-        }else{
-             lblErrorRePassword.setText(" ");
+        } else {
+            lblErrorRePassword.setText(" ");
         }
     }//GEN-LAST:event_txtRePasswordFocusLost
 
-   // </editor-fold> 
+    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnDangKy">
     private void btnDangKyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangKyMousePressed
         this.signUp();
     }//GEN-LAST:event_btnDangKyMousePressed
-
+//</editor-fold?
     private void btnDangKyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangKyMouseEntered
         XHover.enterButton(btnDangKy, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnDangKyMouseEntered
@@ -442,10 +443,9 @@ public class PanelSignUp extends javax.swing.JPanel {
         XHover.exitButton(btnImage);
     }//GEN-LAST:event_btnImageMouseExited
 
-   // </editor-fold>
-
+    // </editor-fold>
 // ---------------------- End Event ----------------------
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangKy;
     private javax.swing.JButton btnImage;
@@ -470,7 +470,6 @@ public class PanelSignUp extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
-  
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
         txtUsername.setBackground(new Color(0, 0, 0, 0));
@@ -481,47 +480,50 @@ public class PanelSignUp extends javax.swing.JPanel {
         this.clearError();
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức đăng ký tài khoản">    
     private void signUp() {
         nonError();
-        if(checkError()) return;
+        if (checkError()) {
+            return;
+        }
         Users u = getForm();
-        try{
+        try {
             int result = dao.insert(u);
-            if( result == 0){
+            if (result == 0) {
                 lblErrorUsername.setText("Tài khoản này đã có trong hệ thống!");
-            }else if(result == -1){
+            } else if (result == -1) {
                 lblErrorEmail.setText("Email đã được sử dụng!");
-            }else{
-                JOptionPane.showMessageDialog(this,"Thêm tài khoản thành công!");
+            } else {
+                XMess.alert(null,"Thêm tài khoản thành công!");
                 clearForm();
             }
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(this,"Thêm tài khoản thất bại!");
+        } catch (Exception ex) {
+            XMess.alert(null, "Thêm tài khoản thất bại!");
             ex.printStackTrace();
         }
-        
+
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
-    private boolean checkError(){
-        if(!(lblErrorEmail.getText().equals(" ") &&
-                    lblErrorFullname.getText().equals(" ") &&  
-                    lblErrorPassword.getText().equals(" ") &&
-                    lblErrorRePassword.getText().equals(" ") &&
-                    lblErrorUsername.getText().equals(" "))) return true;
-        else if(btnImage.getIcon() == null){
+    private boolean checkError() {
+        if (!(lblErrorEmail.getText().equals(" ")
+                && lblErrorFullname.getText().equals(" ")
+                && lblErrorPassword.getText().equals(" ")
+                && lblErrorRePassword.getText().equals(" ")
+                && lblErrorUsername.getText().equals(" "))) {
+            return true;
+        } else if (btnImage.getIcon() == null) {
             XMess.alert(this, "Bạn chưa chọn ảnh đại diện!");
             return true;
         }
         return false;
     }
     // </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form"> 
-    private Users getForm(){
+    private Users getForm() {
         Users u = new Users();
         u.setUsername(txtUsername.getText());
         u.setPassword(txtPassword.getText());
@@ -532,7 +534,7 @@ public class PanelSignUp extends javax.swing.JPanel {
         return u;
     }
     // </editor-fold>    
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lable lỗi"> 
     private void clearError() {
         lblErrorPassword.setText("  ");
@@ -542,7 +544,7 @@ public class PanelSignUp extends javax.swing.JPanel {
         lblErrorRePassword.setText("  ");
     }
     // </editor-fold>    
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa textfield"> 
     private void clearForm() {
         txtUsername.setText("Tên tài khoản");
@@ -554,46 +556,61 @@ public class PanelSignUp extends javax.swing.JPanel {
         btnImage.setText("Hình Ảnh");
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
-    private void nonError(){
-        if(lblErrorUsername.getText().equals("  ")){
+    private void nonError() {
+        if (lblErrorUsername.getText().equals("  ")) {
             lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }  
-        if(lblErrorPassword.getText().equals("  ")){
+        }
+        if (lblErrorPassword.getText().equals("  ")) {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
         }
-        if(lblErrorRePassword.getText().equals("  ")){
+        if (lblErrorRePassword.getText().equals("  ")) {
             lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
         }
-        if(lblErrorEmail.getText().equals("  ")){
+        if (lblErrorEmail.getText().equals("  ")) {
             lblErrorEmail.setText("Chưa nhập email!");
         }
-        if(lblErrorFullname.getText().equals("  ")){
+        if (lblErrorFullname.getText().equals("  ")) {
             lblErrorFullname.setText("Chưa nhập tên ngươi dùng!");
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
-    private void getImage(){
-        JFileChooser fileChooser = new JFileChooser();
-        if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-            FileInputStream fos = null;
-            try {
-                File file = fileChooser.getSelectedFile();
-                userImg = XImage.convertImageToBytes(file);
-                ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
-                        getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
-                btnImage.setIcon(icon);
-                btnImage.setText("");
-            } catch (Exception ex) {
-                
-            } 
+    private void getImage() {
+        boolean check = XMess.confirm(this, "Mở chụp ảnh ?");
+        if (check == false) {
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                FileInputStream fos = null;
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    userImg = XImage.convertImageToBytes(file);
+                    ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
+                            getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
+                    btnImage.setIcon(icon);
+                    btnImage.setText("");
+                } catch (Exception ex) {
+                }
+            }
+        } else {
+            TakePicture camera = new TakePicture(this);
+            camera.setVisible(true);
         }
     }
     // </editor-fold>    
-     
+
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
+    public void setIcon(Image image, byte[] byteImg) {
+        ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
+                getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
+        btnImage.setIcon(icon);
+        btnImage.setText(""); 
+        userImg = byteImg;
+    }
+    // </editor-fold>    
+
 // ----------------------  End Method  ----------------------
 
 }

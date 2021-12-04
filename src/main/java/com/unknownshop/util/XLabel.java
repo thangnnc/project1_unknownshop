@@ -5,6 +5,7 @@
  */
 package com.unknownshop.util;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**

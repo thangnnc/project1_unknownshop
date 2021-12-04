@@ -6,6 +6,7 @@ import com.unknownshop.dao.OrderDetailDAO;
 import com.unknownshop.entity.OrderDetails;
 import com.unknownshop.entity.Orders;
 import com.unknownshop.entity.Products;
+import com.unknownshop.form.DialogLoading;
 import com.unknownshop.fragment.infoCart.InfoCart;
 import com.unknownshop.swing.table.RowTableCart;
 import com.unknownshop.util.Auth;
@@ -16,8 +17,10 @@ import com.unknownshop.util.XMess;
 import com.unknownshop.util.XMoney;
 import com.unknownshop.util.XPanel;
 import com.unknownshop.util.XTable;
+import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.JTextComponent;
 
 public class PanelCart extends javax.swing.JPanel {
 
@@ -178,6 +181,14 @@ public class PanelCart extends javax.swing.JPanel {
                 txtSdtFocusLost(evt);
             }
         });
+        txtSdt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSdtKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSdtKeyTyped(evt);
+            }
+        });
 
         txtDiaChi.setBackground(new java.awt.Color(51, 51, 51));
         txtDiaChi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -191,6 +202,14 @@ public class PanelCart extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtDiaChiFocusLost(evt);
+            }
+        });
+        txtDiaChi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDiaChiKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiaChiKeyTyped(evt);
             }
         });
 
@@ -338,6 +357,23 @@ public class PanelCart extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtDiaChiFocusLost
     // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event giới hạn và định dạng"> 
+    private void txtSdtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSdtKeyReleased
+        checkChar(txtSdt, "[^0-9]");
+    }//GEN-LAST:event_txtSdtKeyReleased
+
+    private void txtSdtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSdtKeyTyped
+        limitLength(txtSdt, 10, evt);
+    }//GEN-LAST:event_txtSdtKeyTyped
+
+    private void txtDiaChiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyReleased
+//        checkChar(txtDiaChi, "[^0-9 a-z A-Z]");
+    }//GEN-LAST:event_txtDiaChiKeyReleased
+
+    private void txtDiaChiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyTyped
+        limitLength(txtDiaChi, 255, evt);
+    }//GEN-LAST:event_txtDiaChiKeyTyped
+    // </editor-fold> 
     
 // ---------------------- End Event ----------------------
 
@@ -419,28 +455,51 @@ public class PanelCart extends javax.swing.JPanel {
 
     // <editor-fold defaultstate="collapsed" desc="Phương thức thanh toán">
     private void payment() {
-        if (checkInfo()) {
-            if(XCart.listCart.size() == 0){
-                XMess.alert(null, "Hãy chọn sản phẩm bạn muốn mua trước khi thanh toán!");
-                return;
-            }
-            Orders od = getForm();
-            try {
-                int orderId = dao.insert(od);
-                for (Products product : XCart.listCart.values()) {
-                    OrderDetails ods = new OrderDetails();
-                    ods.setOrderId(orderId);
-                    ods.setProducId(product.getId());
-                    ods.setPrice(product.getPrice());
-                    ods.setQuantity(product.getQuantity());
-                    odDAO.insert(ods);
+        if (XCart.listCart.size() == 0) {
+            XMess.alert(null, "Hãy chọn sản phẩm bạn muốn mua trước khi thanh toán!");
+            return;
+        }
+        if(checkInfo()){
+            XPanel.mainForm.setEnabled(false);
+            DialogPhoneOTP dialog = new DialogPhoneOTP(txtSdt.getText());
+            dialog.setVisible(true);
+            new Thread(){
+                @Override
+                public void run(){
+                    do{
+                        System.out.println("");
+                        if (dialog.check) {
+                            Orders od = getForm();
+                            try {
+                                DialogLoading dlog = new DialogLoading();
+                                dlog.setVisible(true);
+                                new Thread(){
+                                    @Override
+                                    public void run(){
+                                        int orderId = dao.insert(od);
+                                        for (Products product : XCart.listCart.values()) {
+                                            OrderDetails ods = new OrderDetails();
+                                            ods.setOrderId(orderId);
+                                            ods.setProducId(product.getId());
+                                            ods.setPrice(product.getPrice());
+                                            ods.setQuantity(product.getQuantity());
+                                            odDAO.insert(ods);
+                                        }
+                                        dlog.setVisible(false);
+                                    }
+                                }.start();
+                                XMess.alert(null, "Thanh toán thành công");
+                                deleteAllPro();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                XMess.alert(null, "Thanh toán thất bại");
+                            }
+                            
+                        }
+                    }while(!dialog.check);
                 }
-                XMess.alert(this, "Thanh toán thành công");
-                deleteAllPro();
-            } catch (Exception e) {
-                e.printStackTrace();
-                XMess.alert(this, "Thanh toán thất bại");
-            }
+            }.start();
+            
         }
     }
     // </editor-fold>
@@ -478,6 +537,21 @@ public class PanelCart extends javax.swing.JPanel {
         od.setTotalPrice(XCart.totalPrice);
         od.setUserId(Auth.user.getId());
         return od;
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức giới hạn kí tự nhập vào">
+    private void limitLength(JTextComponent txt, int length, KeyEvent evt){
+        boolean limited = txt.getText().length() == length;
+        if (limited){
+            evt.consume();
+        }
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa kí tự không hợp lệ khi nhập">
+    private void checkChar(JTextComponent txt, String pattern){
+        txt.setText(txt.getText().replaceAll(pattern, ""));
     }
     // </editor-fold>
 

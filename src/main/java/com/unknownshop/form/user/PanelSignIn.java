@@ -4,11 +4,14 @@ import com.unknownshop.form.PanelAccount;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
+import com.unknownshop.form.DialogLoading;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XPanel;
 import com.unknownshop.util.XHover;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.text.JTextComponent;
 
 public class PanelSignIn extends javax.swing.JPanel {
 
@@ -51,6 +54,11 @@ public class PanelSignIn extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsernameFocusLost(evt);
+            }
+        });
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
             }
         });
 
@@ -120,6 +128,11 @@ public class PanelSignIn extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPasswordFocusLost(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
             }
         });
 
@@ -256,6 +269,15 @@ public class PanelSignIn extends javax.swing.JPanel {
         lblQuenMatKhau.setForeground(XConstant.WHITE_240);
     }//GEN-LAST:event_lblQuenMatKhauMouseExited
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event giới hạn kí tự textfield">
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+        limitLength(txtUsername, 50, evt);
+    }//GEN-LAST:event_txtUsernameKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        limitLength(txtPassword, 50, evt);
+    }//GEN-LAST:event_txtPasswordKeyTyped
+    // </editor-fold>
     
 // ---------------------- End Event ----------------------
 
@@ -282,13 +304,11 @@ public class PanelSignIn extends javax.swing.JPanel {
     }
     // </editor-fold>  
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lỗi">    
-
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lỗi"> 
     private void clearError() {
         lblErrorPassword.setText("  ");
         lblErrorUsername.setText("  ");
     }
-
     // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức đăng nhập">    
@@ -296,30 +316,43 @@ public class PanelSignIn extends javax.swing.JPanel {
         nonError();
         if(!(lblErrorUsername.getText().equals(" ") && 
                 lblErrorPassword.getText().equals(" "))) return;
-        this.clearError();
         String tk = txtUsername.getText();
         String matKhau = txtPassword.getText();
         Users user = new Users();
-        int check = dao.signIn(tk, matKhau, user);
-        if(check == -1){
-            lblErrorUsername.setText("Tài khoản không tồn tại !");
-        }else if(check == 0){
-            lblErrorPassword.setText("Sai mật khẩu !");
-        }else{
-            Auth.user = user;
-            XPanel.panelHeader.setSign();
-            XPanel.panelTaiKhoan.removeAll();
-            XPanel.panelTaiKhoan.add(new PanelAccount());
-            if(XPanel.nameCard.equals("GioHang")){
-                XPanel.panelCart.removeAll();
-                XPanel.panelCart.add(new PanelCart());
-                XPanel.panelCart.repaint();
-                XPanel.panelCart.revalidate();
+        // Tạo luồng và hiện dialog loading
+        DialogLoading dlog = new DialogLoading();
+        dlog.setVisible(true);
+        new Thread(){
+            @Override
+            public void run(){
+                XPanel.mainForm.setEnabled(false);
+                // Tải thông tin tài khoản lên form
+                int check = dao.signIn(tk, matKhau, user);
+                if(check == -1){
+                    lblErrorUsername.setText("Tài khoản không tồn tại!");
+                    txtUsername.requestFocus();
+                }else if(check == 0){
+                    lblErrorPassword.setText("Sai mật khẩu!");
+                    txtPassword.requestFocus();
+                }else{
+                    Auth.user = user;
+                    XPanel.panelHeader.setSign();
+                    XPanel.panelTaiKhoan.removeAll();
+                    XPanel.panelTaiKhoan.add(new PanelAccount());
+                    if(XPanel.nameCard.equals("GioHang")){
+                        XPanel.panelCart.removeAll();
+                        XPanel.panelCart.add(new PanelCart());
+                        XPanel.panelCart.repaint();
+                        XPanel.panelCart.revalidate();
+                    }
+                    clearError();
+                    CardLayout card = (CardLayout) XPanel.panelCardUser.getLayout();
+                    card.show(XPanel.panelCardUser, XPanel.nameCard);
+                }
+                XPanel.mainForm.setEnabled(true);
+                dlog.setVisible(false);
             }
-            CardLayout card = (CardLayout) XPanel.panelCardUser.getLayout();
-            card.show(XPanel.panelCardUser, XPanel.nameCard);
-        }
-
+        }.start();
     }
     // </editor-fold>
     
@@ -332,6 +365,15 @@ public class PanelSignIn extends javax.swing.JPanel {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
         }
         
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức giới hạn kí tự nhập vào">
+    private void limitLength(JTextComponent txt, int length, KeyEvent evt){
+        boolean limited = txt.getText().length() == length;
+        if (limited){
+            evt.consume();
+        }
     }
     // </editor-fold>
     

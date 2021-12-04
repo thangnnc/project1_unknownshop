@@ -1,1 +1,2 @@
-com\unknownshop\form\user\PanelSignUpTest.class
+com\unknownshop\dao\UserDAOTest.class
+com\unknownshop\entity\UsersTest.class

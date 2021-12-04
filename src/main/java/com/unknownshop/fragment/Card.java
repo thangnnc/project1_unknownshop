@@ -1,6 +1,5 @@
 package com.unknownshop.fragment;
 
-import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;

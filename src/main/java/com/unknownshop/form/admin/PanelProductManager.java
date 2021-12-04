@@ -28,12 +28,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelProductManager extends javax.swing.JPanel {
 
-    ProductDAO proDao = new ProductDAO();
-    List<Products> list = new ArrayList<>();
-    List<Products> listDeleted = new ArrayList<>();
-    ProductTypeDAO proTypeDao = new ProductTypeDAO();
-    int row = -1;
-    byte[] proImage;
+    private ProductDAO proDao = new ProductDAO();
+    private List<Products> list = new ArrayList<>();
+    private List<Products> listDeleted = new ArrayList<>();
+    private ProductTypeDAO proTypeDao = new ProductTypeDAO();
+    private int row = -1;
+    private byte[] proImage;
     
     public PanelProductManager() {
         initComponents();
@@ -50,15 +50,13 @@ public class PanelProductManager extends javax.swing.JPanel {
         btnSanPham = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
         pnlDanhSachSP = new javax.swing.JPanel();
-        cboLoai = new javax.swing.JComboBox<>();
-        lblLoai = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDanhSachSP = new com.unknownshop.swing.table.Table();
+        cboLoai = new com.unknownshop.swing.combobox.ComboboxWhite();
         pnlSPDaXoa = new javax.swing.JPanel();
-        cboLoai1 = new javax.swing.JComboBox<>();
-        lblLoai1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSPDaXoa = new com.unknownshop.swing.table.Table();
+        cboLoai1 = new com.unknownshop.swing.combobox.ComboboxWhite();
         pnlSanPham = new javax.swing.JPanel();
         pnlForm = new javax.swing.JPanel();
         pnlImage = new javax.swing.JPanel();
@@ -83,7 +81,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         btnLast = new javax.swing.JButton();
         txtGiaSP = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
-        cboLoaiSP = new javax.swing.JComboBox<>();
+        cboLoaiSP = new combobox.ComboboxBlack();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -181,18 +179,7 @@ public class PanelProductManager extends javax.swing.JPanel {
 
         pnlDanhSachSP.setOpaque(false);
 
-        cboLoai.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboLoai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboLoaiActionPerformed(evt);
-            }
-        });
-
-        lblLoai.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblLoai.setForeground(new java.awt.Color(51, 51, 51));
-        lblLoai.setText("Loại:");
-
+        tblDanhSachSP.setBackground(new java.awt.Color(255, 255, 255));
         tblDanhSachSP.setForeground(new java.awt.Color(51, 51, 51));
         tblDanhSachSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,6 +217,15 @@ public class PanelProductManager extends javax.swing.JPanel {
             tblDanhSachSP.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        cboLoai.setBackground(new java.awt.Color(250, 250, 250));
+        cboLoai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboLoai.setLabeText("Loại Sản Phẩm");
+        cboLoai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLoaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlDanhSachSPLayout = new javax.swing.GroupLayout(pnlDanhSachSP);
         pnlDanhSachSP.setLayout(pnlDanhSachSPLayout);
         pnlDanhSachSPLayout.setHorizontalGroup(
@@ -237,22 +233,18 @@ public class PanelProductManager extends javax.swing.JPanel {
             .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
                     .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
-                        .addComponent(lblLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(912, Short.MAX_VALUE))))
+                        .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlDanhSachSPLayout.setVerticalGroup(
             pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachSPLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLoai))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,18 +252,7 @@ public class PanelProductManager extends javax.swing.JPanel {
 
         pnlSPDaXoa.setOpaque(false);
 
-        cboLoai1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboLoai1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboLoai1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboLoai1ActionPerformed(evt);
-            }
-        });
-
-        lblLoai1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblLoai1.setForeground(new java.awt.Color(51, 51, 51));
-        lblLoai1.setText("Chức vụ:");
-
+        tblSPDaXoa.setBackground(new java.awt.Color(255, 255, 255));
         tblSPDaXoa.setForeground(new java.awt.Color(51, 51, 51));
         tblSPDaXoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,6 +287,15 @@ public class PanelProductManager extends javax.swing.JPanel {
             tblSPDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        cboLoai1.setBackground(new java.awt.Color(250, 250, 250));
+        cboLoai1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboLoai1.setLabeText("Loại Sản Phẩm");
+        cboLoai1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLoai1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlSPDaXoaLayout = new javax.swing.GroupLayout(pnlSPDaXoa);
         pnlSPDaXoa.setLayout(pnlSPDaXoaLayout);
         pnlSPDaXoaLayout.setHorizontalGroup(
@@ -315,21 +305,17 @@ public class PanelProductManager extends javax.swing.JPanel {
                 .addGroup(pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
                     .addGroup(pnlSPDaXoaLayout.createSequentialGroup()
-                        .addComponent(lblLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlSPDaXoaLayout.setVerticalGroup(
             pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSPDaXoaLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLoai1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -652,19 +638,10 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
 
-        cboLoaiSP.setBackground(new java.awt.Color(51, 51, 51));
+        cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Áo", "Quần", "Phụ Kiện", "Giày" }));
+        cboLoaiSP.setSelectedIndex(-1);
         cboLoaiSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cboLoaiSP.setForeground(new java.awt.Color(255, 255, 255));
-        cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Chọn loại sản phẩm ---", "Áo", "Quần", "Phụ Kiện", "Giày" }));
-        cboLoaiSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        cboLoaiSP.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cboLoaiSPFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cboLoaiSPFocusLost(evt);
-            }
-        });
+        cboLoaiSP.setLabeText("Loại Sản Phẩm");
 
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
@@ -695,7 +672,7 @@ public class PanelProductManager extends javax.swing.JPanel {
                             .addGroup(pnlFormLayout.createSequentialGroup()
                                 .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cboLoaiSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cboLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(lblErrorLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
@@ -705,13 +682,10 @@ public class PanelProductManager extends javax.swing.JPanel {
         pnlFormLayout.setVerticalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFormLayout.createSequentialGroup()
-                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlFormLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblIconTenSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -731,11 +705,12 @@ public class PanelProductManager extends javax.swing.JPanel {
                         .addComponent(lblErrorSoLuong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                            .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblErrorLoaiSP)
-                        .addGap(41, 41, 41)))
+                        .addGap(23, 23, 23)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -803,18 +778,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnSanPhamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseExited
         XHover.exitTabButton(btnSanPham);
     }//GEN-LAST:event_btnSanPhamMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu(DSTK)">
-    private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
-        selectCombobox();
-    }//GEN-LAST:event_cboLoaiActionPerformed
 
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1(DSTK đã xóa)">
-    private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
-        selectCombobox1();
-    }//GEN-LAST:event_cboLoai1ActionPerformed
-    // </editor-fold> 
+   // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnImage">
     private void btnImageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseEntered
         XHover.enterButton(btnImage, XConstant.WHITE_255, XConstant.BLACK_51);
@@ -979,19 +944,17 @@ public class PanelProductManager extends javax.swing.JPanel {
             lblErrorSoLuong.setText(" ");
         }
     }//GEN-LAST:event_txtSoLuongFocusLost
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event cboLoai">
+    private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
+        selectCombobox();
+    }//GEN-LAST:event_cboLoaiActionPerformed
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event cboLoai1">
+    private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
+        selectCombobox1();
+    }//GEN-LAST:event_cboLoai1ActionPerformed
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus cboLoai">
-    private void cboLoaiSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboLoaiSPFocusGained
-        lblErrorLoaiSP.setText(" ");
-    }//GEN-LAST:event_cboLoaiSPFocusGained
-
-    private void cboLoaiSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboLoaiSPFocusLost
-        if (cboLoaiSP.getSelectedIndex() == 0) {
-            lblErrorLoaiSP.setText("Chưa chọn loại sản phẩm!");
-        }
-    }//GEN-LAST:event_cboLoaiSPFocusLost
-
-   // </editor-fold> 
     
     // -------------------- End Event --------------------
     
@@ -1008,9 +971,9 @@ public class PanelProductManager extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cboLoai;
-    private javax.swing.JComboBox<String> cboLoai1;
-    private javax.swing.JComboBox<String> cboLoaiSP;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboLoai;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboLoai1;
+    private combobox.ComboboxBlack cboLoaiSP;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblErrorGiaSP;
@@ -1021,8 +984,6 @@ public class PanelProductManager extends javax.swing.JPanel {
     private javax.swing.JLabel lblIconLoaiSP;
     private javax.swing.JLabel lblIconSoLuong;
     private javax.swing.JLabel lblIconTenSP;
-    private javax.swing.JLabel lblLoai;
-    private javax.swing.JLabel lblLoai1;
     private javax.swing.JPanel pnlCard;
     private javax.swing.JPanel pnlControl;
     private javax.swing.JPanel pnlDanhSachSP;
@@ -1045,7 +1006,6 @@ public class PanelProductManager extends javax.swing.JPanel {
         txtTenSP.setBackground(new Color(0, 0, 0, 0));
         txtGiaSP.setBackground(new Color(0, 0, 0, 0));
         txtSoLuong.setBackground(new Color(0, 0, 0, 0));
-        cboLoaiSP.setBackground(new Color(0, 0, 0, 0));
         XTable.setCellAlignmentCenter(tblDanhSachSP,0);
         XTable.setCellAlignmentCenter(tblSPDaXoa,0);
         this.clearError();
@@ -1090,18 +1050,20 @@ public class PanelProductManager extends javax.swing.JPanel {
         for (JComboBox cbo : combo) {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbo.getModel();
             model.removeAllElements();
-            model.addElement("--- Chọn loại sản phẩm ---");
+            model.addElement("Tất cả các loại");
             List<ProductTypes> list = proTypeDao.getList();
             for (ProductTypes proType : list) {
                 model.addElement(proType);
             }
+            cbo.setSelectedIndex(-1);
         }
     }
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm">
     private void fillTableProduct(boolean check) {
-        cboLoai.setSelectedIndex(0);
+        if(cboLoai.getSelectedIndex() >= 0) cboLoai.setSelectedIndex(0);
+        else cboLoai.setSelectedIndex(-1);
         DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
         model.setRowCount(0);
         if(check) {
@@ -1143,7 +1105,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         txtSoLuong.setText(String.valueOf(product.getQuantity()));
         proImage = product.getImgUrl();
         btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(proImage, 175, 225)));
-        cboLoaiSP.setSelectedIndex(product.getTypeId());
+        cboLoaiSP.setSelectedIndex(product.getTypeId()-1);
         btnImage.setText("");
     }
     // </editor-fold> 
@@ -1181,7 +1143,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm đã xóa">
     private void fillTableProductDeleted(boolean check) {
-        cboLoai1.setSelectedIndex(0);
+        if(cboLoai1.getSelectedIndex() >= 0) cboLoai1.setSelectedIndex(0);
+        else cboLoai1.setSelectedIndex(-1);
         DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
         model.setRowCount(0);
         if(check) {
@@ -1265,6 +1228,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         product.setQuantity(Integer.valueOf(txtSoLuong.getText()));
         product.setImgUrl(proImage);
         Integer typeId = (Integer) cboLoaiSP.getSelectedIndex();
+        typeId++;
         product.setTypeId(typeId);
         return product;
     }
@@ -1276,7 +1240,7 @@ public class PanelProductManager extends javax.swing.JPanel {
         txtGiaSP.setText("Giá Sản Phẩm");
         txtSoLuong.setText("Số Lượng Nhập Kho");
         txtTenSP.setText("Tên Sản Phẩm");
-        cboLoaiSP.setSelectedIndex(0);
+        cboLoaiSP.setSelectedIndex(-1);
         btnImage.setIcon(null);
         btnImage.setText("Hình ảnh");
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);

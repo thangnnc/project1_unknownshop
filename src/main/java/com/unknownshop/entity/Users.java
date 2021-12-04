@@ -1,7 +1,5 @@
 package com.unknownshop.entity;
 
-import com.unknownshop.util.XImage;
-import java.io.File;
 
 public class Users {
     private int id;
@@ -9,7 +7,7 @@ public class Users {
     private String fullname;
     private String password;
     private String email;
-    private byte[] imgUrl;
+    private byte[] imgUrl = null;
     private String role;
     private boolean isDeleted;
 
@@ -19,8 +17,6 @@ public class Users {
     }
 // Contructor
     public Users() {
-        File file = new File(getClass().getResource("/noImage.jpg").getFile());
-        this.imgUrl = XImage.convertImageToBytes(file);
     }
 
     public Users(int id, String username, String fullname, String password, String email, byte[] imgUrl, String role, boolean isDeleted) {
@@ -74,7 +70,10 @@ public class Users {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        String pattern = "\\w+\\@\\w+(\\.\\w+)+";
+        if(email.matches(pattern)){
+            this.email = email;
+        }
     }
 
     public byte[] getImgUrl() {

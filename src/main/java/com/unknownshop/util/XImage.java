@@ -70,7 +70,7 @@ public class XImage {
     
     public static ImageIcon getIcon(String name){
         try {
-            File path = new File("src/main/resources/icon"+name+".png");
+            File path = new File(XImage.class.getResource("/icon"+name+".png").getFile());
             BufferedImage img = ImageIO.read(path);
             return new ImageIcon(img);
             
@@ -81,7 +81,7 @@ public class XImage {
     
     public static ImageIcon getIconCard(String name){
         try {
-            File path = new File("src/main/resources/"+name+".png");
+            File path = new File(XImage.class.getResource("/"+name+".png").getFile());
             BufferedImage img = ImageIO.read(path);
             return new ImageIcon(img);
             

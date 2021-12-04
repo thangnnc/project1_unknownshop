@@ -3,17 +3,21 @@ package com.unknownshop.form.user;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
+import com.unknownshop.form.DialogLoading;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMess;
+import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.text.JTextComponent;
 
 public class PanelSignUp extends javax.swing.JPanel {
 
@@ -67,6 +71,11 @@ public class PanelSignUp extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsernameFocusLost(evt);
+            }
+        });
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
             }
         });
 
@@ -164,6 +173,11 @@ public class PanelSignUp extends javax.swing.JPanel {
                 txtFullnameFocusLost(evt);
             }
         });
+        txtFullname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFullnameKeyTyped(evt);
+            }
+        });
 
         lblErrorFullname.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         lblErrorFullname.setForeground(new java.awt.Color(255, 51, 51));
@@ -175,6 +189,7 @@ public class PanelSignUp extends javax.swing.JPanel {
         txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(240, 240, 240));
         txtEmail.setText("Email");
+        txtEmail.setToolTipText("");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -182,6 +197,11 @@ public class PanelSignUp extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtEmailFocusLost(evt);
+            }
+        });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
             }
         });
 
@@ -204,6 +224,11 @@ public class PanelSignUp extends javax.swing.JPanel {
                 txtPasswordFocusLost(evt);
             }
         });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
 
         txtRePassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtRePassword.setForeground(new java.awt.Color(240, 240, 240));
@@ -215,6 +240,11 @@ public class PanelSignUp extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRePasswordFocusLost(evt);
+            }
+        });
+        txtRePassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRePasswordKeyTyped1(evt);
             }
         });
 
@@ -368,12 +398,12 @@ public class PanelSignUp extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmailFocusGained
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        String kt_email = "\\w+\\@\\w+(\\.\\w+)+";
+        String pattern = "\\w+\\@\\w+(\\.\\w+)+";
         if(txtEmail.getText().trim().length()==0){
             txtEmail.setText("Email");
             lblErrorEmail.setText("Chưa nhập Email!");
         }else{
-           if(txtEmail.getText().matches(kt_email)==false){
+           if(txtEmail.getText().matches(pattern)==false){
                 lblErrorEmail.setText("Email không đúng định dạng");
             }else{
                 lblErrorEmail.setText(" ");
@@ -441,8 +471,28 @@ public class PanelSignUp extends javax.swing.JPanel {
     private void btnImageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseExited
         XHover.exitButton(btnImage);
     }//GEN-LAST:event_btnImageMouseExited
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event giới hạn độ dài textfield">
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+        limitLength(txtUsername, 50, evt);
+    }//GEN-LAST:event_txtUsernameKeyTyped
 
-   // </editor-fold>
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        limitLength(txtPassword, 50, evt);
+    }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void txtRePasswordKeyTyped1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRePasswordKeyTyped1
+        limitLength(txtRePassword, 50, evt);
+    }//GEN-LAST:event_txtRePasswordKeyTyped1
+
+    private void txtFullnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFullnameKeyTyped
+        limitLength(txtFullname, 50, evt);
+    }//GEN-LAST:event_txtFullnameKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        limitLength(txtPassword, 100, evt);
+    }//GEN-LAST:event_txtEmailKeyTyped
+    // </editor-fold>
 
 // ---------------------- End Event ----------------------
     
@@ -487,21 +537,29 @@ public class PanelSignUp extends javax.swing.JPanel {
         nonError();
         if(checkError()) return;
         Users u = getForm();
-        try{
-            int result = dao.insert(u);
-            if( result == 0){
-                lblErrorUsername.setText("Tài khoản này đã có trong hệ thống!");
-            }else if(result == -1){
-                lblErrorEmail.setText("Email đã được sử dụng!");
-            }else{
-                JOptionPane.showMessageDialog(this,"Thêm tài khoản thành công!");
-                clearForm();
+        // Tạo luồng và hiện dialog loading
+        DialogLoading dlog = new DialogLoading();
+        dlog.setVisible(true);
+        new Thread(){
+            @Override
+            public void run(){
+                XPanel.mainForm.setEnabled(false);
+                int result = dao.insert(u);
+                if( result == 0){
+                    lblErrorUsername.setText("Tài khoản này đã có trong hệ thống!");
+                    txtUsername.requestFocus();
+                }else if(result == -1){
+                    lblErrorEmail.setText("Email đã được sử dụng!");
+                    txtEmail.requestFocus();
+                }else{
+                    dlog.setVisible(false);
+                    JOptionPane.showMessageDialog(null,"Thêm tài khoản thành công!");
+                    clearForm();
+                }
+                XPanel.mainForm.setEnabled(true);
+                dlog.setVisible(false);
             }
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(this,"Thêm tài khoản thất bại!");
-            ex.printStackTrace();
-        }
-        
+        }.start();
     }
     // </editor-fold>  
     
@@ -576,21 +634,44 @@ public class PanelSignUp extends javax.swing.JPanel {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
-    private void getImage(){
-        JFileChooser fileChooser = new JFileChooser();
-        if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-            FileInputStream fos = null;
-            try {
-                File file = fileChooser.getSelectedFile();
-                userImg = XImage.convertImageToBytes(file);
-                ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
-                        getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
-                btnImage.setIcon(icon);
-                btnImage.setText("");
-            } catch (Exception ex) {
-                
-            } 
+    private void getImage() {
+        boolean check = XMess.confirm(this, "Mở chụp ảnh ?");
+        if (check == false) {
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                FileInputStream fos = null;
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    userImg = XImage.convertImageToBytes(file);
+                    ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
+                            getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
+                    btnImage.setIcon(icon);
+                    btnImage.setText("");
+                } catch (Exception ex) {
+                }
+            }
+        } else {
+            new TakePicture(this).setVisible(true);
         }
+    }
+    // </editor-fold>   
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức giới hạn kí tự nhập vào">
+    private void limitLength(JTextComponent txt, int length, KeyEvent evt){
+        boolean limited = txt.getText().length() == length;
+        if (limited){
+            evt.consume();
+        }
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
+    public void setIcon(Image image, byte[] byteImg) {
+        ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
+                getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
+        btnImage.setIcon(icon);
+        btnImage.setText(""); 
+        userImg = byteImg;
     }
     // </editor-fold>    
      

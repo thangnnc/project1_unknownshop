@@ -22,17 +22,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelStatisticDetails extends javax.swing.JPanel {
 
-    DefaultTableModel modelSP;
-    DefaultTableModel modelKH;
-    DefaultTableModel modelDoanhThu;
-    ThongKeDAO dao = new ThongKeDAO();
-    List<Object[]> listSP = new ArrayList<>();
-    List<Object[]> listKH = new ArrayList<>();
-    List<Object[]> listDT = new ArrayList<>();
-    Object[] titleDT = {"Loại sản phẩm","Số lượng bán được","Số tiền bán được"};
-    Object[] titleKH = {"Họ và tên","Tài khoản","Số sản phẩm đã mua"};
-    Object[] titleSP = {"Tên sản phẩm","Tổng tiền","Số lượng"};
-   
+    private DefaultTableModel modelSP;
+    private DefaultTableModel modelKH;
+    private DefaultTableModel modelDoanhThu;
+    private ThongKeDAO dao = new ThongKeDAO();
+    private List<Object[]> listSP = new ArrayList<>();
+    private List<Object[]> listKH = new ArrayList<>();
+    private List<Object[]> listDT = new ArrayList<>();
+    private Object[] titleDT = {"Loại sản phẩm","Số lượng bán được","Số tiền bán được"};
+    private Object[] titleKH = {"Họ và tên","Tài khoản","Số sản phẩm đã mua"};
+    private Object[] titleSP = {"Tên sản phẩm","Tổng tiền","Số lượng"};
+    private List<Object[]> listKhachHang;
     
     public PanelStatisticDetails() {
         initComponents();
@@ -53,26 +53,21 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         tblTKSanPham = new com.unknownshop.swing.table.Table();
         btnExcel1 = new javax.swing.JButton();
         btnPDF1 = new javax.swing.JButton();
-        lblThang = new javax.swing.JLabel();
-        cboThang = new javax.swing.JComboBox<>();
-        cboNam = new javax.swing.JComboBox<>();
-        lblNam = new javax.swing.JLabel();
-        lblLoaiSP = new javax.swing.JLabel();
-        cboLoaiSP = new javax.swing.JComboBox<>();
+        cboThang = new com.unknownshop.swing.combobox.ComboboxWhite();
+        cboNam = new com.unknownshop.swing.combobox.ComboboxWhite();
+        cboLoaiSP = new com.unknownshop.swing.combobox.ComboboxWhite();
         DSHoaDonXN = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTKKhachHang = new com.unknownshop.swing.table.Table();
         btnExcel2 = new javax.swing.JButton();
         btnPDF2 = new javax.swing.JButton();
-        cboXepHang = new javax.swing.JComboBox<>();
-        lblXepHang = new javax.swing.JLabel();
+        cboXepHang = new com.unknownshop.swing.combobox.ComboboxWhite();
         pnlHDChiTiet = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTKDoanhThu = new com.unknownshop.swing.table.Table();
         btnExcel3 = new javax.swing.JButton();
         btnPDF3 = new javax.swing.JButton();
-        cboDoanhThuNam = new javax.swing.JComboBox<>();
-        lblDoanhThuNam = new javax.swing.JLabel();
+        cboDoanhThuNam = new com.unknownshop.swing.combobox.ComboboxWhite();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -234,36 +229,32 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             }
         });
 
-        lblThang.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblThang.setForeground(new java.awt.Color(51, 51, 51));
-        lblThang.setText("Tháng:");
-
-        cboThang.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cboThang.setBackground(new java.awt.Color(250, 250, 250));
+        cboThang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cboThang.setSelectedIndex(-1);
+        cboThang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboThang.setLabeText("Tháng");
         cboThang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboThangActionPerformed(evt);
             }
         });
 
-        cboNam.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2020", "2019" }));
+        cboNam.setBackground(new java.awt.Color(250, 250, 250));
+        cboNam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2021" }));
+        cboNam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboNam.setLabeText("Năm");
         cboNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboNamActionPerformed(evt);
             }
         });
 
-        lblNam.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblNam.setForeground(new java.awt.Color(51, 51, 51));
-        lblNam.setText("Năm:");
-
-        lblLoaiSP.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblLoaiSP.setForeground(new java.awt.Color(51, 51, 51));
-        lblLoaiSP.setText("Loại sản phẩm:");
-
-        cboLoaiSP.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Loại ---", "Áo", "Quần", "Phụ Kiện", "Giày" }));
+        cboLoaiSP.setBackground(new java.awt.Color(250, 250, 250));
+        cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả các loại", "Áo", "Quần", "Phụ Kiện", "Giày" }));
+        cboLoaiSP.setSelectedIndex(-1);
+        cboLoaiSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboLoaiSP.setLabeText(" Loại sản phẩm");
         cboLoaiSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboLoaiSPActionPerformed(evt);
@@ -284,17 +275,11 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DanhSachHDLayout.createSequentialGroup()
-                        .addComponent(lblThang, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -302,18 +287,12 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DanhSachHDLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblLoaiSP))
-                    .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblNam))
-                    .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblThang)))
+                .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPDF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -392,18 +371,16 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             }
         });
 
-        cboXepHang.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboXepHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 1", "Top 5", "Top 10", "Top 20", "Top 30", "Top 50", "Top 100" }));
-        cboXepHang.setSelectedIndex(3);
+        cboXepHang.setBackground(new java.awt.Color(250, 250, 250));
+        cboXepHang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Top 1", "Top 5", "Top 10", "Top 20", "Top 30", "Top 50", "Top 100" }));
+        cboXepHang.setSelectedIndex(-1);
+        cboXepHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboXepHang.setLabeText("Xếp hạng");
         cboXepHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboXepHangActionPerformed(evt);
             }
         });
-
-        lblXepHang.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblXepHang.setForeground(new java.awt.Color(51, 51, 51));
-        lblXepHang.setText("Xếp hạng:");
 
         javax.swing.GroupLayout DSHoaDonXNLayout = new javax.swing.GroupLayout(DSHoaDonXN);
         DSHoaDonXN.setLayout(DSHoaDonXNLayout);
@@ -419,9 +396,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnPDF2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DSHoaDonXNLayout.createSequentialGroup()
-                        .addComponent(lblXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -429,11 +404,9 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DSHoaDonXNLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblXepHang))
+                .addComponent(cboXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPDF2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -512,17 +485,16 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             }
         });
 
-        cboDoanhThuNam.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboDoanhThuNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn năm--", "2019", "2020", "2021" }));
+        cboDoanhThuNam.setBackground(new java.awt.Color(250, 250, 250));
+        cboDoanhThuNam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2021" }));
+        cboDoanhThuNam.setSelectedIndex(-1);
+        cboDoanhThuNam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboDoanhThuNam.setLabeText("Năm");
         cboDoanhThuNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboDoanhThuNamActionPerformed(evt);
             }
         });
-
-        lblDoanhThuNam.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblDoanhThuNam.setForeground(new java.awt.Color(51, 51, 51));
-        lblDoanhThuNam.setText("Năm:");
 
         javax.swing.GroupLayout pnlHDChiTietLayout = new javax.swing.GroupLayout(pnlHDChiTiet);
         pnlHDChiTiet.setLayout(pnlHDChiTietLayout);
@@ -538,9 +510,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnPDF3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlHDChiTietLayout.createSequentialGroup()
-                        .addComponent(lblDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -548,11 +518,9 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHDChiTietLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDoanhThuNam))
+                .addComponent(cboDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPDF3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -659,7 +627,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExcel2MouseExited
 
     private void btnExcel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcel2ActionPerformed
-        exportToExcel(listSP,"KhachHangThanThiet");
+        exportToExcel(listKH,"KhachHangThanThiet");
     }//GEN-LAST:event_btnExcel2ActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnPDF2"> 
@@ -700,20 +668,21 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     private void btnPDF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF3ActionPerformed
         exportToPDF(tblTKDoanhThu, "Bảng Doanh Thu");
     }//GEN-LAST:event_btnPDF3ActionPerformed
-    // </editor-fold> 
+
+   // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboThang"> 
     private void cboThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangActionPerformed
-        sellingProducts();
+        sellingProducts(true);
     }//GEN-LAST:event_cboThangActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboNam"> 
     private void cboNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamActionPerformed
-        sellingProducts();
+        sellingProducts(true);
     }//GEN-LAST:event_cboNamActionPerformed
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event cboLoai"> 
+    // <editor-fold defaultstate="collapsed" desc="Event cboLoaiSP"> 
     private void cboLoaiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiSPActionPerformed
-        sellingProducts();
+        sellingProducts(true);
     }//GEN-LAST:event_cboLoaiSPActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event cboXepHang"> 
@@ -741,19 +710,14 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     private javax.swing.JButton btnTKDoanhThu;
     private javax.swing.JButton btnTKKhachHang;
     private javax.swing.JButton btnTKSanPham;
-    private javax.swing.JComboBox<String> cboDoanhThuNam;
-    private javax.swing.JComboBox<String> cboLoaiSP;
-    private javax.swing.JComboBox<String> cboNam;
-    private javax.swing.JComboBox<String> cboThang;
-    private javax.swing.JComboBox<String> cboXepHang;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboDoanhThuNam;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboLoaiSP;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboNam;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboThang;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboXepHang;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblDoanhThuNam;
-    private javax.swing.JLabel lblLoaiSP;
-    private javax.swing.JLabel lblNam;
-    private javax.swing.JLabel lblThang;
-    private javax.swing.JLabel lblXepHang;
     private javax.swing.JPanel pnlCard;
     private javax.swing.JPanel pnlHDChiTiet;
     private javax.swing.JPanel pnlTabButton;
@@ -772,7 +736,9 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         XTable.setCellAlignmentCenter(tblTKSanPham, 2);
         XTable.setCellAlignmentCenter(tblTKKhachHang, 2);
         XTable.setCellAlignmentCenter(tblTKDoanhThu, 2);
-        sellingProducts();
+        cboNam.setSelectedIndex(-1);
+        sellingProducts(false);
+        listKhachHang = dao.getLoyalCustomers();
         loyalCustomers();
         revenueByYear();
     }
@@ -804,12 +770,22 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức hiển thị sản phẩm bán chạy">    
-    private void sellingProducts(){
+    private void sellingProducts(boolean check){
         modelSP.setRowCount(0);
-        int month = Integer.valueOf(cboThang.getSelectedItem().toString());
-        int year = Integer.valueOf(cboNam.getSelectedItem().toString());
-        int sp = cboLoaiSP.getSelectedIndex();
-        List<Object[]> list = dao.getProductRevenue(year, month, sp);
+        int month = 0, year = 0, type = 0;
+        if(check){
+            if(cboThang.getSelectedIndex() == -1) month = 0;
+            else if(cboNam.getSelectedIndex() == -1){
+                month = Integer.valueOf(cboThang.getSelectedItem().toString());
+                XMess.alert(null, "Hãy chọn năm của tháng "+month+" để hiện thống kê");
+                return;
+            }else month = Integer.valueOf(cboThang.getSelectedItem().toString());
+            if(cboNam.getSelectedIndex() == -1) year = 0;
+            else year = Integer.valueOf(cboNam.getSelectedItem().toString());
+            if(cboLoaiSP.getSelectedIndex()== -1) type = 0;
+            else type = cboLoaiSP.getSelectedIndex();
+        }
+        List<Object[]> list = dao.getProductRevenue(year, month, type);
         listSP.clear();
         listSP.add(titleSP);
         for (Object[] row : list) {
@@ -825,24 +801,31 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức hiển thị khách hàng thân thiết">      
     private void loyalCustomers(){
         modelKH.setRowCount(0);
-        List<Object[]> list = dao.getLoyalCustomers();
-        String getTop = (String) cboXepHang.getSelectedItem();
-        int index = getTop.indexOf(" ");
-        getTop = getTop.substring(index+1);
-        int top = Integer.parseInt(getTop);
-        listKH.clear();
-        listKH.add(titleKH);
-        if(top+1 > list.size() ){
-            for (int i = 0; i < list.size(); i++) {
-                modelKH.addRow(list.get(i));
-                listKH.add(list.get(i));
+        if(cboXepHang.getSelectedIndex() == -1){
+            for (Object[] obj : listKhachHang) {
+                modelKH.addRow(obj);
+                listKH.add(obj);
             }
         }else{
-             for (int i = 0; i < top; i++) {
-                modelKH.addRow(list.get(i));
-                listKH.add(list.get(i));
+            String getTop = (String) cboXepHang.getSelectedItem();
+            int index = getTop.indexOf(" ");
+            getTop = getTop.substring(index+1);
+            int top = Integer.parseInt(getTop);
+            listKH.clear();
+            listKH.add(titleKH);
+            if(top+1 > listKhachHang.size() ){
+                for (Object[] obj : listKhachHang) {
+                    modelKH.addRow(obj);
+                    listKH.add(obj);
+                }
+            }else{
+                 for (int i = 0; i < top; i++) {
+                    modelKH.addRow(listKhachHang.get(i));
+                    listKH.add(listKhachHang.get(i));
+                }
             }
         }
+            
     }
         // </editor-fold> 
 
@@ -850,7 +833,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     private void revenueByYear(){
         modelDoanhThu.setRowCount(0);
         int year;
-        if(cboDoanhThuNam.getSelectedIndex() ==0){
+        if(cboDoanhThuNam.getSelectedIndex() == -1){
             year = 0;
         }else year = Integer.valueOf(cboDoanhThuNam.getSelectedItem().toString());
         List<Object[]> list = dao.getRevenueByYear(year);

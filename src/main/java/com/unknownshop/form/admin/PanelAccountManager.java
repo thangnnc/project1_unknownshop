@@ -27,11 +27,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelAccountManager extends javax.swing.JPanel {
 
-    UserDAO dao = new UserDAO();
-    List<Users> listUser = new ArrayList<>();
-    List<Users> listUserDeleted = new ArrayList<>();
-    int row = -1;
-    byte[] userImg;
+    private UserDAO dao = new UserDAO();
+    private List<Users> listUser = new ArrayList<>();
+    private List<Users> listUserDeleted = new ArrayList<>();
+    private int row = -1;
+    private byte[] userImg;
     
     public PanelAccountManager() {
         initComponents();
@@ -49,15 +49,13 @@ public class PanelAccountManager extends javax.swing.JPanel {
         btnTaiKhoan = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
         pnlDanhSachTK = new javax.swing.JPanel();
-        cboChucVu = new javax.swing.JComboBox<>();
-        lblChucVu = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDanhSachTK = new com.unknownshop.swing.table.Table();
+        cboChucVu = new com.unknownshop.swing.combobox.ComboboxWhite();
         pnlTKDaXoa = new javax.swing.JPanel();
-        cboChucVu1 = new javax.swing.JComboBox<>();
-        lblChucVu1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTKDaXoa = new com.unknownshop.swing.table.Table();
+        cboChucVu1 = new com.unknownshop.swing.combobox.ComboboxWhite();
         pnlTaiKhoan = new javax.swing.JPanel();
         pnlForm = new javax.swing.JPanel();
         pnlImage = new javax.swing.JPanel();
@@ -187,18 +185,6 @@ public class PanelAccountManager extends javax.swing.JPanel {
 
         pnlDanhSachTK.setOpaque(false);
 
-        cboChucVu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboChucVu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboChucVuActionPerformed(evt);
-            }
-        });
-
-        lblChucVu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblChucVu.setForeground(new java.awt.Color(51, 51, 51));
-        lblChucVu.setText("Chức vụ:");
-
         tblDanhSachTK.setBackground(new java.awt.Color(255, 255, 255));
         tblDanhSachTK.setForeground(new java.awt.Color(51, 51, 51));
         tblDanhSachTK.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,6 +224,15 @@ public class PanelAccountManager extends javax.swing.JPanel {
             tblDanhSachTK.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        cboChucVu.setBackground(new java.awt.Color(250, 250, 250));
+        cboChucVu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboChucVu.setLabeText("Vai trò tài khoản");
+        cboChucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboChucVuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlDanhSachTKLayout = new javax.swing.GroupLayout(pnlDanhSachTK);
         pnlDanhSachTK.setLayout(pnlDanhSachTKLayout);
         pnlDanhSachTKLayout.setHorizontalGroup(
@@ -245,40 +240,24 @@ public class PanelAccountManager extends javax.swing.JPanel {
             .addGroup(pnlDanhSachTKLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
                     .addGroup(pnlDanhSachTKLayout.createSequentialGroup()
-                        .addComponent(lblChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(912, Short.MAX_VALUE))))
+                        .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlDanhSachTKLayout.setVerticalGroup(
             pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachTKLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblChucVu))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlCard.add(pnlDanhSachTK, "DanhSachTK");
 
         pnlTKDaXoa.setOpaque(false);
-
-        cboChucVu1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboChucVu1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboChucVu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboChucVu1ActionPerformed(evt);
-            }
-        });
-
-        lblChucVu1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblChucVu1.setForeground(new java.awt.Color(51, 51, 51));
-        lblChucVu1.setText("Chức vụ:");
 
         tblTKDaXoa.setBackground(new java.awt.Color(255, 255, 255));
         tblTKDaXoa.setForeground(new java.awt.Color(51, 51, 51));
@@ -316,6 +295,15 @@ public class PanelAccountManager extends javax.swing.JPanel {
             tblTKDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        cboChucVu1.setBackground(new java.awt.Color(250, 250, 250));
+        cboChucVu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboChucVu1.setLabeText("Vai trò tài khoản");
+        cboChucVu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboChucVu1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlTKDaXoaLayout = new javax.swing.GroupLayout(pnlTKDaXoa);
         pnlTKDaXoa.setLayout(pnlTKDaXoaLayout);
         pnlTKDaXoaLayout.setHorizontalGroup(
@@ -325,21 +313,17 @@ public class PanelAccountManager extends javax.swing.JPanel {
                 .addGroup(pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
                     .addGroup(pnlTKDaXoaLayout.createSequentialGroup()
-                        .addComponent(lblChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlTKDaXoaLayout.setVerticalGroup(
             pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTKDaXoaLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblChucVu1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -764,13 +748,13 @@ public class PanelAccountManager extends javax.swing.JPanel {
         pnlFormLayout.setVerticalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFormLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlFormLayout.createSequentialGroup()
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblIconUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblErrorUsername)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -871,17 +855,6 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnTaiKhoanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaiKhoanMouseExited
         XHover.exitTabButton(btnTaiKhoan);
     }//GEN-LAST:event_btnTaiKhoanMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu(DSTK)">
-    private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
-        selectCombobox();
-    }//GEN-LAST:event_cboChucVuActionPerformed
-
-   // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1(DSTK đã xóa)">
-    private void cboChucVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVu1ActionPerformed
-        selectCombobox1();
-    }//GEN-LAST:event_cboChucVu1ActionPerformed
 
    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnImage">
@@ -1093,6 +1066,16 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnLastMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLastMouseExited
         XHover.exitButton(btnLast);
     }//GEN-LAST:event_btnLastMouseExited
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu">
+    private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
+        selectCombobox();
+    }//GEN-LAST:event_cboChucVuActionPerformed
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1">
+    private void cboChucVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVu1ActionPerformed
+        selectCombobox1();
+    }//GEN-LAST:event_cboChucVu1ActionPerformed
     // </editor-fold> 
     
     // -------------------- End Event --------------------
@@ -1111,12 +1094,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cboChucVu;
-    private javax.swing.JComboBox<String> cboChucVu1;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboChucVu;
+    private com.unknownshop.swing.combobox.ComboboxWhite cboChucVu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblChucVu;
-    private javax.swing.JLabel lblChucVu1;
     private javax.swing.JLabel lblErrorEmail;
     private javax.swing.JLabel lblErrorFullname;
     private javax.swing.JLabel lblErrorPassword;
@@ -1201,18 +1182,20 @@ public class PanelAccountManager extends javax.swing.JPanel {
         for (JComboBox cbo : combo) {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbo.getModel();
             model.removeAllElements();
-            model.addElement("-- Chọn chức vụ --");
+            model.addElement("Tất cả vai trò");
             List<Object[]> list = dao.selectRoles();
             for (Object[] us : list) {
                 model.addElement(us[0]);
             }
+            cbo.setSelectedIndex(-1);
         }
     }
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng tài khoản">
     private void fillTableUser(boolean check) {
-        cboChucVu.setSelectedIndex(0);
+        if(cboChucVu.getSelectedIndex() >= 0) cboChucVu.setSelectedIndex(0);
+        else cboChucVu.setSelectedIndex(-1);
         DefaultTableModel model = (DefaultTableModel) tblDanhSachTK.getModel();
         model.setRowCount(0);
         if(check) {
@@ -1266,6 +1249,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
         userImg = user.getImgUrl();
         btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(userImg, 175, 225)));
         btnImage.setText("");
+        // Disable tên tài khoản
+        txtUsername.setEditable(false);
     }
     // </editor-fold> 
     
@@ -1304,7 +1289,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng tài khoản đã xóa">
     private void fillTableUserDeleted(boolean check) {
-        cboChucVu1.setSelectedIndex(0);
+        if(cboChucVu1.getSelectedIndex() >= 0) cboChucVu1.setSelectedIndex(0);
+        else cboChucVu1.setSelectedIndex(-1);
         DefaultTableModel model = (DefaultTableModel) tblTKDaXoa.getModel();
         model.setRowCount(0);
         if(check) {
@@ -1314,7 +1300,6 @@ public class PanelAccountManager extends javax.swing.JPanel {
             model.addRow(new RowTableAccount(us).toRowTable(1));
         }
     }
-    
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox ChucVu1">
@@ -1420,6 +1405,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
         // Điều chỉnh nút
         XHover.enableButton(btnThem);
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
+        // Enable tên tài khoản
+        txtUsername.setEditable(true);
     }
     // </editor-fold>  
     

@@ -52,16 +52,16 @@ public class ThongKeDAO {
     }
     
     // Số doanh thu bán được
-    public int getRevenueByMonth(int month, int year){ 
+    public String getRevenueByMonth(int month, int year){ 
         String sql = "{Call sp_revenue6Month(?,?)}";
         String[] cols = {"result"};
-        Object[] so = getListOfArray(sql, cols).get(0);
-        return (int) so[0]; 
+        Object[] result = getListOfArray(sql, cols,month,year).get(0);
+        return (String) result[0]; 
     }
     
     private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
+        List<Object[]> list = new ArrayList<>();
         try{
-            List<Object[]> list = new ArrayList<>();
             ResultSet rs =  XJdbc.query(sql,args);
             while(rs.next()){
                 Object[] vals= new Object[cols.length];
@@ -71,10 +71,9 @@ public class ThongKeDAO {
                 list.add(vals);
             }
             rs.getStatement().getConnection().close();
-            return list;
         }catch(Exception e){
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 }

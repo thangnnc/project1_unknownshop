@@ -8,22 +8,16 @@ import com.unknownshop.entity.Products;
 import com.unknownshop.form.DialogLoading;
 import com.unknownshop.swing.table.RowTableProduct;
 import com.unknownshop.util.XHover;
-import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import com.unknownshop.util.XTable;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelProductManager extends javax.swing.JPanel {
@@ -33,7 +27,6 @@ public class PanelProductManager extends javax.swing.JPanel {
     private List<Products> listDeleted = new ArrayList<>();
     private ProductTypeDAO proTypeDao = new ProductTypeDAO();
     private int row = -1;
-    private byte[] proImage;
     private DialogInfoProduct dialogInfo = new DialogInfoProduct(this);
     
     public PanelProductManager() {
@@ -482,17 +475,28 @@ public class PanelProductManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa hàng được chọn">
     public void removeRow(){
         row = tblDanhSachSP.getSelectedRow();
-        Products pro = list.get(row);
+        int id = Integer.valueOf(tblDanhSachSP.getValueAt(row, 1).toString());
         if(XMess.confirm(null, "Bạn có chắc muốn xóa sản phẩm này")){
-            if(proDao.delete(pro.getId()) == 0){
-                XMess.alert(null, "Xóa sản phẩm thất bại!");
-            }else{
-                list.remove(row);
-                listDeleted.add(pro);
-                fillTableProduct(false);
-                fillTableProductDeleted(false);
-                XMess.alert(null, "Xóa sản phẩm thành công");
-            }
+            // Tạo luồng và hiện dialog loading
+            new Thread(){
+                @Override
+                public void run(){
+                    DialogLoading dlog = new DialogLoading();
+                    dlog.setVisible(true);
+                    XPanel.mainForm.setEnabled(false);
+                    if(proDao.delete(id) == 0){
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null, "Xóa sản phẩm thất bại!");
+                    }else{
+                        fillTableProduct(true);
+                        fillTableProductDeleted(true);
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null, "Xóa sản phẩm thành công");
+                    }
+                }
+            }.start();
         }
     }
     // </editor-fold>
@@ -535,16 +539,28 @@ public class PanelProductManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi sản phẩm">  
     public void restore(){
         int row1 = tblSPDaXoa.getSelectedRow();
-        Products pro = listDeleted.get(row1);
+        int id = Integer.valueOf(tblSPDaXoa.getValueAt(row1, 1).toString());
         if(XMess.confirm(this, "Bạn muốn phục hồi sản phẩm này?")){
-            if(proDao.restore(pro.getId()) == 0){
-                XMess.alert(this,"Phục hồi sản phẩm thất bại!");
-            }else{
-                XMess.alert(this,"Phục hồi sản phẩm thành công!");
-                listDeleted.remove(row1);
-                fillTableProductDeleted(false);
-                fillTableProduct(true);
-            }
+            // Tạo luồng và hiện dialog loading
+            new Thread(){
+                @Override
+                public void run(){
+                    DialogLoading dlog = new DialogLoading();
+                    dlog.setVisible(true);
+                    XPanel.mainForm.setEnabled(false);
+                    if(proDao.restore(id) == 0){
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null,"Phục hồi sản phẩm thất bại!");
+                    }else{
+                        fillTableProductDeleted(true);
+                        fillTableProduct(true);
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null,"Phục hồi sản phẩm thành công!");
+                    }
+                }
+            }.start();
         }
     }
     // </editor-fold>

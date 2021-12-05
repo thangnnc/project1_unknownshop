@@ -1,11 +1,10 @@
 package com.unknownshop.fragment.header;
 
 import com.unknownshop.constant.XConstant;
-import com.unknownshop.form.user.PanelSignIn;
-import com.unknownshop.form.user.PanelSignUp;
+import com.unknownshop.form.user.DialogSignIn;
+import com.unknownshop.form.user.DialogSignUp;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XPanel;
-import java.awt.CardLayout;
 
 public class SubHeaderNone extends javax.swing.JPanel {
     
@@ -125,19 +124,12 @@ public class SubHeaderNone extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức chuyển panel trên form">    
     private void showPanel(String name){
         if(name.equals("DangNhap")){
-            XPanel.panelDangNhap.removeAll();
-            XPanel.panelDangNhap.add(new PanelSignIn());
-            XPanel.panelDangNhap.repaint();
-            XPanel.panelDangNhap.revalidate();
+            XPanel.mainForm.setEnabled(false);
+            new DialogSignIn().setVisible(true);
         }else{
-            XPanel.panelDangKy.removeAll();
-            XPanel.panelDangKy.add(new PanelSignUp());
-            XPanel.panelDangKy.repaint();
-            XPanel.panelDangKy.revalidate();
+            XPanel.mainForm.setEnabled(false);
+            new DialogSignUp().setVisible(true);
         }
-        CardLayout cardLayout = (CardLayout) XPanel.panelCardUser.getLayout();
-        cardLayout.next(XPanel.panelCardUser);
-        cardLayout.show(XPanel.panelCardUser, name);
     } 
     // </editor-fold> 
     

@@ -149,10 +149,10 @@ public class UserDAO extends EntityDAO<Users, String> {
         return this.getListOfArray(sql, cols);
     }
     
-    public int restoreUser(Integer key) {
+    public int restoreUser(String username) {
         try {
             String sql = "{CALL sp_restoreUser(?)}";
-            ResultSet rs = XJdbc.query(sql, key);
+            ResultSet rs = XJdbc.query(sql, username);
             rs.next();
             return rs.getInt(1);
         } catch (Exception e) {

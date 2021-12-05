@@ -1,27 +1,29 @@
-package com.unknownshop.form;
+package com.unknownshop.form.user;
 
+import com.unknownshop.form.*;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
 import com.unknownshop.form.DialogLoading;
-import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 
-public class DialogChangeAccount extends javax.swing.JFrame {
-
-    private UserDAO dao = new UserDAO();
-    private byte[] userImg;
-    private String role;
+public class DialogSignUp extends javax.swing.JFrame {
     
-    public DialogChangeAccount() {
+    private byte[] userImg;
+    private UserDAO dao = new UserDAO();
+    
+    public DialogSignUp() {
         initComponents();
         setBackground(new Color(0,0,0,0));
         init();
@@ -487,9 +489,9 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailFocusLost
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnChange">
+    // <editor-fold defaultstate="collapsed" desc="Event btnDangKi">
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
-        update();
+        signUp();
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void btnChangeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangeMouseEntered
@@ -518,20 +520,21 @@ public class DialogChangeAccount extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogSignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogSignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogSignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogSignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DialogChangeAccount().setVisible(true);
+                new DialogSignUp().setVisible(true);
             }
         });
     }
@@ -566,30 +569,97 @@ public class DialogChangeAccount extends javax.swing.JFrame {
 
 // ---------------------- Start Method ----------------------
 
-    // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên form">
-    public void init(){
-        // Chuyển lỗi về dạng 1 dấu cách
-        lblErrorEmail.setText(" ");
-        lblErrorFullname.setText(" ");
-        lblErrorPassword.setText(" ");
-        lblErrorRePassword.setText(" ");
-        lblErrorUsername.setText(" ");
-        // Lấy thông tin từ user điền lên form
-        txtUsername.setText(Auth.user.getUsername());
-        txtFullname.setText(Auth.user.getFullname());
-        txtPassword.setText(Auth.user.getPassword());
-        txtRePassword.setText(Auth.user.getPassword());
-        txtEmail.setText(Auth.user.getEmail());
-        userImg = Auth.user.getImgUrl();
-        role = Auth.user.getRole();
-        lblImage.setIcon(new ImageIcon(XImage.convertBytesToImage(userImg, 180, 240)));
-        lblImage.setToolTipText("");
-        // Disable tên tài khoản
-        txtUsername.setEditable(false);
+    // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
+    private void init() {
+        this.clearError();
+    }
+    // </editor-fold>  
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức đăng ký tài khoản">    
+    private void signUp() {
+        nonError();
+        if(checkError()) return;
+        Users u = getForm();
+        // Tạo luồng và hiện dialog loading
+        DialogLoading dlog = new DialogLoading();
+        dlog.setVisible(true);
+        new Thread(){
+            @Override
+            public void run(){
+                setEnabled(false);
+                int result = dao.insert(u);
+                if( result == 0){
+                    setEnabled(true);
+                    dlog.setVisible(false);
+                    lblErrorUsername.setText("Tài khoản này đã có trong hệ thống!");
+                    txtUsername.requestFocus();
+                }else if(result == -1){
+                    setEnabled(true);
+                    dlog.setVisible(false);
+                    lblErrorEmail.setText("Email đã được sử dụng!");
+                    txtEmail.requestFocus();
+                }else{
+                    clearForm();
+                    XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
+                    JOptionPane.showMessageDialog(null,"Đăng kí tài khoản thành công!");
+                    dispose();
+                }
+            }
+        }.start();
+    }
+    // </editor-fold>  
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
+    private boolean checkError(){
+        if(!(lblErrorEmail.getText().equals(" ") &&
+                lblErrorFullname.getText().equals(" ") &&  
+                lblErrorPassword.getText().equals(" ") &&
+                lblErrorRePassword.getText().equals(" ") &&
+                lblErrorUsername.getText().equals(" "))) return true;
+        else if(lblImage.getToolTipText().equals("none")){
+            XMess.alert(this, "Bạn chưa chọn ảnh đại diện!");
+            return true;
+        }
+        return false;
     }
     // </editor-fold> 
     
-// _____________________ Form Tài Khoản ___________________
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form"> 
+    private Users getForm(){
+        Users user = new Users();
+        user.setUsername(txtUsername.getText());
+        user.setPassword(txtPassword.getText());
+        user.setFullname(txtFullname.getText());
+        user.setEmail(txtEmail.getText());
+        user.setImgUrl(userImg);
+        user.setRole(XConstant.CUSTOMER);
+        return user;
+    }
+    // </editor-fold>    
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lable lỗi"> 
+    private void clearError() {
+        lblErrorPassword.setText("  ");
+        lblErrorUsername.setText("  ");
+        lblErrorEmail.setText("  ");
+        lblErrorFullname.setText("  ");
+        lblErrorRePassword.setText("  ");
+    }
+    // </editor-fold>    
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa textfield"> 
+    private void clearForm() {
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtRePassword.setText("");
+        txtFullname.setText("");
+        txtEmail.setText("");
+        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/noImage.jpg"))
+                            .getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH)));
+        lblImage.setToolTipText("none");
+    }
+    // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
     private void nonError(){
@@ -611,86 +681,46 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form">  
-    private Users getForm(){
-        Users user = new Users();
-        user.setUsername(txtUsername.getText());
-        user.setFullname(txtFullname.getText());
-        user.setPassword(txtPassword.getText());
-        user.setEmail(txtEmail.getText());
-        user.setImgUrl(userImg);
-        user.setRole(role);
-        
-        return user;
-    }
-    // </editor-fold>  
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
-    private boolean checkError(){
-        if(!(lblErrorEmail.getText().equals(" ") &&
-                    lblErrorFullname.getText().equals(" ") &&  
-                    lblErrorPassword.getText().equals(" ") &&
-                    lblErrorRePassword.getText().equals(" ") &&
-                    lblErrorUsername.getText().equals(" "))) return true;
-        else if(lblImage.getToolTipText().equals("none")){
-            XMess.alert(this, "Bạn chưa chọn ảnh đại diện!");
-            return true;
-        }
-        return false;
-    }
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức cập nhập tài khoản">  
-    private void update(){
-        nonError();
-        if(checkError()) return;
-        Users user = getForm();
-        if(XMess.confirm(this, "Bạn muốn cập nhật nhân viên này?")){
-            // Tạo luồng và hiện dialog loading
-            new Thread(){
-                @Override
-                public void run(){
-                    DialogLoading dlog = new DialogLoading();
-                    dlog.setVisible(true);
-                    setEnabled(false);
-                    if(dao.update(user) == 0){
-                        XMess.alert(null,"Cập nhập tài khoản thất bại!");
-                    }else{
-                        Auth.user = user;
-                        XPanel.panelHeader.setSign();
-                        XPanel.panelTaiKhoan.removeAll();
-                        XPanel.panelTaiKhoan.add(new PanelAccount());
-                        XPanel.mainForm.setEnabled(true);
-                        dispose();
-                        dlog.setVisible(false);
-                        XMess.alert(null,"Cập nhập tài khoản thành công!");
-                        return;
-                    }
-                    setEnabled(true);
-                    dlog.setVisible(false);
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
+    private void getImage() {
+        boolean check = XMess.confirm(this, "Lấy ảnh qua webcame?");
+        if (check == false) {
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    userImg = XImage.convertImageToBytes(file);
+                    ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
+                            getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+                    lblImage.setIcon(icon);
+                    lblImage.setToolTipText("");
+                } catch (Exception ex) {
                 }
-            }.start();
+            }
+        } else {
+            new TakePicture(this, lblImage).setVisible(true);
+        }
+    }
+    // </editor-fold>   
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức giới hạn kí tự nhập vào">
+    private void limitLength(JTextComponent txt, int length, KeyEvent evt){
+        boolean limited = txt.getText().length() == length;
+        if (limited){
+            evt.consume();
         }
     }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
-    private void getImage(){
-        JFileChooser fileChooser = new JFileChooser();
-        if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-            try {
-                File file = fileChooser.getSelectedFile();
-                userImg = XImage.convertImageToBytes(file);
-                ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
-                        getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
-                lblImage.setIcon(icon);
-                lblImage.setToolTipText("");
-            } catch (Exception ex) {
-                
-            } 
-        }
+    public void setIcon(Image image, byte[] byteImg) {
+        ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
+                getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+        lblImage.setIcon(icon);
+        lblImage.setText(""); 
+        userImg = byteImg;
     }
-    // </editor-fold>  
+    // </editor-fold>    
     
 // ---------------------- End Method ----------------------
 

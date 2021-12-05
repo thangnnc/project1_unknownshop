@@ -744,6 +744,9 @@ public class DialogInfoAccount extends javax.swing.JFrame {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
         }else{
             lblErrorPassword.setText(" ");
+            if(txtRePassword.getText().trim().length() != 0){
+                txtRePasswordFocusLost(evt);
+            }
         }
     }//GEN-LAST:event_txtPasswordFocusLost
     // </editor-fold> 
@@ -882,6 +885,8 @@ public class DialogInfoAccount extends javax.swing.JFrame {
         lblImage.setToolTipText("");
         // Disable tên tài khoản
         txtUsername.setEditable(false);
+        txtPassword.setEditable(false);
+        txtPassword.setEditable(false);
         // Định dạng các nút
         XHover.enableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         XHover.disableButton(btnThem);
@@ -957,6 +962,8 @@ public class DialogInfoAccount extends javax.swing.JFrame {
         XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         // Enable tên tài khoản
         txtUsername.setEditable(true);
+        txtPassword.setEditable(true);
+        txtPassword.setEditable(true);
     }
     // </editor-fold>  
     

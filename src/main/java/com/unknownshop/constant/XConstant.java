@@ -25,7 +25,7 @@ public class XConstant {
     public final static Color GREEN_BLUE = new Color(0,204,204);
     
     // Roles
-    public final static String ADMIN = "Quản lý";
+    public final static String ADMIN = "Trưởng phòng";
     public final static String STAFF = "Nhân viên";
     public final static String CUSTOMER = "Khách hàng";
     

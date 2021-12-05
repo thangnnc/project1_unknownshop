@@ -478,8 +478,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa hàng được chọn">
     public void removeRow(){
         row = tblDanhSachTK.getSelectedRow();
-        Users user = listUser.get(row);
-        if(Auth.user.getUsername().equals(user.getUsername())){
+        String username = tblDanhSachTK.getValueAt(row, 1).toString();
+        if(Auth.user.getUsername().equals(username)){
             XMess.alert(null, "Bạn không thể xóa bản thân!");
         }else if(XMess.confirm(null, "Bạn có chắc muốn xóa nhan viên này")){
             // Tạo luồng và hiện dialog loading
@@ -489,17 +489,15 @@ public class PanelAccountManager extends javax.swing.JPanel {
                     DialogLoading dlog = new DialogLoading();
                     dlog.setVisible(true);
                     XPanel.mainForm.setEnabled(false);
-                    if(dao.delete(user.getUsername()) == 0){
-                        XMess.alert(null, "Xóa tài khoản thất bại!");
+                    if(dao.delete(username) == 0){
+                        XPanel.mainForm.setEnabled(true);
                         dlog.setVisible(false);
-                        XPanel.mainForm.setEnabled(false);
+                        XMess.alert(null, "Xóa tài khoản thất bại!");
                     }else{
-                        listUser.remove(row);
-                        listUserDeleted.add(user);
                         fillTableUser(true);
                         fillTableUserDeleted(true);
+                        XPanel.mainForm.setEnabled(true);
                         dlog.setVisible(false);
-                        XPanel.mainForm.setEnabled(false);
                         XMess.alert(null, "Xóa tài khoản thành công");
                     }
                 }
@@ -541,22 +539,33 @@ public class PanelAccountManager extends javax.swing.JPanel {
             }
         }
     }
-    // </editor-fold>  
+    // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi tài khoản">  
     public void restore(){
         int row1 = tblTKDaXoa.getSelectedRow();
-        Users user = listUserDeleted.get(row1);
+        String username = tblTKDaXoa.getValueAt(row1, 1).toString();
         if(XMess.confirm(this, "Bạn muốn phục hồi nhân viên này?")){
-            if(dao.restoreUser(user.getId()) == 0){
-                XMess.alert(this,"Phục hồi tài khoản thất bại!");
-            }else{
-                XMess.alert(this,"Phục hồi tài khoản thành công!");
-                listUserDeleted.remove(row1);
-                listUser.add(user);
-                fillTableUserDeleted(false);
-                fillTableUser(false);
-            }
+            // Tạo luồng và hiện dialog loading
+            new Thread(){
+                @Override
+                public void run(){
+                    DialogLoading dlog = new DialogLoading();
+                    dlog.setVisible(true);
+                    XPanel.mainForm.setEnabled(false);
+                    if(dao.restoreUser(username) == 0){
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null,"Phục hồi tài khoản thất bại!");
+                    }else{
+                        fillTableUserDeleted(true);
+                        fillTableUser(true);
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null,"Phục hồi tài khoản thành công!");
+                    }
+                }
+            }.start();
         }
     }
     // </editor-fold>

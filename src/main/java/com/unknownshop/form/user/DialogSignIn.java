@@ -1,14 +1,22 @@
-package com.unknownshop.form;
+package com.unknownshop.form.user;
 
+import com.unknownshop.form.*;
 import com.unknownshop.constant.XConstant;
+import com.unknownshop.dao.UserDAO;
+import com.unknownshop.entity.Users;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XPanel;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.text.JTextComponent;
 
-public class DialogReSignIn extends javax.swing.JFrame {
+public class DialogSignIn extends javax.swing.JFrame {
 
-    public DialogReSignIn() {
+    private UserDAO dao = new UserDAO();
+    
+    public DialogSignIn() {
         initComponents();
         init();
     }
@@ -27,7 +35,7 @@ public class DialogReSignIn extends javax.swing.JFrame {
         lblErrorUsername = new javax.swing.JLabel();
         lblIconUsername = new javax.swing.JLabel();
         lblIconPassword = new javax.swing.JLabel();
-        btnXacNhan = new javax.swing.JButton();
+        btnDangNhap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -51,13 +59,25 @@ public class DialogReSignIn extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Xác Nhận Đăng Nhập");
+        jLabel1.setText("Đăng Nhập");
 
-        txtUsername.setEditable(false);
         txtUsername.setBackground(new java.awt.Color(51, 51, 51));
         txtUsername.setForeground(new java.awt.Color(255, 255, 255));
         txtUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtUsername.setLabelText("Tên Tài Khoản");
+        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsernameFocusLost(evt);
+            }
+        });
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
+            }
+        });
 
         txtPassword.setBackground(new java.awt.Color(51, 51, 51));
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,6 +89,11 @@ public class DialogReSignIn extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPasswordFocusLost(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
             }
         });
 
@@ -86,23 +111,23 @@ public class DialogReSignIn extends javax.swing.JFrame {
 
         lblIconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
 
-        btnXacNhan.setBackground(new java.awt.Color(0, 102, 204));
-        btnXacNhan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnXacNhan.setForeground(new java.awt.Color(51, 51, 51));
-        btnXacNhan.setText("Xác Nhận");
-        btnXacNhan.setContentAreaFilled(false);
-        btnXacNhan.setOpaque(true);
-        btnXacNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDangNhap.setBackground(new java.awt.Color(0, 102, 204));
+        btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDangNhap.setForeground(new java.awt.Color(51, 51, 51));
+        btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.setContentAreaFilled(false);
+        btnDangNhap.setOpaque(true);
+        btnDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnXacNhanMouseEntered(evt);
+                btnDangNhapMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnXacNhanMouseExited(evt);
+                btnDangNhapMouseExited(evt);
             }
         });
-        btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXacNhanActionPerformed(evt);
+                btnDangNhapActionPerformed(evt);
             }
         });
 
@@ -130,7 +155,7 @@ public class DialogReSignIn extends javax.swing.JFrame {
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
-                        .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(169, 169, 169))))
         );
         roundPanel1Layout.setVerticalGroup(
@@ -158,7 +183,7 @@ public class DialogReSignIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblErrorPassword)
                 .addGap(18, 18, 18)
-                .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -216,17 +241,39 @@ public class DialogReSignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusLost
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnXacNhan">
-    private void btnXacNhanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseEntered
-        XHover.enterButton(btnXacNhan, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnXacNhanMouseEntered
+    private void btnDangNhapMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseEntered
+        XHover.enterButton(btnDangNhap, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnDangNhapMouseEntered
 
-    private void btnXacNhanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseExited
-        XHover.exitButton(btnXacNhan);
-    }//GEN-LAST:event_btnXacNhanMouseExited
+    private void btnDangNhapMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseExited
+        XHover.exitButton(btnDangNhap);
+    }//GEN-LAST:event_btnDangNhapMouseExited
 
-    private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
-        confirm();
-    }//GEN-LAST:event_btnXacNhanActionPerformed
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        signIn();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event Focus txtUsername">
+    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameFocusGained
+
+    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
+        if(txtUsername.getText().trim().length()==0){
+            lblErrorUsername.setText("Chưa nhập tên tài khoản!");
+        }else{
+            lblErrorUsername.setText(" ");
+        }
+    }//GEN-LAST:event_txtUsernameFocusLost
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event giới hạn kí tự textfield">
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+        limitLength(txtUsername, 50, evt);
+    }//GEN-LAST:event_txtUsernameKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        limitLength(txtPassword, 50, evt);
+    }//GEN-LAST:event_txtPasswordKeyTyped
     // </editor-fold> 
     
 // -------------------- End Event --------------------
@@ -234,14 +281,14 @@ public class DialogReSignIn extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DialogReSignIn().setVisible(true);
+                new DialogSignIn().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnXacNhan;
+    private javax.swing.JButton btnDangNhap;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblErrorPassword;
     private javax.swing.JLabel lblErrorUsername;
@@ -258,32 +305,83 @@ public class DialogReSignIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
         setBackground(new Color(0,0,0,0));
-        lblErrorUsername.setText("  ");
-        lblErrorPassword.setText("  ");
-        txtUsername.setText(Auth.user.getUsername());
+        clearError();
         
     }
     // </editor-fold>  
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
-    private void nonError(){
-        if(lblErrorPassword.getText().equals("  ")){
-            lblErrorPassword.setText("Chưa nhập mật khẩu!");
-        }
+    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lỗi"> 
+    private void clearError() {
+        lblErrorPassword.setText("  ");
+        lblErrorUsername.setText("  ");
+    }
+    // </editor-fold>  
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức đăng nhập">    
+    private void signIn() {
+        nonError();
+        if(!(lblErrorUsername.getText().equals(" ") && 
+                lblErrorPassword.getText().equals(" "))) return;
+        String tk = txtUsername.getText();
+        String matKhau = txtPassword.getText();
+        Users user = new Users();
+        // Tạo luồng và hiện dialog loading
+        DialogLoading dlog = new DialogLoading();
+        dlog.setVisible(true);
+        new Thread(){
+            @Override
+            public void run(){
+                setEnabled(false);
+                // Tải thông tin tài khoản lên form
+                int check = dao.signIn(tk, matKhau, user);
+                if(check == -1){
+                    setEnabled(true);
+                    dlog.setVisible(false);
+                    lblErrorUsername.setText("Tài khoản không tồn tại!");
+                    txtUsername.requestFocus();
+                }else if(check == 0){
+                    setEnabled(true);
+                    dlog.setVisible(false);
+                    lblErrorPassword.setText("Sai mật khẩu!");
+                    txtPassword.requestFocus();
+                }else{
+                    Auth.user = user;
+                    XPanel.panelHeader.setSign();
+                    XPanel.panelTaiKhoan.removeAll();
+                    XPanel.panelTaiKhoan.add(new PanelAccount());
+                    if(XPanel.nameCard.equals("GioHang")){
+                        XPanel.panelCart.removeAll();
+                        XPanel.panelCart.add(new PanelCart());
+                        XPanel.panelCart.repaint();
+                        XPanel.panelCart.revalidate();
+                    }
+                    clearError();
+                    XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
+                    dispose();
+                }
+            }
+        }.start();
     }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
-    private void confirm(){
-        nonError();
-        if(!lblErrorPassword.getText().equals(" ")) return;
-        String matKhau = txtPassword.getText();
-        if(!matKhau.equals(Auth.user.getPassword())){
-            lblErrorPassword.setText("Sai mật khẩu!");
-            txtPassword.requestFocus();
-        }else{
-            new DialogChangeAccount().setVisible(true);
-            dispose();
+    private void nonError(){
+        if(lblErrorUsername.getText().equals("  ")){
+            lblErrorUsername.setText("Chưa nhập tên tài khoản!");
+        }  
+        if(lblErrorPassword.getText().equals("  ")){
+            lblErrorPassword.setText("Chưa nhập mật khẩu!");
+        }
+        
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức giới hạn kí tự nhập vào">
+    private void limitLength(JTextComponent txt, int length, KeyEvent evt){
+        boolean limited = txt.getText().length() == length;
+        if (limited){
+            evt.consume();
         }
     }
     // </editor-fold>

@@ -26,7 +26,7 @@ public class Chart extends javax.swing.JPanel {
     DecimalFormat df = new DecimalFormat("#,##0.##");
     private List<ModelLegend> legends = new ArrayList<>();
     private List<ModelChart> model = new ArrayList<>();
-    private final int seriesSize = 18;
+    private final int seriesSize = 35;
     private final int seriesSpace = 10;
     private final Animator animator;
     private float animate;
@@ -117,7 +117,7 @@ public class Chart extends javax.swing.JPanel {
                     int py[] = {(int) (size.getY() + size.getHeight() - seriesValues), (int) (size.getY() + size.getHeight() - seriesValues - sy), (int) (size.getY() + size.getHeight() - seriesValues), (int) (size.getY() + size.getHeight()), (int) (size.getY() + size.getHeight() + sy), (int) (size.getY() + size.getHeight())};
                     if (new Polygon(px, py, px.length).contains(evt.getPoint())) {
                         double data = model.get(index).getValues()[i];
-                        showLabel = df.format(data);
+                        showLabel = df.format(data)+" VNĐ";
                         labelLocation.setLocation((int) (size.getX() + x + s), (int) (size.getY() + size.getHeight() - seriesValues - sy));
                         chart.repaint();
                         return true;

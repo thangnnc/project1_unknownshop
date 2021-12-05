@@ -5,6 +5,7 @@ import com.unknownshop.dao.ThongKeDAO;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XPanel;
 import java.awt.Color;
+import java.time.YearMonth;
 
 public class PanelStatistic extends javax.swing.JPanel {
 
@@ -122,16 +123,19 @@ public class PanelStatistic extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thẻ card">    
     public void setChart() {
-        chart.addLegend("Sản phẩm bán ra", new Color(12, 84, 175), new Color(0, 108, 247));
-        chart.addLegend("Sản phẩm nhập về", new Color(54, 4, 143), new Color(104, 49, 200));
-        chart.addLegend("Sản phẩm tồn kho", new Color(5, 125, 0), new Color(95, 209, 69));
-        chart.addLegend("Sản phẩm hoàn trả", new Color(186, 37, 37), new Color(241, 100, 120));
-        chart.addData(new ModelChart("Tháng 6", new double[]{500, 200, 80, 89}));
-        chart.addData(new ModelChart("Tháng 7", new double[]{600, 750, 90, 150}));
-        chart.addData(new ModelChart("Tháng 8", new double[]{200, 350, 460, 900}));
-        chart.addData(new ModelChart("Tháng 9", new double[]{480, 150, 750, 700}));
-        chart.addData(new ModelChart("Tháng 10", new double[]{350, 540, 300, 150}));
-        chart.addData(new ModelChart("Tháng 11", new double[]{190, 280, 81, 200}));
+        chart.addLegend("Doanh thu theo từng tháng", new Color(12, 84, 175), new Color(0, 108, 247));
+//        chart.addLegend("Sản phẩm nhập về", new Color(54, 4, 143), new Color(104, 49, 200));
+//        chart.addLegend("Sản phẩm tồn kho", new Color(5, 125, 0), new Color(95, 209, 69));
+//        chart.addLegend("Sản phẩm hoàn trả", new Color(186, 37, 37), new Color(241, 100, 120));
+
+        YearMonth now = YearMonth.now();
+        for (int i = 0; i < 6; i++) {
+            int month = now.minusMonths(5-i).getMonthValue();
+            int year = now.minusMonths(5-i).getYear();
+            chart.addData(new ModelChart("Tháng "+month+", năm "+year, 
+                                new double[]{Double.valueOf(dao.getRevenueByMonth(month, year))}));
+        }
+
         chart.start();
     }
     // </editor-fold>  

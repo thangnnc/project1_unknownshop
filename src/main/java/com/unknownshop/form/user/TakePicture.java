@@ -10,17 +10,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class TakePicture extends javax.swing.JFrame {
     Webcam webcam;
     Image image;
     byte[] byteImg;
     int index = 0;
-    PanelSignUp pnlSignUp;
+    DialogSignUp dialog;
+    JLabel label;
 
-    public TakePicture(PanelSignUp pnl) {
+    public TakePicture(DialogSignUp dialog, JLabel lbl) {
         initComponents();
-        pnlSignUp = pnl;
+        this.dialog = dialog;
+        this.label = lbl;
         init();
     }
     @SuppressWarnings("unchecked")
@@ -113,17 +116,18 @@ public class TakePicture extends javax.swing.JFrame {
         XHover.exitButton(btnCancelOrTakeAgain);
     }//GEN-LAST:event_btnCancelOrTakeAgainMouseExited
     // </editor-fold >
-    // <editor-fold defaultstate="collapsed" desc="Phương thức main">
+    
+// ---------------------- End Event ----------------------
+    
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TakePicture(null).setVisible(true);
+                new TakePicture(null,null).setVisible(true);
             }
         });
     }
-    // </editor-fold >
-    
-// ---------------------- End Event ----------------------
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelOrTakeAgain;
@@ -161,7 +165,7 @@ public class TakePicture extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Phương thức chụp ảnh">
     public void takePicture() {
         if (index == 1) {
-            pnlSignUp.setIcon(image,byteImg);
+            dialog.setIcon(image,byteImg);
             webcam.close();
             this.dispose();
         } else{
@@ -190,7 +194,10 @@ public class TakePicture extends javax.swing.JFrame {
             public void run() {
                 while (index != 1) {
                     Image image = webcam.getImage();
-                    lblImage.setIcon(new ImageIcon(image));
+                    if(image != null){
+                        lblImage.setIcon(new ImageIcon(image)); 
+                        label.setToolTipText("");
+                    }
                     try {
                         Thread.sleep(20);
                     } catch (InterruptedException ex) {

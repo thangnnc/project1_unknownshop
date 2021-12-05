@@ -3,10 +3,8 @@ package com.unknownshop.form.admin;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.ProductDAO;
 import com.unknownshop.entity.Products;
-import com.unknownshop.entity.Users;
 import com.unknownshop.form.DialogLoading;
 import com.unknownshop.form.admin.PanelProductManager;
-import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMess;
@@ -652,7 +650,6 @@ public class DialogInfoProduct extends javax.swing.JFrame {
 
     private void txtSoLuongFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusLost
         if (txtSoLuong.getText().trim().length() == 0) {
-            txtSoLuong.setText("Số Lượng Nhập Kho");
             lblErrorSoLuong.setText("Chưa nhập số lượng sản phẩm!");
         } else {
             lblErrorSoLuong.setText(" ");

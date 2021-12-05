@@ -3,6 +3,7 @@ package com.unknownshop.form;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
+import com.unknownshop.util.XPanel;
 import javax.swing.ImageIcon;
 
 public class PanelAccount extends javax.swing.JPanel {
@@ -156,7 +157,8 @@ public class PanelAccount extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Event btnChinhSua">  
     private void btnChinhSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChinhSuaActionPerformed
-        // TODO add your handling code here:
+        XPanel.mainForm.setEnabled(false);
+        new DialogReSignIn().setVisible(true);
     }//GEN-LAST:event_btnChinhSuaActionPerformed
 
     private void btnChinhSuaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChinhSuaMouseEntered

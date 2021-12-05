@@ -43,12 +43,20 @@ public class ThongKeDAO {
         return (int) so[0];
     }
     
-    // Số sản phẩm dc b
+    // Số sản phẩm dc bán
     public int getProductsSold(){ 
         String sql = "{Call sp_productsSold}";
         String[] cols = {"sl"};
         Object[] so = getListOfArray(sql, cols).get(0);
         return (int) so[0];
+    }
+    
+    // Số doanh thu bán được
+    public int getRevenueByMonth(int month, int year){ 
+        String sql = "{Call sp_revenue6Month(?,?)}";
+        String[] cols = {"result"};
+        Object[] so = getListOfArray(sql, cols).get(0);
+        return (int) so[0]; 
     }
     
     private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){

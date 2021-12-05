@@ -2,6 +2,7 @@ package com.unknownshop.form.admin;
 
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.ThongKeDAO;
+import com.unknownshop.util.Auth;
 import com.unknownshop.util.XExcel;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XMess;
@@ -48,7 +49,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         btnTKDoanhThu = new javax.swing.JButton();
         btnTKKhachHang = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
-        DanhSachHD = new javax.swing.JPanel();
+        pnlTKSanPham = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTKSanPham = new com.unknownshop.swing.table.Table();
         btnExcel1 = new javax.swing.JButton();
@@ -56,18 +57,19 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         cboThang = new com.unknownshop.swing.combobox.ComboboxWhite();
         cboNam = new com.unknownshop.swing.combobox.ComboboxWhite();
         cboLoaiSP = new com.unknownshop.swing.combobox.ComboboxWhite();
-        DSHoaDonXN = new javax.swing.JPanel();
+        pnlTKKhachHang = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTKKhachHang = new com.unknownshop.swing.table.Table();
         btnExcel2 = new javax.swing.JButton();
         btnPDF2 = new javax.swing.JButton();
         cboXepHang = new com.unknownshop.swing.combobox.ComboboxWhite();
-        pnlHDChiTiet = new javax.swing.JPanel();
+        pnlDoanhThu = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTKDoanhThu = new com.unknownshop.swing.table.Table();
         btnExcel3 = new javax.swing.JButton();
         btnPDF3 = new javax.swing.JButton();
         cboDoanhThuNam = new com.unknownshop.swing.combobox.ComboboxWhite();
+        panelSecurity = new com.unknownshop.form.admin.PanelSecurityNormal();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -78,7 +80,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         btnTKSanPham.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnTKSanPham.setForeground(new java.awt.Color(255, 255, 255));
         btnTKSanPham.setText("Thống Kê Sản Phẩm Bán Chạy");
-        btnTKSanPham.setToolTipText("DanhSachHD");
+        btnTKSanPham.setToolTipText("TKSanPham");
         btnTKSanPham.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 5, 0, new java.awt.Color(255, 255, 255)));
         btnTKSanPham.setContentAreaFilled(false);
         btnTKSanPham.setOpaque(true);
@@ -100,7 +102,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         btnTKDoanhThu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnTKDoanhThu.setForeground(new java.awt.Color(51, 51, 51));
         btnTKDoanhThu.setText("Thống Kê Doanh Thu");
-        btnTKDoanhThu.setToolTipText("HDChiTiet");
+        btnTKDoanhThu.setToolTipText("DoanhThu");
         btnTKDoanhThu.setContentAreaFilled(false);
         btnTKDoanhThu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -120,7 +122,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         btnTKKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnTKKhachHang.setForeground(new java.awt.Color(51, 51, 51));
         btnTKKhachHang.setText("Thống Kê Khách Hàng Thân Thiết");
-        btnTKKhachHang.setToolTipText("DSHoaDonXN");
+        btnTKKhachHang.setToolTipText("TKKhachHang");
         btnTKKhachHang.setContentAreaFilled(false);
         btnTKKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -160,7 +162,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         pnlCard.setOpaque(false);
         pnlCard.setLayout(new java.awt.CardLayout());
 
-        DanhSachHD.setOpaque(false);
+        pnlTKSanPham.setOpaque(false);
 
         tblTKSanPham.setBackground(new java.awt.Color(255, 255, 255));
         tblTKSanPham.setForeground(new java.awt.Color(51, 51, 51));
@@ -242,6 +244,7 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
 
         cboNam.setBackground(new java.awt.Color(250, 250, 250));
         cboNam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2021" }));
+        cboNam.setSelectedIndex(-1);
         cboNam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cboNam.setLabeText("Năm");
         cboNam.addActionListener(new java.awt.event.ActionListener() {
@@ -261,20 +264,20 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout DanhSachHDLayout = new javax.swing.GroupLayout(DanhSachHD);
-        DanhSachHD.setLayout(DanhSachHDLayout);
-        DanhSachHDLayout.setHorizontalGroup(
-            DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DanhSachHDLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTKSanPhamLayout = new javax.swing.GroupLayout(pnlTKSanPham);
+        pnlTKSanPham.setLayout(pnlTKSanPhamLayout);
+        pnlTKSanPhamLayout.setHorizontalGroup(
+            pnlTKSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTKSanPhamLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTKSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DanhSachHDLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTKSanPhamLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DanhSachHDLayout.createSequentialGroup()
+                    .addGroup(pnlTKSanPhamLayout.createSequentialGroup()
                         .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,26 +286,26 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        DanhSachHDLayout.setVerticalGroup(
-            DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DanhSachHDLayout.createSequentialGroup()
+        pnlTKSanPhamLayout.setVerticalGroup(
+            pnlTKSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTKSanPhamLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlTKSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DanhSachHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlTKSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPDF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        pnlCard.add(DanhSachHD, "DanhSachHD");
+        pnlCard.add(pnlTKSanPham, "TKSanPham");
 
-        DSHoaDonXN.setOpaque(false);
+        pnlTKKhachHang.setOpaque(false);
 
         tblTKKhachHang.setBackground(new java.awt.Color(255, 255, 255));
         tblTKKhachHang.setForeground(new java.awt.Color(51, 51, 51));
@@ -382,41 +385,41 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout DSHoaDonXNLayout = new javax.swing.GroupLayout(DSHoaDonXN);
-        DSHoaDonXN.setLayout(DSHoaDonXNLayout);
-        DSHoaDonXNLayout.setHorizontalGroup(
-            DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DSHoaDonXNLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTKKhachHangLayout = new javax.swing.GroupLayout(pnlTKKhachHang);
+        pnlTKKhachHang.setLayout(pnlTKKhachHangLayout);
+        pnlTKKhachHangLayout.setHorizontalGroup(
+            pnlTKKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTKKhachHangLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTKKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DSHoaDonXNLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTKKhachHangLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnExcel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPDF2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DSHoaDonXNLayout.createSequentialGroup()
+                    .addGroup(pnlTKKhachHangLayout.createSequentialGroup()
                         .addComponent(cboXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        DSHoaDonXNLayout.setVerticalGroup(
-            DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DSHoaDonXNLayout.createSequentialGroup()
+        pnlTKKhachHangLayout.setVerticalGroup(
+            pnlTKKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTKKhachHangLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cboXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DSHoaDonXNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlTKKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPDF2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExcel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        pnlCard.add(DSHoaDonXN, "DSHoaDonXN");
+        pnlCard.add(pnlTKKhachHang, "TKKhachHang");
 
-        pnlHDChiTiet.setOpaque(false);
+        pnlDoanhThu.setOpaque(false);
 
         tblTKDoanhThu.setBackground(new java.awt.Color(255, 255, 255));
         tblTKDoanhThu.setForeground(new java.awt.Color(51, 51, 51));
@@ -496,39 +499,40 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout pnlHDChiTietLayout = new javax.swing.GroupLayout(pnlHDChiTiet);
-        pnlHDChiTiet.setLayout(pnlHDChiTietLayout);
-        pnlHDChiTietLayout.setHorizontalGroup(
-            pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHDChiTietLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDoanhThuLayout = new javax.swing.GroupLayout(pnlDoanhThu);
+        pnlDoanhThu.setLayout(pnlDoanhThuLayout);
+        pnlDoanhThuLayout.setHorizontalGroup(
+            pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHDChiTietLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDoanhThuLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnExcel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPDF3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHDChiTietLayout.createSequentialGroup()
+                    .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                         .addComponent(cboDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        pnlHDChiTietLayout.setVerticalGroup(
-            pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHDChiTietLayout.createSequentialGroup()
+        pnlDoanhThuLayout.setVerticalGroup(
+            pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cboDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPDF3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExcel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        pnlCard.add(pnlHDChiTiet, "HDChiTiet");
+        pnlCard.add(pnlDoanhThu, "DoanhThu");
+        pnlCard.add(panelSecurity, "Security");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -699,8 +703,6 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
 // ---------------------- End Event ----------------------
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel DSHoaDonXN;
-    private javax.swing.JPanel DanhSachHD;
     private javax.swing.JButton btnExcel1;
     private javax.swing.JButton btnExcel2;
     private javax.swing.JButton btnExcel3;
@@ -718,8 +720,11 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private com.unknownshop.form.admin.PanelSecurityNormal panelSecurity;
     private javax.swing.JPanel pnlCard;
-    private javax.swing.JPanel pnlHDChiTiet;
+    private javax.swing.JPanel pnlDoanhThu;
+    private javax.swing.JPanel pnlTKKhachHang;
+    private javax.swing.JPanel pnlTKSanPham;
     private javax.swing.JPanel pnlTabButton;
     private com.unknownshop.swing.table.Table tblTKDoanhThu;
     private com.unknownshop.swing.table.Table tblTKKhachHang;
@@ -740,7 +745,11 @@ public class PanelStatisticDetails extends javax.swing.JPanel {
         sellingProducts(false);
         listKhachHang = dao.getLoyalCustomers();
         loyalCustomers();
-        revenueByYear();
+        if(Auth.user.getRole().equals(XConstant.STAFF)){
+            btnTKDoanhThu.setToolTipText("Security");
+        }else{
+            revenueByYear();
+        }
     }
     // </editor-fold>  
     

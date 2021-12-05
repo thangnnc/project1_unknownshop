@@ -88,7 +88,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea; S&#x1ea3;n Ph&#x1ea9;m B&#xe1;n Ch&#x1ea1;y"/>
-            <Property name="toolTipText" type="java.lang.String" value="DanhSachHD"/>
+            <Property name="toolTipText" type="java.lang.String" value="TKSanPham"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="5" left="0" right="0" top="0">
@@ -117,7 +117,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea; Doanh Thu"/>
-            <Property name="toolTipText" type="java.lang.String" value="HDChiTiet"/>
+            <Property name="toolTipText" type="java.lang.String" value="DoanhThu"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -138,7 +138,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea; Kh&#xe1;ch H&#xe0;ng Th&#xe2;n Thi&#x1ebf;t"/>
-            <Property name="toolTipText" type="java.lang.String" value="DSHoaDonXN"/>
+            <Property name="toolTipText" type="java.lang.String" value="TKKhachHang"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -156,13 +156,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="DanhSachHD">
+        <Container class="javax.swing.JPanel" name="pnlTKSanPham">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="DanhSachHD"/>
+              <CardConstraints cardName="TKSanPham"/>
             </Constraint>
           </Constraints>
 
@@ -352,6 +352,7 @@
                     <StringItem index="1" value="2021"/>
                   </StringArray>
                 </Property>
+                <Property name="selectedIndex" type="int" value="-1"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
@@ -387,13 +388,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="DSHoaDonXN">
+        <Container class="javax.swing.JPanel" name="pnlTKKhachHang">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="DSHoaDonXN"/>
+              <CardConstraints cardName="TKKhachHang"/>
             </Constraint>
           </Constraints>
 
@@ -561,13 +562,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlHDChiTiet">
+        <Container class="javax.swing.JPanel" name="pnlDoanhThu">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="HDChiTiet"/>
+              <CardConstraints cardName="DoanhThu"/>
             </Constraint>
           </Constraints>
 
@@ -730,6 +731,13 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="com.unknownshop.form.admin.PanelSecurityNormal" name="panelSecurity">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="Security"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

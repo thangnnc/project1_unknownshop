@@ -1,6 +1,8 @@
 package com.unknownshop.form.admin;
 
+import com.unknownshop.constant.XConstant;
 import com.unknownshop.form.PanelAccount;
+import com.unknownshop.util.Auth;
 import com.unknownshop.util.XPanel;
 import java.awt.Component;
 import java.awt.event.ActionListener;
@@ -111,11 +113,15 @@ public class HomeAdmin extends javax.swing.JPanel {
     private void addPanelIntoFrame(){
         // Thêm vào panel danh sách áo
         pnlTaiKhoan.add(new PanelAccount());
-        pnlQLTaiKhoan.add(new PanelAccountManager());
         pnlQLSanPham.add(new PanelProductManager());
         pnlQLHoaDon.add(new PanelBillManager());
         pnlTKChung.add(new PanelStatistic());
         pnlTKChiTiet.add(new PanelStatisticDetails());
+        if(Auth.user.getRole().equals(XConstant.STAFF)){
+            pnlQLTaiKhoan.add(new PanelSecurityLarge());
+        }else{
+            pnlQLTaiKhoan.add(new PanelAccountManager());
+        }
     } 
     // </editor-fold> 
 

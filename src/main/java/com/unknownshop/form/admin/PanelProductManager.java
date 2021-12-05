@@ -34,6 +34,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     private ProductTypeDAO proTypeDao = new ProductTypeDAO();
     private int row = -1;
     private byte[] proImage;
+    private DialogInfoProduct dialogInfo = new DialogInfoProduct(this);
     
     public PanelProductManager() {
         initComponents();
@@ -47,41 +48,16 @@ public class PanelProductManager extends javax.swing.JPanel {
         pnlTabButton = new javax.swing.JPanel();
         btnDanhSachSP = new javax.swing.JButton();
         btnSPDaXoa = new javax.swing.JButton();
-        btnSanPham = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
         pnlDanhSachSP = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDanhSachSP = new com.unknownshop.swing.table.Table();
         cboLoai = new com.unknownshop.swing.combobox.ComboboxWhite();
+        btnThemSP = new javax.swing.JButton();
         pnlSPDaXoa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSPDaXoa = new com.unknownshop.swing.table.Table();
         cboLoai1 = new com.unknownshop.swing.combobox.ComboboxWhite();
-        pnlSanPham = new javax.swing.JPanel();
-        pnlForm = new javax.swing.JPanel();
-        pnlImage = new javax.swing.JPanel();
-        btnImage = new javax.swing.JButton();
-        txtTenSP = new javax.swing.JTextField();
-        lblIconTenSP = new javax.swing.JLabel();
-        lblErrorTenSP = new javax.swing.JLabel();
-        lblIconGiaSP = new javax.swing.JLabel();
-        lblIconSoLuong = new javax.swing.JLabel();
-        lblErrorGiaSP = new javax.swing.JLabel();
-        lblErrorSoLuong = new javax.swing.JLabel();
-        lblIconLoaiSP = new javax.swing.JLabel();
-        lblErrorLoaiSP = new javax.swing.JLabel();
-        pnlControl = new javax.swing.JPanel();
-        btnXoa = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
-        btnMoi = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
-        btnFirst = new javax.swing.JButton();
-        btnPrev = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
-        btnLast = new javax.swing.JButton();
-        txtGiaSP = new javax.swing.JTextField();
-        txtSoLuong = new javax.swing.JTextField();
-        cboLoaiSP = new combobox.ComboboxBlack();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -131,43 +107,20 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
 
-        btnSanPham.setBackground(new java.awt.Color(51, 51, 51));
-        btnSanPham.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSanPham.setForeground(new java.awt.Color(51, 51, 51));
-        btnSanPham.setText("Sản Phẩm");
-        btnSanPham.setToolTipText("SanPham");
-        btnSanPham.setContentAreaFilled(false);
-        btnSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSanPhamMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSanPhamMouseExited(evt);
-            }
-        });
-        btnSanPham.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSanPhamActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlTabButtonLayout = new javax.swing.GroupLayout(pnlTabButton);
         pnlTabButton.setLayout(pnlTabButtonLayout);
         pnlTabButtonLayout.setHorizontalGroup(
             pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabButtonLayout.createSequentialGroup()
-                .addComponent(btnDanhSachSP, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSPDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDanhSachSP, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSPDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlTabButtonLayout.setVerticalGroup(
             pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabButtonLayout.createSequentialGroup()
                 .addGroup(pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSPDaXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDanhSachSP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -226,6 +179,26 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
 
+        btnThemSP.setBackground(new java.awt.Color(51, 51, 51));
+        btnThemSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThemSP.setForeground(new java.awt.Color(255, 255, 255));
+        btnThemSP.setText("Thêm Sản Phẩm");
+        btnThemSP.setContentAreaFilled(false);
+        btnThemSP.setOpaque(true);
+        btnThemSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemSPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemSPMouseExited(evt);
+            }
+        });
+        btnThemSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemSPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlDanhSachSPLayout = new javax.swing.GroupLayout(pnlDanhSachSP);
         pnlDanhSachSP.setLayout(pnlDanhSachSPLayout);
         pnlDanhSachSPLayout.setHorizontalGroup(
@@ -236,15 +209,18 @@ public class PanelProductManager extends javax.swing.JPanel {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
                     .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
                         .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnThemSP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         pnlDanhSachSPLayout.setVerticalGroup(
             pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachSPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThemSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -314,425 +290,12 @@ public class PanelProductManager extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSPDaXoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pnlCard.add(pnlSPDaXoa, "SPDaXoa");
-
-        pnlSanPham.setOpaque(false);
-
-        pnlForm.setBackground(new java.awt.Color(51, 51, 51));
-        pnlForm.setForeground(new java.awt.Color(255, 255, 255));
-
-        pnlImage.setBackground(new java.awt.Color(51, 51, 51));
-
-        btnImage.setBackground(new java.awt.Color(51, 51, 51));
-        btnImage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnImage.setForeground(new java.awt.Color(255, 255, 255));
-        btnImage.setText("Hình ảnh");
-        btnImage.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 102, 204)));
-        btnImage.setContentAreaFilled(false);
-        btnImage.setOpaque(true);
-        btnImage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnImageMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnImageMouseExited(evt);
-            }
-        });
-        btnImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImageActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlImageLayout = new javax.swing.GroupLayout(pnlImage);
-        pnlImage.setLayout(pnlImageLayout);
-        pnlImageLayout.setHorizontalGroup(
-            pnlImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlImageLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-        pnlImageLayout.setVerticalGroup(
-            pnlImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlImageLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
-
-        txtTenSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTenSP.setForeground(new java.awt.Color(255, 255, 255));
-        txtTenSP.setText("Tên Sản Phẩm");
-        txtTenSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtTenSP.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTenSPFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTenSPFocusLost(evt);
-            }
-        });
-
-        lblIconTenSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconUsername.png"))); // NOI18N
-
-        lblErrorTenSP.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorTenSP.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorTenSP.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorTenSP.setText("Error!");
-
-        lblIconGiaSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
-
-        lblIconSoLuong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconPassword.png"))); // NOI18N
-
-        lblErrorGiaSP.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorGiaSP.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorGiaSP.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorGiaSP.setText("Error!");
-
-        lblErrorSoLuong.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorSoLuong.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorSoLuong.setText("Error!");
-
-        lblIconLoaiSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconEmail.png"))); // NOI18N
-
-        lblErrorLoaiSP.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        lblErrorLoaiSP.setForeground(new java.awt.Color(255, 51, 51));
-        lblErrorLoaiSP.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblErrorLoaiSP.setText("Error!");
-
-        pnlControl.setOpaque(false);
-
-        btnXoa.setBackground(new java.awt.Color(0, 102, 204));
-        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnXoa.setForeground(new java.awt.Color(51, 51, 51));
-        btnXoa.setText("Xóa");
-        btnXoa.setContentAreaFilled(false);
-        btnXoa.setOpaque(true);
-        btnXoa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnXoaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnXoaMouseExited(evt);
-            }
-        });
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-
-        btnSua.setBackground(new java.awt.Color(0, 102, 204));
-        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSua.setForeground(new java.awt.Color(51, 51, 51));
-        btnSua.setText("Sửa");
-        btnSua.setContentAreaFilled(false);
-        btnSua.setOpaque(true);
-        btnSua.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSuaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSuaMouseExited(evt);
-            }
-        });
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
-            }
-        });
-
-        btnMoi.setBackground(new java.awt.Color(0, 102, 204));
-        btnMoi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnMoi.setForeground(new java.awt.Color(51, 51, 51));
-        btnMoi.setText("Mới");
-        btnMoi.setContentAreaFilled(false);
-        btnMoi.setOpaque(true);
-        btnMoi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMoiMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMoiMouseExited(evt);
-            }
-        });
-        btnMoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoiActionPerformed(evt);
-            }
-        });
-
-        btnThem.setBackground(new java.awt.Color(0, 102, 204));
-        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnThem.setForeground(new java.awt.Color(51, 51, 51));
-        btnThem.setText("Thêm");
-        btnThem.setContentAreaFilled(false);
-        btnThem.setOpaque(true);
-        btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnThemMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnThemMouseExited(evt);
-            }
-        });
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
-            }
-        });
-
-        btnFirst.setBackground(new java.awt.Color(0, 102, 204));
-        btnFirst.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnFirst.setForeground(new java.awt.Color(51, 51, 51));
-        btnFirst.setText("|<");
-        btnFirst.setContentAreaFilled(false);
-        btnFirst.setOpaque(true);
-        btnFirst.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnFirstMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnFirstMouseExited(evt);
-            }
-        });
-        btnFirst.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFirstActionPerformed(evt);
-            }
-        });
-
-        btnPrev.setBackground(new java.awt.Color(0, 102, 204));
-        btnPrev.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnPrev.setForeground(new java.awt.Color(51, 51, 51));
-        btnPrev.setText("<<");
-        btnPrev.setContentAreaFilled(false);
-        btnPrev.setOpaque(true);
-        btnPrev.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPrevMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPrevMouseExited(evt);
-            }
-        });
-        btnPrev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrevActionPerformed(evt);
-            }
-        });
-
-        btnNext.setBackground(new java.awt.Color(0, 102, 204));
-        btnNext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnNext.setForeground(new java.awt.Color(51, 51, 51));
-        btnNext.setText(">>");
-        btnNext.setContentAreaFilled(false);
-        btnNext.setOpaque(true);
-        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNextMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNextMouseExited(evt);
-            }
-        });
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
-
-        btnLast.setBackground(new java.awt.Color(0, 102, 204));
-        btnLast.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnLast.setForeground(new java.awt.Color(51, 51, 51));
-        btnLast.setText(">|");
-        btnLast.setContentAreaFilled(false);
-        btnLast.setOpaque(true);
-        btnLast.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLastMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLastMouseExited(evt);
-            }
-        });
-        btnLast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLastActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlControlLayout = new javax.swing.GroupLayout(pnlControl);
-        pnlControl.setLayout(pnlControlLayout);
-        pnlControlLayout.setHorizontalGroup(
-            pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlControlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlControlLayout.createSequentialGroup()
-                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlControlLayout.createSequentialGroup()
-                        .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        pnlControlLayout.setVerticalGroup(
-            pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlControlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        txtGiaSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtGiaSP.setForeground(new java.awt.Color(255, 255, 255));
-        txtGiaSP.setText("Giá Sản Phẩm");
-        txtGiaSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtGiaSP.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtGiaSPFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtGiaSPFocusLost(evt);
-            }
-        });
-
-        txtSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtSoLuong.setForeground(new java.awt.Color(255, 255, 255));
-        txtSoLuong.setText("Số Lượng Nhập Kho");
-        txtSoLuong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
-        txtSoLuong.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtSoLuongFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtSoLuongFocusLost(evt);
-            }
-        });
-
-        cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Áo", "Quần", "Phụ Kiện", "Giày" }));
-        cboLoaiSP.setSelectedIndex(-1);
-        cboLoaiSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cboLoaiSP.setLabeText("Loại Sản Phẩm");
-
-        javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
-        pnlForm.setLayout(pnlFormLayout);
-        pnlFormLayout.setHorizontalGroup(
-            pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFormLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFormLayout.createSequentialGroup()
-                        .addComponent(pnlImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblErrorTenSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblErrorGiaSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblErrorSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cboLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblErrorLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
-                        .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        pnlFormLayout.setVerticalGroup(
-            pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFormLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlFormLayout.createSequentialGroup()
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconTenSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorTenSP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIconGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorGiaSP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblIconSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorSoLuong)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIconLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                            .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblErrorLoaiSP)
-                        .addGap(23, 23, 23)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout pnlSanPhamLayout = new javax.swing.GroupLayout(pnlSanPham);
-        pnlSanPham.setLayout(pnlSanPhamLayout);
-        pnlSanPhamLayout.setHorizontalGroup(
-            pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSanPhamLayout.createSequentialGroup()
-                .addContainerGap(326, Short.MAX_VALUE)
-                .addComponent(pnlForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(321, 321, 321))
-        );
-        pnlSanPhamLayout.setVerticalGroup(
-            pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSanPhamLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(pnlForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-
-        pnlCard.add(pnlSanPham, "SanPham");
 
         add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1260, 520));
     }// </editor-fold>//GEN-END:initComponents
@@ -764,187 +327,8 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void btnSPDaXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSPDaXoaMouseExited
         XHover.exitTabButton(btnSPDaXoa);
     }//GEN-LAST:event_btnSPDaXoaMouseExited
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnTaiKhoan">
-    private void btnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanPhamActionPerformed
-        pressTabButton(btnSanPham);
-        clearForm();
-    }//GEN-LAST:event_btnSanPhamActionPerformed
 
-    private void btnSanPhamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseEntered
-        XHover.enterTabButton(btnSanPham, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnSanPhamMouseEntered
-
-    private void btnSanPhamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseExited
-        XHover.exitTabButton(btnSanPham);
-    }//GEN-LAST:event_btnSanPhamMouseExited
-
-   // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnImage">
-    private void btnImageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseEntered
-        XHover.enterButton(btnImage, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnImageMouseEntered
-
-    private void btnImageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseExited
-        XHover.exitButton(btnImage);
-    }//GEN-LAST:event_btnImageMouseExited
-
-    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
-        getImage();
-    }//GEN-LAST:event_btnImageActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus txtTenSP">
-    private void txtTenSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusGained
-        if (txtTenSP.getText().trim().equalsIgnoreCase("Tên Sản Phẩm")) {
-            txtTenSP.setText("");
-        }
-    }//GEN-LAST:event_txtTenSPFocusGained
-
-    private void txtTenSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusLost
-        if (txtTenSP.getText().trim().length() == 0) {
-            txtTenSP.setText("Tên Sản Phẩm");
-            lblErrorTenSP.setText("Chưa nhập tên sản phẩm!");
-        } else {
-            lblErrorTenSP.setText(" ");
-        }
-    }//GEN-LAST:event_txtTenSPFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnXoa">
-    private void btnXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseEntered
-        XHover.enterButton(btnXoa, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnXoaMouseEntered
-
-    private void btnXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseExited
-        XHover.exitButton(btnXoa);
-    }//GEN-LAST:event_btnXoaMouseExited
-
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        delete();
-    }//GEN-LAST:event_btnXoaActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnSua">
-    private void btnSuaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseEntered
-        XHover.enterButton(btnSua, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnSuaMouseEntered
-
-    private void btnSuaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseExited
-        XHover.exitButton(btnSua);
-    }//GEN-LAST:event_btnSuaMouseExited
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        update();
-    }//GEN-LAST:event_btnSuaActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnMoi">
-    private void btnMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseEntered
-        XHover.enterButton(btnMoi, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnMoiMouseEntered
-
-    private void btnMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMoiMouseExited
-        XHover.exitButton(btnMoi);
-    }//GEN-LAST:event_btnMoiMouseExited
-
-    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        clearForm();
-    }//GEN-LAST:event_btnMoiActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnThem">
-    private void btnThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseEntered
-        XHover.enterButton(btnThem, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnThemMouseEntered
-
-    private void btnThemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseExited
-        XHover.exitButton(btnThem);
-    }//GEN-LAST:event_btnThemMouseExited
-
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        insert();
-    }//GEN-LAST:event_btnThemActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnFirst">
-    private void btnFirstMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseEntered
-        XHover.enterButton(btnFirst, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnFirstMouseEntered
-
-    private void btnFirstMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseExited
-        XHover.exitButton(btnFirst);
-    }//GEN-LAST:event_btnFirstMouseExited
-
-    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        first();
-    }//GEN-LAST:event_btnFirstActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnPrev">
-    private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-        XHover.enterButton(btnPrev, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnPrevMouseEntered
-
-    private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
-        XHover.exitButton(btnPrev);
-    }//GEN-LAST:event_btnPrevMouseExited
-
-    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        prev();
-    }//GEN-LAST:event_btnPrevActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnNext">
-    private void btnNextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseEntered
-        XHover.enterButton(btnNext, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnNextMouseEntered
-
-    private void btnNextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseExited
-        XHover.exitButton(btnNext);
-    }//GEN-LAST:event_btnNextMouseExited
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        next();
-    }//GEN-LAST:event_btnNextActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnLast">
-    private void btnLastMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLastMouseEntered
-        XHover.enterButton(btnLast, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnLastMouseEntered
-
-    private void btnLastMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLastMouseExited
-        XHover.exitButton(btnLast);
-    }//GEN-LAST:event_btnLastMouseExited
-
-    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        last();
-    }//GEN-LAST:event_btnLastActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus txtGiaSP">
-    private void txtGiaSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaSPFocusGained
-        if (txtGiaSP.getText().trim().equalsIgnoreCase("Giá Sản Phẩm")) {
-            txtGiaSP.setText("");
-        }
-    }//GEN-LAST:event_txtGiaSPFocusGained
-
-    private void txtGiaSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaSPFocusLost
-        if (txtGiaSP.getText().trim().length() == 0) {
-            txtGiaSP.setText("Giá Sản Phẩm");
-            lblErrorGiaSP.setText("Chưa nhập giá sản phẩm!");
-        } else {
-            lblErrorGiaSP.setText(" ");
-        }
-    }//GEN-LAST:event_txtGiaSPFocusLost
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event Focus txtSoLuong">
-    private void txtSoLuongFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusGained
-        if (txtSoLuong.getText().trim().equalsIgnoreCase("Số Lượng Nhập Kho")) {
-            txtSoLuong.setText("");
-        }
-    }//GEN-LAST:event_txtSoLuongFocusGained
-
-    private void txtSoLuongFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusLost
-        if (txtSoLuong.getText().trim().length() == 0) {
-            txtSoLuong.setText("Số Lượng Nhập Kho");
-            lblErrorSoLuong.setText("Chưa nhập số lượng sản phẩm!");
-        } else {
-            lblErrorSoLuong.setText(" ");
-        }
-    }//GEN-LAST:event_txtSoLuongFocusLost
-    // </editor-fold>
+   // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Event cboLoai">
     private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
         selectCombobox();
@@ -954,65 +338,50 @@ public class PanelProductManager extends javax.swing.JPanel {
     private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
         selectCombobox1();
     }//GEN-LAST:event_cboLoai1ActionPerformed
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event btnThemTK">
+    private void btnThemSPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemSPMouseEntered
+        XHover.enterButton(btnThemSP, XConstant.LIGHT_BLUE, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnThemSPMouseEntered
+
+    private void btnThemSPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemSPMouseExited
+        XHover.exitButton(btnThemSP);
+    }//GEN-LAST:event_btnThemSPMouseExited
+
+    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
+        XPanel.mainForm.setEnabled(false);
+        dialogInfo.setVisible(true);
+        dialogInfo.clearForm();
+    }//GEN-LAST:event_btnThemSPActionPerformed
     // </editor-fold> 
     
     // -------------------- End Event --------------------
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDanhSachSP;
-    private javax.swing.JButton btnFirst;
-    private javax.swing.JButton btnImage;
-    private javax.swing.JButton btnLast;
-    private javax.swing.JButton btnMoi;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnSPDaXoa;
-    private javax.swing.JButton btnSanPham;
-    private javax.swing.JButton btnSua;
-    private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnThemSP;
     private com.unknownshop.swing.combobox.ComboboxWhite cboLoai;
     private com.unknownshop.swing.combobox.ComboboxWhite cboLoai1;
-    private combobox.ComboboxBlack cboLoaiSP;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblErrorGiaSP;
-    private javax.swing.JLabel lblErrorLoaiSP;
-    private javax.swing.JLabel lblErrorSoLuong;
-    private javax.swing.JLabel lblErrorTenSP;
-    private javax.swing.JLabel lblIconGiaSP;
-    private javax.swing.JLabel lblIconLoaiSP;
-    private javax.swing.JLabel lblIconSoLuong;
-    private javax.swing.JLabel lblIconTenSP;
     private javax.swing.JPanel pnlCard;
-    private javax.swing.JPanel pnlControl;
     private javax.swing.JPanel pnlDanhSachSP;
-    private javax.swing.JPanel pnlForm;
-    private javax.swing.JPanel pnlImage;
     private javax.swing.JPanel pnlSPDaXoa;
-    private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlTabButton;
     private com.unknownshop.swing.table.Table tblDanhSachSP;
     private com.unknownshop.swing.table.Table tblSPDaXoa;
-    private javax.swing.JTextField txtGiaSP;
-    private javax.swing.JTextField txtSoLuong;
-    private javax.swing.JTextField txtTenSP;
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
-        txtTenSP.setBackground(new Color(0, 0, 0, 0));
-        txtGiaSP.setBackground(new Color(0, 0, 0, 0));
-        txtSoLuong.setBackground(new Color(0, 0, 0, 0));
         XTable.setCellAlignmentCenter(tblDanhSachSP,0);
         XTable.setCellAlignmentCenter(tblSPDaXoa,0);
-        this.clearError();
         fillCboLoai(cboLoai,cboLoai1);
         fillTableProduct(true);
         fillTableProductDeleted(true);
-        XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         // gán vào lớp tiện ích
         XPanel.panelProManager = this;
     }
@@ -1028,7 +397,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn nút trên thanh tab">    
     private void pressTabButton(JButton btn){
-        JButton button[] = {btnDanhSachSP, btnSPDaXoa, btnSanPham};
+        JButton button[] = {btnDanhSachSP, btnSPDaXoa};
         for (int i = 0; i < button.length; i++) {
             button[i].setOpaque(false);
             button[i].setBorder(null);
@@ -1061,7 +430,7 @@ public class PanelProductManager extends javax.swing.JPanel {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm">
-    private void fillTableProduct(boolean check) {
+    public void fillTableProduct(boolean check) {
         if(cboLoai.getSelectedIndex() >= 0) cboLoai.setSelectedIndex(0);
         else cboLoai.setSelectedIndex(-1);
         DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
@@ -1092,32 +461,21 @@ public class PanelProductManager extends javax.swing.JPanel {
     }
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên form">
-    private void setForm(Products product){
-        // Chuyển lỗi về dạng 1 dấu cách
-        lblErrorTenSP.setText(" ");
-        lblErrorLoaiSP.setText(" ");
-        lblErrorSoLuong.setText(" ");
-        lblErrorGiaSP.setText(" ");
-        // Lấy thông tin từ sản phẩm điền lên form
-        txtTenSP.setText(product.getName());
-        txtGiaSP.setText(String.valueOf(product.getPrice()));
-        txtSoLuong.setText(String.valueOf(product.getQuantity()));
-        proImage = product.getImgUrl();
-        btnImage.setIcon(new ImageIcon(XImage.convertBytesToImage(proImage, 175, 225)));
-        cboLoaiSP.setSelectedIndex(product.getTypeId()-1);
-        btnImage.setText("");
-    }
-    // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Phương thức đưa thông tin tài khoản lên form">
     public void edit(){
         row = tblDanhSachSP.getSelectedRow();
-        Products pro = list.get(row);
-        setForm(pro);
-        pressTabButton(btnSanPham);
-        XHover.enableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
-        XHover.disableButton(btnThem);
+        int id = Integer.valueOf(tblDanhSachSP.getValueAt(row, 1).toString());
+        Products product = new Products();
+        for (Products pro : list) {
+            if(pro.getId() == id) product = pro; 
+        }
+        if(dialogInfo.isVisible()){
+            dialogInfo.setForm(product);
+        }else{
+            XPanel.mainForm.setEnabled(false);
+            dialogInfo.setVisible(true);
+            dialogInfo.setForm(product);
+        }
     }
     // </editor-fold>
     
@@ -1142,7 +500,7 @@ public class PanelProductManager extends javax.swing.JPanel {
 // _______________________ SP Đã xóa ______________________
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền vào bảng sản phẩm đã xóa">
-    private void fillTableProductDeleted(boolean check) {
+    public void fillTableProductDeleted(boolean check) {
         if(cboLoai1.getSelectedIndex() >= 0) cboLoai1.setSelectedIndex(0);
         else cboLoai1.setSelectedIndex(-1);
         DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
@@ -1191,220 +549,44 @@ public class PanelProductManager extends javax.swing.JPanel {
     }
     // </editor-fold>
     
-// _____________________ Form Sản Phẩm ___________________
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lable lỗi"> 
-    private void clearError() {
-        lblErrorGiaSP.setText("  ");
-        lblErrorLoaiSP.setText("  ");
-        lblErrorSoLuong.setText("  ");
-        lblErrorTenSP.setText("  ");
-    }
-    // </editor-fold>    
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
-    private void nonError(){
-        if (lblErrorTenSP.getText().equals("  ")) {
-            lblErrorTenSP.setText("Chưa nhập tên sản phẩm!");
-        }
-        if (lblErrorGiaSP.getText().equals("  ")) {
-            lblErrorGiaSP.setText("Chưa nhập giá sản phẩm!");
-        }
-        if (lblErrorSoLuong.getText().equals("  ")) {
-            lblErrorSoLuong.setText("Chưa nhập số lượng sản phẩm!");
-        }
-        if (lblErrorLoaiSP.getText().equals("  ")) {
-            lblErrorLoaiSP.setText("Chưa chọn loại sản phẩm!");
-        }
-    }
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form">  
-    private Products getForm(){
-        Products product = new Products();
-        product.setId(list.get(row).getId());
-        product.setName(txtTenSP.getText());
-        product.setPrice(Float.parseFloat(txtGiaSP.getText()));
-        product.setQuantity(Integer.valueOf(txtSoLuong.getText()));
-        product.setImgUrl(proImage);
-        Integer typeId = (Integer) cboLoaiSP.getSelectedIndex();
-        typeId++;
-        product.setTypeId(typeId);
-        return product;
-    }
-    // </editor-fold>  
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa trắng form"> 
-    private void clearForm() {
-        clearError();
-        txtGiaSP.setText("Giá Sản Phẩm");
-        txtSoLuong.setText("Số Lượng Nhập Kho");
-        txtTenSP.setText("Tên Sản Phẩm");
-        cboLoaiSP.setSelectedIndex(-1);
-        btnImage.setIcon(null);
-        btnImage.setText("Hình ảnh");
-        XHover.disableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
-        XHover.enableButton(btnThem);
-    }
-    // </editor-fold>  
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
-    private boolean checkError(){
-        if(!(lblErrorGiaSP.getText().equals(" ")
-                && lblErrorLoaiSP.getText().equals(" ")
-                && lblErrorSoLuong.getText().equals(" ")
-                && lblErrorTenSP.getText().equals(" "))) return true;
-        else if(btnImage.getIcon() == null){
-            XMess.alert(this, "Bạn chưa chọn ảnh sản phẩm!");
-            return true;
-        }
-        return false;
-    }
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức thêm sản phẩm">  
-    private void insert(){
-        nonError();
-        if(checkError()) return;
-        Products product = getForm();
-        int result = XMess.confirm(this, "Bạn muốn thêm sản phẩm này?")
-                    ? proDao.insert(product) : -2;
-        if( result == -2){
-            return;
-        }else if(result == 0){
-            XMess.alert(this,"Thêm sản phẩm thành công!");
-        }else{
-            // Tạo luồng và hiện dialog loading
-            DialogLoading dlog = new DialogLoading();
-            dlog.setVisible(true);
-            new Thread(){
-                @Override
-                public void run(){
-                    XPanel.mainForm.setEnabled(false);
-                    fillTableProduct(true);
-                    XPanel.mainForm.setEnabled(true);
-                    dlog.setVisible(false);
-                    XMess.alert(null,"Thêm sản phẩm thành công!");
-                    pressTabButton(btnDanhSachSP);
-                    clearForm();
-                }
-            }.start();
-        }
-    }
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức cập nhập sản phẩm">  
-    private void update(){
-        nonError();
-        if(checkError()) return;
-        Products product = getForm();
-        if(XMess.confirm(this, "Bạn muốn cập nhật sản phẩm này?")){
-            if(proDao.update(product) == 0){
-                XMess.alert(this,"Cập nhập sản phẩm thất bại!");
-            }else{
-                // Tạo luồng và hiện dialog loading
-                DialogLoading dlog = new DialogLoading();
-                dlog.setVisible(true);
-                new Thread(){
-                    @Override
-                    public void run(){
-                        XPanel.mainForm.setEnabled(false);
-                        fillTableProduct(true);
-                        XPanel.mainForm.setEnabled(true);
-                        dlog.setVisible(false);
-                        XMess.alert(null,"Cập nhập sản phẩm thành công!");
-                        pressTabButton(btnDanhSachSP);
-                        clearForm();
-                    }
-                }.start();
-            }
-        }
-    }
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức xóa sản phẩm">  
-    private void delete(){
-        Products pro = list.get(row);
-        if(XMess.confirm(this, "Bạn muốn xóa sản phẩm này?")){
-            if (proDao.delete(pro.getId()) == 0) {
-                XMess.alert(this, "Xóa sản phẩm thất bại!");
-            } else {
-                // Tạo luồng và hiện dialog loading
-                DialogLoading dlog = new DialogLoading();
-                dlog.setVisible(true);
-                new Thread(){
-                    @Override
-                    public void run(){
-                        XPanel.mainForm.setEnabled(false);
-                        fillTableProduct(true);
-                        fillTableProductDeleted(true);
-                        XPanel.mainForm.setEnabled(true);
-                        dlog.setVisible(false);
-                        XMess.alert(null ,"Xóa sản phẩm thành công!");
-                        pressTabButton(btnSPDaXoa);
-                        clearForm();
-                    }
-                }.start();
-            }
-        }
-    }
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
-    private void getImage(){
-        JFileChooser fileChooser = new JFileChooser();
-        if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-            try {
-                File file = fileChooser.getSelectedFile();
-                proImage = XImage.convertImageToBytes(file);
-                ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
-                        getScaledInstance(btnImage.getWidth(), btnImage.getHeight(), Image.SCALE_SMOOTH));
-                btnImage.setIcon(icon);
-            } catch (Exception ex) {
-                
-            } 
-        }
-    }
-    // </editor-fold>  
-    
 // _____________ Điều khiển _____________
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức các nút điều khiển"> 
-    private void first(){
+    public void first(){
         tblDanhSachSP.setRowSelectionInterval(0, 0);
         edit();
-        XHover.disableButton(btnPrev, btnFirst);
+        dialogInfo.first();
     }
     
-    private void prev(){
+    public void prev(){
         if(row > 0){
             tblDanhSachSP.setRowSelectionInterval(--row, row);
             edit();
         }
         if(row == 0){
-            XHover.disableButton(btnPrev, btnFirst);
+            dialogInfo.prev(true);
         }else if(row == list.size()-2){
-            XHover.enableButton(btnNext, btnLast);
+            dialogInfo.prev(false);
         }
     }
     
-    private void next(){
+    public void next(){
         if(row < list.size()-1){
             tblDanhSachSP.setRowSelectionInterval(++row, row);
             edit();
         }
         if(row == list.size()-1){
-            XHover.disableButton(btnNext, btnLast);
+            dialogInfo.next(true);
         }else if(row == 1){
-            XHover.enableButton(btnPrev, btnFirst);
+            dialogInfo.prev(false);
         }
     }
     
-    private void last(){
+    public void last(){
         int index = tblDanhSachSP.getRowCount() - 1;
         tblDanhSachSP.setRowSelectionInterval(index, index);
         edit();
-        XHover.disableButton(btnNext, btnLast);
+        dialogInfo.last();
     }
     // </editor-fold> 
     

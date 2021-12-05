@@ -6,7 +6,6 @@ import com.unknownshop.util.XList;
 import com.unknownshop.util.XPanel;
 import java.awt.Component;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 
 public class HomeUser extends javax.swing.JPanel {
 

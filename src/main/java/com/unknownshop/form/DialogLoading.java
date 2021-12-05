@@ -4,7 +4,7 @@ public class DialogLoading extends javax.swing.JDialog {
 
     public DialogLoading() {
         initComponents();
-        this.setAlwaysOnTop(true);
+        setAlwaysOnTop(true);
         loading().start();
     }
 

@@ -1,6 +1,7 @@
 package com.unknownshop.fragment.header;
 
 import com.unknownshop.constant.XConstant;
+import com.unknownshop.form.user.PanelCart;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
@@ -92,10 +93,9 @@ public class SubHeaderUser extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addComponent(lblChao, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addComponent(lblAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblChao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -161,6 +161,9 @@ public class SubHeaderUser extends javax.swing.JPanel {
         XPanel.panelHeader.setSign();
         if(XPanel.nameCard.equals("TaiKhoan")){
             XPanel.nameCard = "Home";
+        }else if(XPanel.nameCard.equals("GioHang")){
+            XPanel.panelCart.removeAll();
+            XPanel.panelCart.add(new PanelCart());
         }
         CardLayout card = (CardLayout)XPanel.panelCardUser.getLayout();
         card.show(XPanel.panelCardUser, XPanel.nameCard);

@@ -2,6 +2,7 @@ package com.unknownshop.fragment.header;
 
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.form.DialogLoading;
+import com.unknownshop.form.user.PanelCart;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
@@ -193,12 +194,12 @@ public class SubHeaderAdmin extends javax.swing.JPanel {
     private void changeForm(){
         if(XMess.confirm(null, "Bạn có muốn chuyển sang form "
                         + (!Auth.check ? "quản lý?" : "cửa hàng?"))){
-            DialogLoading dlog = new DialogLoading();
-            dlog.setVisible(true);
             if(!Auth.check){
                 new Thread(){
                     @Override
                     public void run(){
+                        DialogLoading dlog = new DialogLoading();
+                        dlog.setVisible(true);
                         Auth.check = true;
                         XPanel.mainForm.setEnabled(false);
                         XPanel.mainForm.fillHomeAdmin();
@@ -210,6 +211,8 @@ public class SubHeaderAdmin extends javax.swing.JPanel {
                 new Thread(){
                     @Override
                     public void run(){
+                        DialogLoading dlog = new DialogLoading();
+                        dlog.setVisible(true);
                         Auth.check = false;
                         XPanel.mainForm.setEnabled(false);
                         XPanel.mainForm.fillHomeUser();
@@ -231,6 +234,7 @@ public class SubHeaderAdmin extends javax.swing.JPanel {
             CardLayout card = (CardLayout)XPanel.panelCardUser.getLayout();
             card.show(XPanel.panelCardUser, "TaiKhoan");
         }
+        XPanel.nameCard = "TaiKhoan";
     }
     // </editor-fold>
     
@@ -238,13 +242,27 @@ public class SubHeaderAdmin extends javax.swing.JPanel {
     private void signOut(){
         if(XMess.confirm(null, "Bạn có muốn đăng xuất không?")){
             if(Auth.check){
-                changeForm();
+                new Thread(){
+                    @Override
+                    public void run(){
+                        DialogLoading dlog = new DialogLoading();
+                        dlog.setVisible(true);
+                        Auth.check = false;
+                        XPanel.mainForm.setEnabled(false);
+                        XPanel.mainForm.fillHomeUser();
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                    }
+                }.start();
             }
             XPanel.panelTaiKhoan.removeAll();
             Auth.clear();
             XPanel.panelHeader.setSign();
             if(XPanel.nameCard.equals("TaiKhoan")){
                 XPanel.nameCard = "Home";
+            }else if(XPanel.nameCard.equals("GioHang")){
+                XPanel.panelCart.removeAll();
+                XPanel.panelCart.add(new PanelCart());
             }
             CardLayout card = (CardLayout)XPanel.panelCardUser.getLayout();
             card.show(XPanel.panelCardUser, XPanel.nameCard);

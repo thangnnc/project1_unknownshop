@@ -257,6 +257,7 @@ public class DialogReSignIn extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
+        setAlwaysOnTop(true);
         setBackground(new Color(0,0,0,0));
         lblErrorUsername.setText("  ");
         lblErrorPassword.setText("  ");

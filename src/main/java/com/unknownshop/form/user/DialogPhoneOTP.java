@@ -31,7 +31,7 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnKiemTra = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -167,12 +167,12 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Phương thức gửi mã OTP">
     private void init() {
         // Tạo luồng và hiện dialog loading
-        DialogLoading dlog = new DialogLoading();
-        dlog.setVisible(true);
         new Thread(){
             @Override
             public void run(){
-                OTP = (int) Math.round((Math.random() * 9999) + 1000);
+                DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                OTP = (int) Math.round((Math.random() * 8999) + 1000);
                 String body = "\nMã xác nhận của bạn là : " + OTP + "\nKhông chia sẻ mã với người khác";
                 Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
                 Message.creator(new com.twilio.type.PhoneNumber("+84" + phone),
@@ -186,6 +186,7 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent e) {
                 if(XMess.confirm(null, "Bạn muốn đóng ứng dụng này?")){
                     XPanel.mainForm.setEnabled(true);
+                    dispose();
                 }
             }
         });

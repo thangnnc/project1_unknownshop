@@ -32,6 +32,7 @@ public class DialogInfoAccount extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        roundPanel2 = new com.unknownshop.swing.RoundPanel();
         roundPanel1 = new com.unknownshop.swing.RoundPanel();
         jPanel1 = new javax.swing.JPanel();
         lblImage = new com.unknownshop.swing.RoundLabel();
@@ -69,6 +70,8 @@ public class DialogInfoAccount extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+
+        roundPanel2.setBackground(new java.awt.Color(0, 102, 204));
 
         roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -570,15 +573,32 @@ public class DialogInfoAccount extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
+        roundPanel2.setLayout(roundPanel2Layout);
+        roundPanel2Layout.setHorizontalGroup(
+            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        roundPanel2Layout.setVerticalGroup(
+            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -850,6 +870,7 @@ public class DialogInfoAccount extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoNhanVien;
     private javax.swing.JRadioButton rdoQuanLy;
     private com.unknownshop.swing.RoundPanel roundPanel1;
+    private com.unknownshop.swing.RoundPanel roundPanel2;
     private com.unknownshop.swing.textfield.TextField txtEmail;
     private com.unknownshop.swing.textfield.TextField txtFullname;
     private com.unknownshop.swing.textfield.PasswordField txtPassword;
@@ -886,7 +907,7 @@ public class DialogInfoAccount extends javax.swing.JFrame {
         // Disable tên tài khoản
         txtUsername.setEditable(false);
         txtPassword.setEditable(false);
-        txtPassword.setEditable(false);
+        txtRePassword.setEditable(false);
         // Định dạng các nút
         XHover.enableButton(btnSua, btnXoa, btnFirst, btnLast, btnNext, btnPrev);
         XHover.disableButton(btnThem);
@@ -963,7 +984,7 @@ public class DialogInfoAccount extends javax.swing.JFrame {
         // Enable tên tài khoản
         txtUsername.setEditable(true);
         txtPassword.setEditable(true);
-        txtPassword.setEditable(true);
+        txtRePassword.setEditable(true);
     }
     // </editor-fold>  
     

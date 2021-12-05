@@ -568,6 +568,7 @@ public class DialogChangeAccount extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên form">
     public void init(){
+        setAlwaysOnTop(true);
         // Chuyển lỗi về dạng 1 dấu cách
         lblErrorEmail.setText(" ");
         lblErrorFullname.setText(" ");

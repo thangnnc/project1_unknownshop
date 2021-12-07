@@ -53,7 +53,7 @@ public class ThongKeDAO {
     
     // Số doanh thu bán được
     public String getRevenueByMonth(int month, int year){ 
-        String sql = "{Call sp_revenue6Month(?,?)}";
+        String sql = "{Call sp_revenueOneMonth(?,?)}";
         String[] cols = {"result"};
         Object[] result = getListOfArray(sql, cols,month,year).get(0);
         return (String) result[0]; 

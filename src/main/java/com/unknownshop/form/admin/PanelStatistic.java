@@ -1,7 +1,9 @@
 package com.unknownshop.form.admin;
 
 import com.unknownshop.chart.ModelChart;
+import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.ThongKeDAO;
+import com.unknownshop.util.Auth;
 import com.unknownshop.util.XImage;
 import com.unknownshop.util.XPanel;
 import java.awt.Color;
@@ -119,26 +121,23 @@ public class PanelStatistic extends javax.swing.JPanel {
         card2.setData("Sản phẩm đã bán đi", 
                 dao.getProductsSold()+"", XImage.getIconCard("card3"));
     }
-    // </editor-fold>  
+    // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thẻ card">    
     public void setChart() {
         chart.addLegend("Doanh thu theo từng tháng", new Color(12, 84, 175), new Color(0, 108, 247));
-//        chart.addLegend("Sản phẩm nhập về", new Color(54, 4, 143), new Color(104, 49, 200));
-//        chart.addLegend("Sản phẩm tồn kho", new Color(5, 125, 0), new Color(95, 209, 69));
-//        chart.addLegend("Sản phẩm hoàn trả", new Color(186, 37, 37), new Color(241, 100, 120));
-
-        YearMonth now = YearMonth.now();
-        for (int i = 0; i < 6; i++) {
-            int month = now.minusMonths(5-i).getMonthValue();
-            int year = now.minusMonths(5-i).getYear();
-            chart.addData(new ModelChart("Tháng "+month+", năm "+year, 
-                                new double[]{Double.valueOf(dao.getRevenueByMonth(month, year))}));
+        if(Auth.user.getRole().equals(XConstant.ADMIN)){
+            YearMonth now = YearMonth.now();
+            for (int i = 0; i < 6; i++) {
+                int month = now.minusMonths(5-i).getMonthValue();
+                int year = now.minusMonths(5-i).getYear();
+                chart.addData(new ModelChart("Tháng "+month+", năm "+year, 
+                                    new double[]{Double.valueOf(dao.getRevenueByMonth(month, year))}));
+            }
         }
-
         chart.start();
     }
-    // </editor-fold>  
+    // </editor-fold>
     
 // ----------------------  End Method  ----------------------
 }

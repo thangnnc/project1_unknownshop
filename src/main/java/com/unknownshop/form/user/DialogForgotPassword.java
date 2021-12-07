@@ -6,7 +6,6 @@ import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XMess;
-import com.unknownshop.util.XPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.text.JTextComponent;
@@ -227,7 +226,7 @@ public class DialogForgotPassword extends javax.swing.JFrame {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Event btnClose">
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        XPanel.mainForm.setEnabled(true);
+        new DialogSignIn().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
     // </editor-fold>
@@ -282,6 +281,10 @@ public class DialogForgotPassword extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DialogForgotPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -346,7 +349,7 @@ public class DialogForgotPassword extends javax.swing.JFrame {
             XMess.alert(this, "Xác minh thành công! Mật khẩu của bạn sẽ đổi về mật định 123");
             user.setPassword("123");
             dao.update(user);
-            XPanel.mainForm.setEnabled(true);
+            new DialogSignIn().setVisible(true);
             this.dispose();
         }else{
             XMess.alert(this, "Sai OTP");

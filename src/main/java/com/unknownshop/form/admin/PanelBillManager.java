@@ -40,7 +40,6 @@ public class PanelBillManager extends javax.swing.JPanel {
 
         pnlTabButton = new javax.swing.JPanel();
         btnDanhSachHD = new javax.swing.JButton();
-        btnHDChiTiet = new javax.swing.JButton();
         btnDSHoaDonXN = new javax.swing.JButton();
         pnlCard = new javax.swing.JPanel();
         DanhSachHD = new javax.swing.JPanel();
@@ -51,9 +50,6 @@ public class PanelBillManager extends javax.swing.JPanel {
         DSHoaDonXN = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSHoaDonXN = new com.unknownshop.swing.table.Table();
-        pnlHDChiTiet = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblHDChiTiet = new com.unknownshop.swing.table.Table();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -82,26 +78,6 @@ public class PanelBillManager extends javax.swing.JPanel {
             }
         });
 
-        btnHDChiTiet.setBackground(new java.awt.Color(51, 51, 51));
-        btnHDChiTiet.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnHDChiTiet.setForeground(new java.awt.Color(51, 51, 51));
-        btnHDChiTiet.setText("Chi Tiết Hóa Đơn");
-        btnHDChiTiet.setToolTipText("HDChiTiet");
-        btnHDChiTiet.setContentAreaFilled(false);
-        btnHDChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHDChiTietMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHDChiTietMouseExited(evt);
-            }
-        });
-        btnHDChiTiet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHDChiTietActionPerformed(evt);
-            }
-        });
-
         btnDSHoaDonXN.setBackground(new java.awt.Color(51, 51, 51));
         btnDSHoaDonXN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDSHoaDonXN.setForeground(new java.awt.Color(51, 51, 51));
@@ -127,19 +103,16 @@ public class PanelBillManager extends javax.swing.JPanel {
         pnlTabButtonLayout.setHorizontalGroup(
             pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabButtonLayout.createSequentialGroup()
-                .addComponent(btnDanhSachHD, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDSHoaDonXN, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnHDChiTiet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnDanhSachHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDSHoaDonXN, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlTabButtonLayout.setVerticalGroup(
             pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabButtonLayout.createSequentialGroup()
                 .addGroup(pnlTabButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDanhSachHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(btnDSHoaDonXN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHDChiTiet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDSHoaDonXN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -308,61 +281,6 @@ public class PanelBillManager extends javax.swing.JPanel {
 
         pnlCard.add(DSHoaDonXN, "DSHoaDonXN");
 
-        pnlHDChiTiet.setOpaque(false);
-
-        tblHDChiTiet.setBackground(new java.awt.Color(255, 255, 255));
-        tblHDChiTiet.setForeground(new java.awt.Color(51, 51, 51));
-        tblHDChiTiet.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Ảnh", "Tên Sản Phẩm", "Số Lượng", "Đơn Giá", "Tổng Giá"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblHDChiTiet.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        tblHDChiTiet.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setViewportView(tblHDChiTiet);
-        if (tblHDChiTiet.getColumnModel().getColumnCount() > 0) {
-            tblHDChiTiet.getColumnModel().getColumn(0).setResizable(false);
-            tblHDChiTiet.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblHDChiTiet.getColumnModel().getColumn(1).setResizable(false);
-            tblHDChiTiet.getColumnModel().getColumn(1).setPreferredWidth(350);
-            tblHDChiTiet.getColumnModel().getColumn(2).setResizable(false);
-            tblHDChiTiet.getColumnModel().getColumn(2).setPreferredWidth(150);
-            tblHDChiTiet.getColumnModel().getColumn(3).setResizable(false);
-            tblHDChiTiet.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tblHDChiTiet.getColumnModel().getColumn(4).setResizable(false);
-            tblHDChiTiet.getColumnModel().getColumn(4).setPreferredWidth(200);
-        }
-
-        javax.swing.GroupLayout pnlHDChiTietLayout = new javax.swing.GroupLayout(pnlHDChiTiet);
-        pnlHDChiTiet.setLayout(pnlHDChiTietLayout);
-        pnlHDChiTietLayout.setHorizontalGroup(
-            pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHDChiTietLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlHDChiTietLayout.setVerticalGroup(
-            pnlHDChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHDChiTietLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlCard.add(pnlHDChiTiet, "HDChiTiet");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -397,19 +315,6 @@ public class PanelBillManager extends javax.swing.JPanel {
     private void btnDanhSachHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachHDActionPerformed
         pressTabButton(btnDanhSachHD);
     }//GEN-LAST:event_btnDanhSachHDActionPerformed
-    // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnHDChiTiet"> 
-    private void btnHDChiTietMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHDChiTietMouseEntered
-        XHover.enterTabButton(btnHDChiTiet, XConstant.WHITE_255, XConstant.BLACK_51);
-    }//GEN-LAST:event_btnHDChiTietMouseEntered
-
-    private void btnHDChiTietMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHDChiTietMouseExited
-        XHover.exitTabButton(btnHDChiTiet);
-    }//GEN-LAST:event_btnHDChiTietMouseExited
-
-    private void btnHDChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHDChiTietActionPerformed
-        pressTabButton(btnHDChiTiet);
-    }//GEN-LAST:event_btnHDChiTietActionPerformed
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event btnDuyet"> 
     private void btnDuyetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDuyetMouseEntered
@@ -459,17 +364,13 @@ public class PanelBillManager extends javax.swing.JPanel {
     private javax.swing.JButton btnDSHoaDonXN;
     private javax.swing.JButton btnDanhSachHD;
     private javax.swing.JButton btnDuyet;
-    private javax.swing.JButton btnHDChiTiet;
     private javax.swing.JButton btnHuy;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel pnlCard;
-    private javax.swing.JPanel pnlHDChiTiet;
     private javax.swing.JPanel pnlTabButton;
     private com.unknownshop.swing.table.Table tblDSHoaDonXN;
     private com.unknownshop.swing.table.Table tblDanhSachHD;
-    private com.unknownshop.swing.table.Table tblHDChiTiet;
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
@@ -478,10 +379,8 @@ public class PanelBillManager extends javax.swing.JPanel {
     private void init() {
         modelCXN = (DefaultTableModel) tblDanhSachHD.getModel();
         modelDXN = (DefaultTableModel) tblDSHoaDonXN.getModel();
-        modelProduct = (DefaultTableModel) tblHDChiTiet.getModel();
         XTable.setCellAlignmentCenter(tblDanhSachHD, 1);
         XTable.setCellAlignmentCenter(tblDSHoaDonXN, 2);
-        XTable.setCellAlignmentCenter(tblHDChiTiet, 3);
         fillTabelDS(true);
         fillTabelDSDXN(true);
         XPanel.panelBillManager = this;
@@ -498,7 +397,7 @@ public class PanelBillManager extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn nút trên thanh tab">    
     private void pressTabButton(JButton btn){
-        JButton button[] = {btnDanhSachHD, btnDSHoaDonXN, btnHDChiTiet};
+        JButton button[] = {btnDanhSachHD, btnDSHoaDonXN};
         for (int i = 0; i < button.length; i++) {
             button[i].setOpaque(false);
             button[i].setBorder(null);
@@ -543,24 +442,19 @@ public class PanelBillManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Phương thức chuyển thông tin sang hóa đơn chi tiết">
     public void edit() {
         // Tạo luồng và hiện dialog loading
-            DialogLoading dlog = new DialogLoading();
-            dlog.setVisible(true);
-            new Thread(){
-                @Override
-                public void run(){
-                    XPanel.mainForm.setEnabled(false);
-                    int row = tblDanhSachHD.getSelectedRow();
-                    Object[] obj = listCXN.get(row);
-                    listProduct = daoDetail.getListProduct((int) obj[0]);
-                    modelProduct.setRowCount(0);
-                    for (Object[] obj1 : listProduct) {
-                        modelProduct.addRow(new RowTableBillDetails(obj1).toRowTable());
-                    }
-                    pressTabButton(btnHDChiTiet);
-                    XPanel.mainForm.setEnabled(true);
-                    dlog.setVisible(false);
-                }
-            }.start();
+        DialogLoading dlog = new DialogLoading();
+        dlog.setVisible(true);
+        new Thread(){
+            @Override
+            public void run(){
+                XPanel.mainForm.setEnabled(false);
+                int row = tblDanhSachHD.getSelectedRow();
+                Object[] obj = listCXN.get(row);
+                listProduct = daoDetail.getListProduct((int) obj[0]);
+                new DialogInfoBill(listProduct).setVisible(true);
+                dlog.setVisible(false);
+            }
+        }.start();
         
     }
     // </editor-fold>
@@ -586,43 +480,72 @@ public class PanelBillManager extends javax.swing.JPanel {
         int row = tblDanhSachHD.getSelectedRow();
         Object[] obj = listCXN.get(row);
         if(XMess.confirm(null, "Bạn muốn xác nhận hóa đơn này?")){
-            List<Object[]> list = dao.confirmOrders(Integer.parseInt(obj[0].toString()));
-            String content = "";
-            if (list.size() != 0) {
-                for (Object[] object : list) {
-                    content += "Sản phẩm "+ object[1]+" không đủ số lượng("
-                                +object[2]+" > "+object[3]+")\n";
+            new Thread(){
+                @Override
+                public void run(){DialogLoading dlog = new DialogLoading();
+                    dlog.setVisible(true);
+                    XPanel.mainForm.setEnabled(false);
+                    // Tải thông tin tài khoản lên form
+                    List<Object[]> list = dao.confirmOrders(Integer.parseInt(obj[0].toString()));
+                    String content = "";
+                    if (list.size() != 0) {
+                        for (Object[] object : list) {
+                            content += "Sản phẩm "+ object[1]+" không đủ số lượng("
+                                        +object[2]+" > "+object[3]+")\n";
+                        }
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null, content);
+                    }else {
+                        fillTabelDS(true);
+                        fillTabelDSDXN(true);
+                        XPanel.mainForm.setEnabled(true);
+                        dlog.setVisible(false);
+                        XMess.alert(null, "Xác nhận đơn thành công");
+                    }
                 }
-                XMess.alert(this, content);
-            }else {
-                XMess.alert(null, "Xác nhận đơn thành công");
-                listCXN.remove(row);
-                listDXN.add(obj);
-                fillTabelDS(false);
-                fillTabelDSDXN(false);
-            }
+            }.start();
         }
     }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa tất cả hóa đơn">
     private void cancelAll() {
-        if (dao.deleteAll() == 0) {
-            XMess.alert(this, "Xóa hóa đơn thất bại!");
-        } else {
-            XMess.alert(null, "Xóa hóa đơn thành công");
-            listCXN.clear();
-            fillTabelDS(false);
-        }
+        new Thread(){
+            @Override
+            public void run(){DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                XPanel.mainForm.setEnabled(false);
+                if (dao.deleteAll() == 0) {
+                    XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
+                    XMess.alert(null, "Xóa hóa đơn thất bại!");
+                } else {
+                    fillTabelDS(true);
+                    XPanel.mainForm.setEnabled(true);
+                    dlog.setVisible(false);
+                    XMess.alert(null, "Xóa hóa đơn thành công");
+                }
+            }
+        }.start();
     }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Phương thức xác nhận tất cả hóa đơn">
     private void confirmAll() {
-        dao.confirmAllOrders();
-        fillTabelDS(true);
-        fillTabelDSDXN(true);
-        XMess.alert(null, "Xác nhận đơn thành công");
+        new Thread(){
+            @Override
+            public void run(){DialogLoading dlog = new DialogLoading();
+                dlog.setVisible(true);
+                XPanel.mainForm.setEnabled(false);
+                dao.confirmAllOrders();
+                fillTabelDS(true);
+                fillTabelDSDXN(true);
+                XPanel.mainForm.setEnabled(true);
+                dlog.setVisible(false);
+                XMess.alert(null, "Xác nhận đơn thành công");
+            }
+        }.start();
     }
     // </editor-fold>
     

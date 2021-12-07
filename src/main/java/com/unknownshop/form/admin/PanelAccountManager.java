@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelAccountManager extends javax.swing.JPanel {
@@ -210,10 +211,10 @@ public class PanelAccountManager extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachTKLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboChucVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThemTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                    .addComponent(btnThemTK, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(cboChucVu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -610,6 +611,33 @@ public class PanelAccountManager extends javax.swing.JPanel {
         dialogInfo.last();
     }
     // </editor-fold> 
+
+    // <editor-fold defaultstate="collapsed" desc="Phương thức tìm kiếm người học">    
+    private void search(JTable tbl){
+//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+//        String text = txtTimKiem.getText().toLowerCase();
+//        // Đưa danh sách thông tin lên bảng
+//        model.setRowCount(0);
+//        for (NguoiHoc nh : list) {
+//            String id = nh.getMaNH().toString().toLowerCase();
+//            String name = nh.getTenNH().toLowerCase();
+//            String gender = nh.getGioiTinh().toLowerCase();
+//            String email = nh.getEmail().toLowerCase();
+//            String sdt = nh.getSdt();
+//            String idNV = nh.getMaNV().toLowerCase();
+//            boolean check = id.contains(text) || name.contains(text)
+//                            || gender.contains(text) || email.contains(text) 
+//                            || sdt.contains(text) || idNV.contains(text);
+//            if(check){
+//                model.addRow(new Object[]{
+//                    nh.getMaNH(),nh.getTenNH(),nh.getGioiTinh(),nh.getNgaySinh()
+//                                ,nh.getSdt(),nh.getEmail(),nh.getMaNV(), nh.getNgayDK()
+//                }); 
+//            }
+//        }
+//        
+    }
+    //</editor-fold>
     
 // ---------------------- End Method ----------------------
     

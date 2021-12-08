@@ -2,8 +2,8 @@ package com.unknownshop.form.user;
 
 import com.github.sarxos.webcam.Webcam;
 import com.unknownshop.constant.XConstant;
+import com.unknownshop.form.DialogChangeAccount;
 import com.unknownshop.util.XHover;
-import com.unknownshop.util.XMess;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -13,15 +13,15 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class TakePicture extends javax.swing.JFrame {
+public class TakePicture2 extends javax.swing.JFrame {
     Webcam webcam;
     Image image;
     byte[] byteImg;
     int index = 0;
-    DialogSignUp dialog;
+    DialogChangeAccount dialog;
     JLabel label;
 
-    public TakePicture(DialogSignUp dialog, JLabel lbl) {
+    public TakePicture2(DialogChangeAccount dialog, JLabel lbl) {
         initComponents();
         this.dialog = dialog;
         this.label = lbl;
@@ -124,7 +124,7 @@ public class TakePicture extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TakePicture(null,null).setVisible(true);
+                new TakePicture2(null,null).setVisible(true);
             }
         });
     }

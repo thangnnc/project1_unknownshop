@@ -5,7 +5,6 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.unknownshop.form.*;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
@@ -614,12 +613,10 @@ public class DialogSignUp extends javax.swing.JFrame {
                         BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
                         String outputFile = "./qr_code.png";
                         Path path = (Path) FileSystems.getDefault().getPath(outputFile);
-                        try {
-                            MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
+                        MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
                     } catch (WriterException ex) {
+                        ex.printStackTrace();
+                    } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                     XMail.sendQRCode(txtEmail.getText());

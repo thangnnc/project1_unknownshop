@@ -9,6 +9,8 @@ import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
 import com.unknownshop.form.DialogLoading;
+import com.unknownshop.form.user.TakePicture;
+import com.unknownshop.form.user.TakePicture2;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
@@ -688,22 +690,37 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
     private void getImage(){
-        JFileChooser fileChooser = new JFileChooser();
-        if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-            try {
-                File file = fileChooser.getSelectedFile();
-                userImg = XImage.convertImageToBytes(file);
-                ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
-                        getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
-                lblImage.setIcon(icon);
-                lblImage.setToolTipText("");
-            } catch (Exception ex) {
-                
-            } 
+        boolean check = XMess.confirm(this, "Lấy ảnh qua webcame?");
+        if (check == false) {
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    userImg = XImage.convertImageToBytes(file);
+                    ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
+                            getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+                    lblImage.setIcon(icon);
+                    lblImage.setToolTipText("");
+                } catch (Exception ex) {
+                }
+            }
+        } else {
+            new TakePicture2(this, lblImage).setVisible(true);
         }
     }
     // </editor-fold>  
     
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
+    public void setIcon(Image image, byte[] byteImg) {
+        ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
+                getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+        lblImage.setIcon(icon);
+        lblImage.setText(""); 
+        userImg = byteImg;
+    }
+    // </editor-fold>    
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức quét QR code">
     private void getQRCode() {
         try {
             Users user = new Users();
@@ -722,6 +739,7 @@ public class DialogChangeAccount extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
+    // </editor-fold>  
     
 // ---------------------- End Method ----------------------
 

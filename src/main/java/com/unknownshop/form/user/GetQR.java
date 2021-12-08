@@ -44,21 +44,26 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
         jPanel1 = new javax.swing.JPanel();
         Panel = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel.setBackground(new java.awt.Color(250, 250, 250));
         Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 230, 230)));
         Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 300));
+        jPanel1.add(Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 470, 300));
 
         btnExit.setBackground(new java.awt.Color(0, 102, 204));
+        btnExit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(51, 51, 51));
         btnExit.setText("EXIT");
+        btnExit.setContentAreaFilled(false);
+        btnExit.setOpaque(true);
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnExitMouseEntered(evt);
@@ -72,13 +77,22 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
                 btnExitActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 70, 30));
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 140, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 370));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Quét QR Code Để Đăng Nhập");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+// -------------------- Start Event --------------------
+    
+    // <editor-fold defaultstate="collapsed" desc="Event btnExit">
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         webcam.close();
         this.dispose();
@@ -92,10 +106,10 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
     private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
        XHover.exitButton(btnExit);
     }//GEN-LAST:event_btnExitMouseExited
-
-    /**
-     * @param args the command line arguments
-     */
+   // </editor-fold> 
+    
+// -------------------- End Event --------------------
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             new GetQR(null, null, null).setVisible(true);
@@ -105,10 +119,11 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
     private javax.swing.JButton btnExit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    // -------------------- Start Method --------------------
+// -------------------- Start Method --------------------
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức hiển thị camera"> 
     private void init() {
@@ -127,7 +142,7 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
     }
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Chạy luồng"> 
+    // <editor-fold defaultstate="collapsed" desc="Phương thức chạy luồng"> 
     @Override
     public void run() {
         do {
@@ -146,13 +161,12 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
             }
             //chuyển đổi hình ảnh sang nguồn bitmap nhị phân
             try {
-                try {
-                    LuminanceSource source = new BufferedImageLuminanceSource(image);
-                    BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-                    result = new MultiFormatReader().decode(bitmap);
-                } catch (NotFoundException e) {
-                }
+                if(image==null) continue;
+                LuminanceSource source = new BufferedImageLuminanceSource(image);
+                BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+                result = new MultiFormatReader().decode(bitmap);
             } catch (Exception e) {
+                e.printStackTrace();
             }
             if (result != null) {
                 String info = result.getText();
@@ -177,5 +191,5 @@ public class GetQR extends javax.swing.JFrame implements Runnable, ThreadFactory
     }
     // </editor-fold> 
     
-     // -------------------- End Method --------------------
+// -------------------- End Method --------------------
 }

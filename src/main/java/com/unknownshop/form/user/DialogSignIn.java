@@ -14,7 +14,8 @@ import javax.swing.text.JTextComponent;
 public class DialogSignIn extends javax.swing.JFrame {
 
     private UserDAO dao = new UserDAO();
-    
+    private String user = "";
+    private String pass = "";
     public DialogSignIn() {
         initComponents();
         init();
@@ -36,6 +37,7 @@ public class DialogSignIn extends javax.swing.JFrame {
         lblIconPassword = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -147,6 +149,13 @@ public class DialogSignIn extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("QR Code");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
@@ -170,8 +179,10 @@ public class DialogSignIn extends javax.swing.JFrame {
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
+                .addGap(68, 68, 68)
                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundPanel1Layout.setVerticalGroup(
@@ -201,7 +212,9 @@ public class DialogSignIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -305,6 +318,11 @@ public class DialogSignIn extends javax.swing.JFrame {
     private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
 
     }//GEN-LAST:event_jLabel2MouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        GetQR qr = new GetQR(this,user,pass);
+        qr.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
     // </editor-fold> 
     
 // -------------------- End Event --------------------
@@ -320,6 +338,7 @@ public class DialogSignIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblErrorPassword;
@@ -418,5 +437,14 @@ public class DialogSignIn extends javax.swing.JFrame {
     }
     // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Phương thức đăng nhập tự động sau khi quét QR code">
+    public void setInfo(String user, String pass){
+        txtUsername.setText(user);
+        txtPassword.setText(pass);
+        lblErrorUsername.setText(" ");
+        lblErrorPassword.setText(" ");
+        signIn();
+    }
+    // </editor-fold >
 // ---------------------- End Method ----------------------
 }

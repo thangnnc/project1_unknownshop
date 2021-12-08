@@ -15,6 +15,7 @@ com\unknownshop\fragment\menu\MenuUser$1.class
 com\unknownshop\form\admin\DialogInfoAccount$4.class
 com\unknownshop\form\admin\DialogInfoAccount$17.class
 com\unknownshop\form\admin\DialogInfoProduct$8.class
+com\unknownshop\form\user\GetQR.class
 com\unknownshop\form\admin\PanelStatisticDetails$26.class
 com\unknownshop\fragment\header\SubHeaderUser$1.class
 com\unknownshop\form\DialogChangeAccount.class
@@ -71,6 +72,7 @@ com\unknownshop\swing\table\RowTableAccount$1.class
 com\unknownshop\chart\blankchart\BlankPlotChart$1.class
 com\unknownshop\form\admin\DialogInfoAccount$10.class
 com\unknownshop\swing\textfield\TextField$3.class
+com\unknownshop\util\XMail$2.class
 com\unknownshop\util\XHover.class
 com\unknownshop\form\user\DialogSignUp$6.class
 com\unknownshop\form\user\DialogSignIn.class
@@ -103,6 +105,8 @@ com\unknownshop\form\admin\PanelBillManager.class
 combobox\ComboboxBlack.class
 com\unknownshop\fragment\header\SubHeaderAdmin$3.class
 com\unknownshop\swing\table\RowTableBill$2.class
+com\unknownshop\swing\textfield\TextFieldWhite.class
+com\unknownshop\swing\textfield\TextFieldWhite$1.class
 com\unknownshop\form\admin\PanelStatisticDetails$16.class
 com\unknownshop\form\user\DialogSignUp$10.class
 com\unknownshop\form\admin\PanelStatisticDetails$21.class
@@ -134,6 +138,7 @@ com\unknownshop\form\user\DialogSignIn$6.class
 com\unknownshop\swing\shadow\GraphicsUtilities.class
 com\unknownshop\swing\textfield\Main$1.class
 com\unknownshop\form\admin\PanelSecurityLarge.class
+com\unknownshop\swing\textfield\TextFieldWhite$3.class
 com\unknownshop\dao\ProductTypeDAO.class
 com\unknownshop\form\admin\DialogInfoProduct$23.class
 com\unknownshop\dao\UserDAO.class
@@ -185,6 +190,7 @@ com\unknownshop\fragment\menu\MenuAdmin$4.class
 com\unknownshop\fragment\product\ProductCard$2.class
 com\unknownshop\form\admin\DialogInfoAccount.class
 com\unknownshop\form\admin\PanelBillManager$5.class
+com\unknownshop\form\user\GetQR$1.class
 com\unknownshop\form\user\DialogPhoneOTP$4.class
 com\unknownshop\swing\combobox\ComboboxWhite$1.class
 com\unknownshop\form\user\TakePicture.class
@@ -222,6 +228,7 @@ com\unknownshop\fragment\header\SubHeaderNone$2.class
 com\unknownshop\form\admin\DialogInfoAccount$24.class
 com\unknownshop\util\XMail$1.class
 com\unknownshop\chart\blankchart\SeriesSize.class
+com\unknownshop\form\user\GetQR$2.class
 com\unknownshop\form\user\DialogPhoneOTP$5.class
 com\unknownshop\fragment\product\ProductCardDescription.class
 com\unknownshop\form\admin\DialogInfoAccount$11.class
@@ -276,6 +283,7 @@ com\unknownshop\chart\ModelLegend.class
 com\unknownshop\form\admin\DialogInfoAccount$5.class
 com\unknownshop\form\user\DialogSignUp$11.class
 com\unknownshop\dao\ThongKeDAO.class
+com\unknownshop\swing\textfield\TextFieldWhite$2.class
 com\unknownshop\form\admin\PanelStatisticDetails$22.class
 com\unknownshop\swing\table\ColumnRestore.class
 com\unknownshop\form\admin\PanelProductManager$12.class
@@ -340,6 +348,7 @@ com\unknownshop\form\admin\PanelAccountManager$8.class
 com\unknownshop\form\admin\DialogInfoAccount$2.class
 com\unknownshop\form\admin\PanelAccountManager$9.class
 com\unknownshop\form\admin\PanelAccountManager$2.class
+com\unknownshop\form\user\DialogSignIn$11.class
 com\unknownshop\form\user\TakePicture$2.class
 com\unknownshop\util\XImage.class
 com\unknownshop\form\user\DialogSignIn$1.class

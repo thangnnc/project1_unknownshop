@@ -96,8 +96,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       <Component id="btnDangNhap" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -134,7 +136,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnDangNhap" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnDangNhap" pref="49" max="32767" attributes="0"/>
+                          <Component id="jButton1" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -286,6 +291,14 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseClicked"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseExited"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="QR Code"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -1,18 +1,26 @@
 package com.unknownshop.form.user;
 
-import com.unknownshop.form.*;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
 import com.unknownshop.form.DialogLoading;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
+import com.unknownshop.util.XMail;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -599,10 +607,23 @@ public class DialogSignUp extends javax.swing.JFrame {
                     lblErrorEmail.setText("Email đã được sử dụng!");
                     txtEmail.requestFocus();
                 }else{
+                       try {
+                        String data = txtUsername.getText() + "+" + txtPassword.getText();
+                        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+                        BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
+                        String outputFile = "./qr_code.png";
+                        Path path = (Path) FileSystems.getDefault().getPath(outputFile);
+                        MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
+                    } catch (WriterException ex) {
+                        ex.printStackTrace();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    XMail.sendQRCode(txtEmail.getText());
                     clearForm();
                     XPanel.mainForm.setEnabled(true);
                     dlog.setVisible(false);
-                    JOptionPane.showMessageDialog(null,"Đăng kí tài khoản thành công!");
+                    JOptionPane.showMessageDialog(null, "Đăng kí tài khoản thành công!");
                     dispose();
                 }
             }

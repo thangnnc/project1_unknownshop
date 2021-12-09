@@ -1,17 +1,27 @@
 package com.unknownshop.form;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
 import com.unknownshop.form.DialogLoading;
+import com.unknownshop.form.user.TakePicture2;
 import com.unknownshop.util.Auth;
 import com.unknownshop.util.XHover;
 import com.unknownshop.util.XImage;
+import com.unknownshop.util.XMail;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -657,6 +667,8 @@ public class DialogChangeAccount extends javax.swing.JFrame {
                     if(dao.update(user) == 0){
                         XMess.alert(null,"Cập nhập tài khoản thất bại!");
                     }else{
+                        getQRCode();
+                        XMail.sendQRCode(txtEmail.getText());
                         Auth.user = user;
                         XPanel.panelHeader.setSign();
                         XPanel.panelTaiKhoan.removeAll();
@@ -677,18 +689,53 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
     private void getImage(){
-        JFileChooser fileChooser = new JFileChooser();
-        if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
+        boolean check = XMess.confirm(this, "Lấy ảnh qua webcame?");
+        if (check == false) {
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    userImg = XImage.convertImageToBytes(file);
+                    ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
+                            getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+                    lblImage.setIcon(icon);
+                    lblImage.setToolTipText("");
+                } catch (Exception ex) {
+                }
+            }
+        } else {
+            new TakePicture2(this, lblImage).setVisible(true);
+        }
+    }
+    // </editor-fold>  
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
+    public void setIcon(Image image, byte[] byteImg) {
+        ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
+                getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+        lblImage.setIcon(icon);
+        lblImage.setText(""); 
+        userImg = byteImg;
+    }
+    // </editor-fold>    
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức quét QR code">
+    private void getQRCode() {
+        try {
+            Users user = new Users();
+            dao.selectByUserName(txtUsername.getText(), user);
+            String data = user.getUsername()+"+"+user.getPassword();
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
+            String outputFile = "./qr_code.png";
+            Path path = (Path) FileSystems.getDefault().getPath(outputFile);
             try {
-                File file = fileChooser.getSelectedFile();
-                userImg = XImage.convertImageToBytes(file);
-                ImageIcon icon = new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().
-                        getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
-                lblImage.setIcon(icon);
-                lblImage.setToolTipText("");
-            } catch (Exception ex) {
-                
-            } 
+                MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } catch (WriterException ex) {
+            ex.printStackTrace();
         }
     }
     // </editor-fold>  

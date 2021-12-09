@@ -14,7 +14,8 @@ import javax.swing.text.JTextComponent;
 public class DialogSignIn extends javax.swing.JFrame {
 
     private UserDAO dao = new UserDAO();
-    
+    private String user = "";
+    private String pass = "";
     public DialogSignIn() {
         initComponents();
         init();
@@ -35,7 +36,8 @@ public class DialogSignIn extends javax.swing.JFrame {
         lblIconUsername = new javax.swing.JLabel();
         lblIconPassword = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblQuenMK = new javax.swing.JLabel();
+        btnQRCode = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -131,19 +133,39 @@ public class DialogSignIn extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Quên mật khẩu?");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblQuenMK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblQuenMK.setForeground(new java.awt.Color(255, 255, 255));
+        lblQuenMK.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblQuenMK.setText("Quên mật khẩu?");
+        lblQuenMK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lblQuenMKMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
+                lblQuenMKMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
+                lblQuenMKMouseExited(evt);
+            }
+        });
+
+        btnQRCode.setBackground(new java.awt.Color(0, 102, 204));
+        btnQRCode.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnQRCode.setForeground(new java.awt.Color(51, 51, 51));
+        btnQRCode.setText("QR Code");
+        btnQRCode.setContentAreaFilled(false);
+        btnQRCode.setOpaque(true);
+        btnQRCode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnQRCodeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnQRCodeMouseExited(evt);
+            }
+        });
+        btnQRCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQRCodeActionPerformed(evt);
             }
         });
 
@@ -155,24 +177,25 @@ public class DialogSignIn extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIconUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIconPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblErrorUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblErrorPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))))
+                    .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createSequentialGroup()
+                            .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                            .addComponent(btnQRCode, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(roundPanel1Layout.createSequentialGroup()
+                            .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblIconUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIconPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblQuenMK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblErrorUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblErrorPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,10 +222,12 @@ public class DialogSignIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblErrorPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(lblQuenMK)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQRCode, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
@@ -258,7 +283,7 @@ public class DialogSignIn extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPasswordFocusLost
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Event btnXacNhan">
+    // <editor-fold defaultstate="collapsed" desc="Event btnDangNhap">
     private void btnDangNhapMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseEntered
         XHover.enterButton(btnDangNhap, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnDangNhapMouseEntered
@@ -292,19 +317,36 @@ public class DialogSignIn extends javax.swing.JFrame {
     private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
         limitLength(txtPassword, 50, evt);
     }//GEN-LAST:event_txtPasswordKeyTyped
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event lblQuenMK">
+    private void lblQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMKMouseClicked
         new DialogForgotPassword().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_lblQuenMKMouseClicked
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+    private void lblQuenMKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMKMouseEntered
+        lblQuenMK.setBackground(XConstant.WHITE_255);
+        lblQuenMK.setForeground(XConstant.BLACK_51);
+    }//GEN-LAST:event_lblQuenMKMouseEntered
 
-    }//GEN-LAST:event_jLabel2MouseEntered
+    private void lblQuenMKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMKMouseExited
+        lblQuenMK.setBackground(XConstant.BLACK_51);
+        lblQuenMK.setForeground(XConstant.WHITE_255);
+    }//GEN-LAST:event_lblQuenMKMouseExited
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event lbtnQRCode">
+    private void btnQRCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQRCodeActionPerformed
+        GetQR qr = new GetQR(this,user,pass);
+        qr.setVisible(true);
+    }//GEN-LAST:event_btnQRCodeActionPerformed
 
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+    private void btnQRCodeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQRCodeMouseEntered
+        XHover.enterButton(btnQRCode, XConstant.WHITE_255, XConstant.BLACK_51);
+    }//GEN-LAST:event_btnQRCodeMouseEntered
 
-    }//GEN-LAST:event_jLabel2MouseExited
+    private void btnQRCodeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQRCodeMouseExited
+        XHover.exitButton(btnQRCode);
+    }//GEN-LAST:event_btnQRCodeMouseExited
     // </editor-fold> 
     
 // -------------------- End Event --------------------
@@ -320,12 +362,13 @@ public class DialogSignIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton btnQRCode;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblErrorPassword;
     private javax.swing.JLabel lblErrorUsername;
     private javax.swing.JLabel lblIconPassword;
     private javax.swing.JLabel lblIconUsername;
+    private javax.swing.JLabel lblQuenMK;
     private com.unknownshop.swing.RoundPanel roundPanel1;
     private com.unknownshop.swing.RoundPanel roundPanel2;
     private com.unknownshop.swing.textfield.PasswordField txtPassword;
@@ -417,6 +460,16 @@ public class DialogSignIn extends javax.swing.JFrame {
         }
     }
     // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức đăng nhập tự động sau khi quét QR code">
+    public void setInfo(String user, String pass){
+        txtUsername.setText(user);
+        txtPassword.setText(pass);
+        lblErrorUsername.setText(" ");
+        lblErrorPassword.setText(" ");
+        signIn();
+    }
+    // </editor-fold >
     
 // ---------------------- End Method ----------------------
 }

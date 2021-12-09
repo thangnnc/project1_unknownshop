@@ -5,6 +5,7 @@ import com.unknownshop.dao.ProductDAO;
 import com.unknownshop.dao.ProductTypeDAO;
 import com.unknownshop.entity.ProductTypes;
 import com.unknownshop.entity.Products;
+import com.unknownshop.entity.Users;
 import com.unknownshop.form.DialogLoading;
 import com.unknownshop.swing.table.RowTableProduct;
 import com.unknownshop.util.XHover;
@@ -18,6 +19,8 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelProductManager extends javax.swing.JPanel {
@@ -47,10 +50,12 @@ public class PanelProductManager extends javax.swing.JPanel {
         tblDanhSachSP = new com.unknownshop.swing.table.Table();
         cboLoai = new com.unknownshop.swing.combobox.ComboboxWhite();
         btnThemSP = new javax.swing.JButton();
+        txtTimKiem = new com.unknownshop.swing.textfield.TextFieldWhite();
         pnlSPDaXoa = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         tblSPDaXoa = new com.unknownshop.swing.table.Table();
         cboLoai1 = new com.unknownshop.swing.combobox.ComboboxWhite();
+        txtTimKiem1 = new com.unknownshop.swing.textfield.TextFieldWhite();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setOpaque(false);
@@ -192,6 +197,16 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
 
+        txtTimKiem.setBackground(new java.awt.Color(250, 250, 250));
+        txtTimKiem.setForeground(new java.awt.Color(51, 51, 51));
+        txtTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTimKiem.setLabelText("Tìm kiếm");
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlDanhSachSPLayout = new javax.swing.GroupLayout(pnlDanhSachSP);
         pnlDanhSachSP.setLayout(pnlDanhSachSPLayout);
         pnlDanhSachSPLayout.setHorizontalGroup(
@@ -200,7 +215,9 @@ public class PanelProductManager extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
-                    .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachSPLayout.createSequentialGroup()
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThemSP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -210,9 +227,14 @@ public class PanelProductManager extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachSPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThemSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
+                        .addComponent(btnThemSP, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
+                    .addGroup(pnlDanhSachSPLayout.createSequentialGroup()
+                        .addGroup(pnlDanhSachSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -225,10 +247,13 @@ public class PanelProductManager extends javax.swing.JPanel {
         tblSPDaXoa.setForeground(new java.awt.Color(51, 51, 51));
         tblSPDaXoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Ảnh", "Tên Tài Khoản", "Họ Và Tên", "Email", "Chức Vụ", "Phục Hồi"
+                "Ảnh", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số Lượng", "Giá", "Chỉnh Sửa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -240,18 +265,18 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
         tblSPDaXoa.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(tblSPDaXoa);
+        jScrollPane4.setViewportView(tblSPDaXoa);
         if (tblSPDaXoa.getColumnModel().getColumnCount() > 0) {
             tblSPDaXoa.getColumnModel().getColumn(0).setResizable(false);
             tblSPDaXoa.getColumnModel().getColumn(0).setPreferredWidth(100);
             tblSPDaXoa.getColumnModel().getColumn(1).setResizable(false);
             tblSPDaXoa.getColumnModel().getColumn(1).setPreferredWidth(200);
             tblSPDaXoa.getColumnModel().getColumn(2).setResizable(false);
-            tblSPDaXoa.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tblSPDaXoa.getColumnModel().getColumn(2).setPreferredWidth(450);
             tblSPDaXoa.getColumnModel().getColumn(3).setResizable(false);
-            tblSPDaXoa.getColumnModel().getColumn(3).setPreferredWidth(350);
+            tblSPDaXoa.getColumnModel().getColumn(3).setPreferredWidth(150);
             tblSPDaXoa.getColumnModel().getColumn(4).setResizable(false);
-            tblSPDaXoa.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblSPDaXoa.getColumnModel().getColumn(4).setPreferredWidth(200);
             tblSPDaXoa.getColumnModel().getColumn(5).setResizable(false);
             tblSPDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
@@ -265,6 +290,16 @@ public class PanelProductManager extends javax.swing.JPanel {
             }
         });
 
+        txtTimKiem1.setBackground(new java.awt.Color(250, 250, 250));
+        txtTimKiem1.setForeground(new java.awt.Color(51, 51, 51));
+        txtTimKiem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTimKiem1.setLabelText("Tìm kiếm");
+        txtTimKiem1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiem1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlSPDaXoaLayout = new javax.swing.GroupLayout(pnlSPDaXoa);
         pnlSPDaXoa.setLayout(pnlSPDaXoaLayout);
         pnlSPDaXoaLayout.setHorizontalGroup(
@@ -272,19 +307,22 @@ public class PanelProductManager extends javax.swing.JPanel {
             .addGroup(pnlSPDaXoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
                     .addGroup(pnlSPDaXoaLayout.createSequentialGroup()
+                        .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 641, Short.MAX_VALUE))))
         );
         pnlSPDaXoaLayout.setVerticalGroup(
             pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSPDaXoaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlSPDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboLoai1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -324,13 +362,9 @@ public class PanelProductManager extends javax.swing.JPanel {
    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Event cboLoai">
     private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
-        selectCombobox();
+        selectCombobox(tblDanhSachSP,cboLoai,list);
     }//GEN-LAST:event_cboLoaiActionPerformed
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Event cboLoai1">
-    private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
-        selectCombobox1();
-    }//GEN-LAST:event_cboLoai1ActionPerformed
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Event btnThemTK">
     private void btnThemSPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemSPMouseEntered
@@ -347,6 +381,21 @@ public class PanelProductManager extends javax.swing.JPanel {
         dialogInfo.clearForm();
     }//GEN-LAST:event_btnThemSPActionPerformed
     // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event cboLoai1">
+    private void cboLoai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoai1ActionPerformed
+        selectCombobox(tblSPDaXoa,cboLoai1,listDeleted);
+    }//GEN-LAST:event_cboLoai1ActionPerformed
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event txtTimKiem">
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
+        search(tblDanhSachSP, txtTimKiem, list);
+    }//GEN-LAST:event_txtTimKiemKeyReleased
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event txtTimKiem1">
+    private void txtTimKiem1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiem1KeyReleased
+        search(tblSPDaXoa, txtTimKiem1, listDeleted);
+    }//GEN-LAST:event_txtTimKiem1KeyReleased
+    // </editor-fold> 
     
     // -------------------- End Event --------------------
     
@@ -356,14 +405,16 @@ public class PanelProductManager extends javax.swing.JPanel {
     private javax.swing.JButton btnThemSP;
     private com.unknownshop.swing.combobox.ComboboxWhite cboLoai;
     private com.unknownshop.swing.combobox.ComboboxWhite cboLoai1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel pnlCard;
     private javax.swing.JPanel pnlDanhSachSP;
     private javax.swing.JPanel pnlSPDaXoa;
     private javax.swing.JPanel pnlTabButton;
     private com.unknownshop.swing.table.Table tblDanhSachSP;
     private com.unknownshop.swing.table.Table tblSPDaXoa;
+    private com.unknownshop.swing.textfield.TextFieldWhite txtTimKiem;
+    private com.unknownshop.swing.textfield.TextFieldWhite txtTimKiem1;
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
@@ -438,13 +489,14 @@ public class PanelProductManager extends javax.swing.JPanel {
     // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox Loai">
-    private void selectCombobox() {
-        DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
+    private void selectCombobox(JTable table, JComboBox cbo, List<Products> list) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-        if(cboLoai.getSelectedIndex() == 0){
-            fillTableProduct(false);
-        }else if (cboLoai.getSelectedIndex() > 0){
-            ProductTypes proType = (ProductTypes) cboLoai.getSelectedItem();
+        if(cbo.getSelectedIndex() == 0){
+            if(cbo.equals(cboLoai)) fillTableProduct(false);
+            else fillTableProductDeleted(false);
+        }else if (cbo.getSelectedIndex() > 0){
+            ProductTypes proType = (ProductTypes) cbo.getSelectedItem();
             for (Products pro : list) {
                 if(pro.getTypeId() == proType.getId()){
                     model.addRow(new RowTableProduct(pro).toRowTable(0));
@@ -519,23 +571,6 @@ public class PanelProductManager extends javax.swing.JPanel {
     
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox ChucVu1">
-    private void selectCombobox1() {
-        DefaultTableModel model = (DefaultTableModel) tblSPDaXoa.getModel();
-        model.setRowCount(0);
-        if(cboLoai1.getSelectedIndex() == 0){
-            fillTableProduct(false);
-        }else if (cboLoai1.getSelectedIndex() > 0){
-            ProductTypes proType = (ProductTypes) cboLoai1.getSelectedItem();
-            for (Products pro : listDeleted) {
-                if(pro.getTypeId()== proType.getId()){
-                    model.addRow(new RowTableProduct(pro).toRowTable(1));
-                }
-            }
-        }
-    }
-    // </editor-fold>  
-    
     // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi sản phẩm">  
     public void restore(){
         int row1 = tblSPDaXoa.getSelectedRow();
@@ -605,6 +640,29 @@ public class PanelProductManager extends javax.swing.JPanel {
         dialogInfo.last();
     }
     // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức tìm kiếm sản phẩm">    
+    private void search(JTable table, JTextField txt, List<Products> list) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        String text = txt.getText().toLowerCase();
+        // Đưa danh sách thông tin lên bảng
+        model.setRowCount(0);
+        for (Products pr : list) {
+            String id = String.valueOf(pr.getId());
+            String name = pr.getName().toString().toLowerCase();
+            String Quantity = String.valueOf(pr.getQuantity());
+            String price = String.valueOf(pr.getPrice());
+            boolean check = id.contains(text)
+                    || name.contains(text)
+                    || Quantity.contains(text) || price.contains(text);
+            if (check) {
+                if(table.equals(tblDanhSachSP))
+                    model.addRow(new RowTableProduct(pr).toRowTable(0));
+                else model.addRow(new RowTableProduct(pr).toRowTable(1));
+            }
+        }
+    }
+    //</editor-fold>
     
 // ---------------------- End Method ----------------------
     

@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelAccountManager extends javax.swing.JPanel {
@@ -47,9 +48,11 @@ public class PanelAccountManager extends javax.swing.JPanel {
         tblDanhSachTK = new com.unknownshop.swing.table.Table();
         cboChucVu = new com.unknownshop.swing.combobox.ComboboxWhite();
         btnThemTK = new javax.swing.JButton();
+        txtTimKiem = new com.unknownshop.swing.textfield.TextFieldWhite();
         pnlTKDaXoa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTKDaXoa = new com.unknownshop.swing.table.Table();
+        txtTimKiem1 = new com.unknownshop.swing.textfield.TextFieldWhite();
         cboChucVu1 = new com.unknownshop.swing.combobox.ComboboxWhite();
 
         setBackground(new java.awt.Color(255, 204, 204));
@@ -135,7 +138,7 @@ public class PanelAccountManager extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Ảnh", "Tên Tài Khoản", "Học Và Tên", "Email", "Vai Trò", "Chỉnh Sửa"
+                "Ảnh", "Tên Tài Khoản", "Họ Và Tên", "Email", "Vai Trò", "Chỉnh Sửa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -193,6 +196,16 @@ public class PanelAccountManager extends javax.swing.JPanel {
             }
         });
 
+        txtTimKiem.setBackground(new java.awt.Color(250, 250, 250));
+        txtTimKiem.setForeground(new java.awt.Color(51, 51, 51));
+        txtTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTimKiem.setLabelText("Tìm kiếm");
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlDanhSachTKLayout = new javax.swing.GroupLayout(pnlDanhSachTK);
         pnlDanhSachTK.setLayout(pnlDanhSachTKLayout);
         pnlDanhSachTKLayout.setHorizontalGroup(
@@ -202,6 +215,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
                 .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
                     .addGroup(pnlDanhSachTKLayout.createSequentialGroup()
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -210,11 +225,15 @@ public class PanelAccountManager extends javax.swing.JPanel {
             pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachTKLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThemTK, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(cboChucVu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDanhSachTKLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(pnlDanhSachTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnThemTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -229,7 +248,7 @@ public class PanelAccountManager extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Ảnh", "Tên Tài Khoản", "Họ Và Tên", "Email", "Chức Vụ", "Phục Hồi"
+                "Ảnh", "Tên Tài Khoản", "Họ Và Tên", "Email", "Vai Trò", "Phục Hồi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -258,6 +277,16 @@ public class PanelAccountManager extends javax.swing.JPanel {
             tblTKDaXoa.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        txtTimKiem1.setBackground(new java.awt.Color(250, 250, 250));
+        txtTimKiem1.setForeground(new java.awt.Color(51, 51, 51));
+        txtTimKiem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTimKiem1.setLabelText("Tìm kiếm");
+        txtTimKiem1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiem1KeyReleased(evt);
+            }
+        });
+
         cboChucVu1.setBackground(new java.awt.Color(250, 250, 250));
         cboChucVu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cboChucVu1.setLabeText("Vai trò tài khoản");
@@ -274,17 +303,20 @@ public class PanelAccountManager extends javax.swing.JPanel {
             .addGroup(pnlTKDaXoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(pnlTKDaXoaLayout.createSequentialGroup()
+                        .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 641, Short.MAX_VALUE))))
         );
         pnlTKDaXoaLayout.setVerticalGroup(
             pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTKDaXoaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlTKDaXoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cboChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -326,13 +358,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Event cboChucVu">
     private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
-        selectCombobox();
+        selectCombobox(tblDanhSachTK,cboChucVu,listUser);
     }//GEN-LAST:event_cboChucVuActionPerformed
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1">
-    private void cboChucVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVu1ActionPerformed
-        selectCombobox1();
-    }//GEN-LAST:event_cboChucVu1ActionPerformed
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Event btnThemTK">
     private void btnThemTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTKActionPerformed
@@ -348,6 +375,21 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private void btnThemTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseExited
         XHover.exitButton(btnThemTK);
     }//GEN-LAST:event_btnThemTKMouseExited
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event cboChucVu1">
+    private void cboChucVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVu1ActionPerformed
+        selectCombobox(tblTKDaXoa,cboChucVu1,listUserDeleted);
+    }//GEN-LAST:event_cboChucVu1ActionPerformed
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event txtTimKiem">
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
+        search(tblDanhSachTK, txtTimKiem, listUser);
+    }//GEN-LAST:event_txtTimKiemKeyReleased
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Event txtTimKiem1">
+    private void txtTimKiem1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiem1KeyReleased
+        search(tblTKDaXoa, txtTimKiem1, listUserDeleted);
+    }//GEN-LAST:event_txtTimKiem1KeyReleased
     // </editor-fold> 
     
     // -------------------- End Event --------------------
@@ -367,6 +409,8 @@ public class PanelAccountManager extends javax.swing.JPanel {
     private javax.swing.JPanel pnlTabButton;
     private com.unknownshop.swing.table.Table tblDanhSachTK;
     private com.unknownshop.swing.table.Table tblTKDaXoa;
+    private com.unknownshop.swing.textfield.TextFieldWhite txtTimKiem;
+    private com.unknownshop.swing.textfield.TextFieldWhite txtTimKiem1;
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
@@ -441,15 +485,16 @@ public class PanelAccountManager extends javax.swing.JPanel {
     // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox ChucVu">
-    private void selectCombobox() {
-        DefaultTableModel model = (DefaultTableModel) tblDanhSachTK.getModel();
+    private void selectCombobox(JTable table, JComboBox cbo, List<Users> list) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         String role;
-        if(cboChucVu.getSelectedIndex() == 0){
-            fillTableUser(false);
+        if(cbo.getSelectedIndex() == 0){
+            if(cbo.equals(cboChucVu)) fillTableUser(false);
+            else fillTableUserDeleted(false);
         }else{
-            role = (String) cboChucVu.getSelectedItem();
-            for (Users us : listUser) {
+            role = (String) cbo.getSelectedItem();
+            for (Users us : list) {
                 if(us.getRole().equals(role)){
                     model.addRow(new RowTableAccount(us).toRowTable(0));
                 }
@@ -524,24 +569,6 @@ public class PanelAccountManager extends javax.swing.JPanel {
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức chọn combobox ChucVu1">
-    private void selectCombobox1() {
-        DefaultTableModel model = (DefaultTableModel) tblTKDaXoa.getModel();
-        model.setRowCount(0);
-        String role;
-        if(cboChucVu1.getSelectedIndex() == 0){
-            fillTableUser(false);
-        }else{
-            role = (String) cboChucVu1.getSelectedItem();
-            for (Users us : listUserDeleted) {
-                if(us.getRole().equals(role)){
-                    model.addRow(new RowTableAccount(us).toRowTable(1));
-                }
-            }
-        }
-    }
-    // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Phương thức phục hồi tài khoản">  
     public void restore(){
         int row1 = tblTKDaXoa.getSelectedRow();
@@ -611,31 +638,27 @@ public class PanelAccountManager extends javax.swing.JPanel {
         dialogInfo.last();
     }
     // </editor-fold> 
-
-    // <editor-fold defaultstate="collapsed" desc="Phương thức tìm kiếm người học">    
-    private void search(JTable tbl){
-//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-//        String text = txtTimKiem.getText().toLowerCase();
-//        // Đưa danh sách thông tin lên bảng
-//        model.setRowCount(0);
-//        for (NguoiHoc nh : list) {
-//            String id = nh.getMaNH().toString().toLowerCase();
-//            String name = nh.getTenNH().toLowerCase();
-//            String gender = nh.getGioiTinh().toLowerCase();
-//            String email = nh.getEmail().toLowerCase();
-//            String sdt = nh.getSdt();
-//            String idNV = nh.getMaNV().toLowerCase();
-//            boolean check = id.contains(text) || name.contains(text)
-//                            || gender.contains(text) || email.contains(text) 
-//                            || sdt.contains(text) || idNV.contains(text);
-//            if(check){
-//                model.addRow(new Object[]{
-//                    nh.getMaNH(),nh.getTenNH(),nh.getGioiTinh(),nh.getNgaySinh()
-//                                ,nh.getSdt(),nh.getEmail(),nh.getMaNV(), nh.getNgayDK()
-//                }); 
-//            }
-//        }
-//        
+    
+    // <editor-fold defaultstate="collapsed" desc="Phương thức tìm kiếm tài khoản">    
+    private void search(JTable table, JTextField txt, List<Users> list) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        String text = txt.getText().toLowerCase();
+        // Đưa danh sách thông tin lên bảng
+        model.setRowCount(0);
+        for (Users us : list) {
+            String username = us.getUsername().toString().toLowerCase();
+            String fullname = us.getFullname().toString().toLowerCase();
+            String email = us.getEmail().toLowerCase();
+            String role = us.getRole().toString().toLowerCase();
+            boolean check = username.contains(text)
+                    || fullname.contains(text)
+                    || email.contains(text) || email.contains(text)
+                    || role.contains(text);
+            if (check) {
+                if(table.equals(tblDanhSachTK)) model.addRow(new RowTableAccount(us).toRowTable(0));
+                else model.addRow(new RowTableAccount(us).toRowTable(1));
+            }
+        }
     }
     //</editor-fold>
     

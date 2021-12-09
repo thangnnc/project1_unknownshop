@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="18" failures="0" name="com.unknownshop.entity.UsersTest" time="0.015" errors="0" skipped="0">
+<testsuite tests="18" failures="0" name="com.unknownshop.entity.UsersTest" time="0.017" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9-18"/>
@@ -59,12 +59,12 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testSetEmailUnmatch" time="0.007"/>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testSetPassword" time="0.001"/>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetPassword" time="0"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testSetEmailUnmatch" time="0.009"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testSetPassword" time="0"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetPassword" time="0.001"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testSetFullname" time="0"/>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetEmail" time="0.004"/>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetFullname" time="0"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetEmail" time="0"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetFullname" time="0.002"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testGetId" time="0"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testSetId" time="0"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testToString" time="0"/>
@@ -73,8 +73,8 @@
   <testcase classname="com.unknownshop.entity.UsersTest" name="testSetImgUrl" time="0"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testSetUsername" time="0.001"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testGetUsername" time="0"/>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetImgUrl" time="0.001"/>
-  <testcase classname="com.unknownshop.entity.UsersTest" name="testIsIsDeleted" time="0"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testGetImgUrl" time="0"/>
+  <testcase classname="com.unknownshop.entity.UsersTest" name="testIsIsDeleted" time="0.003"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testSetRole" time="0.001"/>
   <testcase classname="com.unknownshop.entity.UsersTest" name="testSetEmail" time="0"/>
 </testsuite>

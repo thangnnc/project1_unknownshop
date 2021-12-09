@@ -42,7 +42,6 @@ public class TextFieldWhite extends JTextField {
     private boolean mouseOver = false;
     private String labelText = "Label";
     private Color lineColor = new Color(3, 155, 216);
-
     public TextFieldWhite() {
         setBorder(new EmptyBorder(20, 3, 10, 3));
         setSelectionColor(new Color(76, 204, 255));

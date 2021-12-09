@@ -468,14 +468,14 @@ public class PanelCart extends javax.swing.JPanel {
                 public void run(){
                     do{
                         System.out.println("");
-                        if (dialog.check) {
+                        if (dialog.check == 1) {
                             Orders od = getForm();
-                            try {
-                                DialogLoading dlog = new DialogLoading();
-                                dlog.setVisible(true);
-                                new Thread(){
-                                    @Override
-                                    public void run(){
+                            new Thread(){
+                                @Override
+                                public void run(){
+                                    try {
+                                        DialogLoading dlog = new DialogLoading();
+                                        dlog.setVisible(true);
                                         int orderId = dao.insert(od);
                                         for (Products product : XCart.listCart.values()) {
                                             OrderDetails ods = new OrderDetails();
@@ -486,17 +486,16 @@ public class PanelCart extends javax.swing.JPanel {
                                             odDAO.insert(ods);
                                         }
                                         dlog.setVisible(false);
+                                        deleteAllPro();
+                                        XMess.alert(null, "Thanh toán thành công");
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        XMess.alert(null, "Thanh toán thất bại");
                                     }
-                                }.start();
-                                XMess.alert(null, "Thanh toán thành công");
-                                deleteAllPro();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                XMess.alert(null, "Thanh toán thất bại");
-                            }
-                            
+                                }
+                            }.start();
                         }
-                    }while(!dialog.check);
+                    }while(dialog.check == -1);
                 }
             }.start();
             

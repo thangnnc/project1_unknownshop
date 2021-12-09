@@ -14,7 +14,7 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
     private final String AUTH_TOKEN = "7935ced5ad2d031061150f2c0ca1bcf4";
     private int OTP = 0;
     private String phone;
-    public boolean check = false;
+    public int check = -1;
     
     public DialogPhoneOTP(String phone) {
         initComponents();
@@ -121,7 +121,7 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
 
 // ---------------------- Start Event ----------------------
     
-// <editor-fold defaultstate="collapsed" desc="Event btnKiemTra">
+    // <editor-fold defaultstate="collapsed" desc="Event btnKiemTra">
     private void btnKiemTraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKiemTraMouseEntered
         XHover.enterButton(btnKiemTra, XConstant.WHITE_255, XConstant.BLACK_51);
     }//GEN-LAST:event_btnKiemTraMouseEntered
@@ -133,9 +133,8 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
     private void btnKiemTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemTraActionPerformed
         check();
     }//GEN-LAST:event_btnKiemTraActionPerformed
-// </editor-fold >
-    
-// <editor-fold defaultstate="collapsed" desc="Bắt lỗi form">
+    // </editor-fold >
+    // <editor-fold defaultstate="collapsed" desc="Event bắt lỗi form">
     private void txtOTPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOTPKeyReleased
         try{
             int number = Integer.valueOf(txtOTP.getText());
@@ -143,7 +142,7 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
             txtOTP.setText("");
         }
     }//GEN-LAST:event_txtOTPKeyReleased
-// </editor-fold >
+    // </editor-fold >
 
 // ---------------------- End Method ----------------------
     public static void main(String args[]) {
@@ -162,10 +161,11 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
     private javax.swing.JTextField txtOTP;
     // End of variables declaration//GEN-END:variables
 
-    // ---------------------- Start Method ----------------------
+// ---------------------- Start Method ----------------------
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức gửi mã OTP">
     private void init() {
+        XPanel.pnlPhoneOTP = this;
         // Tạo luồng và hiện dialog loading
         new Thread(){
             @Override
@@ -184,8 +184,9 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
          addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                if(XMess.confirm(null, "Bạn muốn đóng ứng dụng này?")){
+                if(XMess.confirm(null, "Bạn muốn đóng OTP?")){
                     XPanel.mainForm.setEnabled(true);
+                    check = 0;
                     dispose();
                 }
             }
@@ -196,15 +197,16 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra mã OTP">
     private void check(){
         if(Integer.valueOf(txtOTP.getText()) == OTP){
-            XMess.alert(this,"Xác thực OTP thành công");
-            check =true;
-            XPanel.mainForm.setEnabled(true);
-            this.dispose(); 
+            setVisible(false);
+            DialogPayment zaloPay = new DialogPayment();
+            zaloPay.setVisible(true);
         }else{
             XMess.alert(this,"Sai mã OTP");
         }
     }
     // </editor-fold>
+    
+// ---------------------- End Method ----------------------
 }
 
-    // ---------------------- End Method ----------------------
+

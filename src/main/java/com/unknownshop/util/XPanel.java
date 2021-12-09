@@ -5,6 +5,7 @@ import com.unknownshop.form.admin.PanelAccountManager;
 import com.unknownshop.form.admin.PanelBillManager;
 import com.unknownshop.form.admin.PanelProductManager;
 import com.unknownshop.form.admin.PanelStatistic;
+import com.unknownshop.form.user.DialogPhoneOTP;
 import com.unknownshop.form.user.PanelCart;
 import com.unknownshop.fragment.header.Header;
 import com.unknownshop.main.MainForm;
@@ -26,6 +27,7 @@ public class XPanel {
     public static JPanel panelCart;
     // Panel giỏ hàng
     public static PanelCart pnlCart;
+    public static DialogPhoneOTP pnlPhoneOTP;
     
     // Admin
     public static JPanel panelCardAdmin;

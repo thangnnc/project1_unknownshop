@@ -238,7 +238,7 @@ public class DialogSignUp extends javax.swing.JFrame {
         btnChange.setBackground(new java.awt.Color(0, 102, 204));
         btnChange.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnChange.setForeground(new java.awt.Color(51, 51, 51));
-        btnChange.setText("Thay Đổi");
+        btnChange.setText("Đăng Kí");
         btnChange.setContentAreaFilled(false);
         btnChange.setOpaque(true);
         btnChange.addMouseListener(new java.awt.event.MouseAdapter() {

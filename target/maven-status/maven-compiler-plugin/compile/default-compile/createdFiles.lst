@@ -8,6 +8,7 @@ com\unknownshop\fragment\menu\MenuAdmin$3.class
 com\unknownshop\form\user\PanelCart$5.class
 com\unknownshop\dao\OrderDAO.class
 com\unknownshop\form\DialogChangeAccount$6.class
+com\unknownshop\form\user\TakePicture2$1.class
 com\unknownshop\form\admin\DialogInfoProduct$19.class
 com\unknownshop\swing\table\TableCellUpdate.class
 com\unknownshop\main\MainForm$8.class
@@ -15,6 +16,7 @@ com\unknownshop\fragment\menu\MenuUser$1.class
 com\unknownshop\form\admin\DialogInfoAccount$4.class
 com\unknownshop\form\admin\DialogInfoAccount$17.class
 com\unknownshop\form\admin\DialogInfoProduct$8.class
+com\unknownshop\form\user\GetQR.class
 com\unknownshop\form\admin\PanelStatisticDetails$26.class
 com\unknownshop\fragment\header\SubHeaderUser$1.class
 com\unknownshop\form\DialogChangeAccount.class
@@ -29,6 +31,7 @@ com\unknownshop\fragment\header\SubHeaderNone$4.class
 com\unknownshop\chart\Chart.class
 com\unknownshop\swing\combobox\ComboboxWhite$ComboUI$6.class
 com\unknownshop\main\MainForm$1.class
+com\unknownshop\form\user\TakePicture2$6.class
 com\unknownshop\form\admin\DialogInfoProduct$14.class
 com\unknownshop\form\user\DialogSignUp$4.class
 com\unknownshop\form\admin\PanelBillManager$3.class
@@ -60,6 +63,7 @@ com\unknownshop\form\PanelAccount$2.class
 com\unknownshop\swing\Button$2.class
 com\unknownshop\fragment\menu\MenuUser.class
 com\unknownshop\form\admin\DialogInfoProduct$12.class
+com\unknownshop\form\user\GetQR$3.class
 com\unknownshop\swing\table\Table$2.class
 com\unknownshop\form\DialogReSignIn$3.class
 com\unknownshop\chart\Chart$1.class
@@ -71,6 +75,7 @@ com\unknownshop\swing\table\RowTableAccount$1.class
 com\unknownshop\chart\blankchart\BlankPlotChart$1.class
 com\unknownshop\form\admin\DialogInfoAccount$10.class
 com\unknownshop\swing\textfield\TextField$3.class
+com\unknownshop\util\XMail$2.class
 com\unknownshop\util\XHover.class
 com\unknownshop\form\user\DialogSignUp$6.class
 com\unknownshop\form\user\DialogSignIn.class
@@ -91,6 +96,7 @@ com\unknownshop\form\user\DialogForgotPassword$2.class
 com\unknownshop\swing\Button.class
 com\unknownshop\fragment\menu\MenuUser$4.class
 com\unknownshop\form\admin\DialogInfoProduct$27.class
+com\unknownshop\form\user\TakePicture2$3.class
 com\unknownshop\form\admin\PanelStatisticDetails$15.class
 com\unknownshop\swing\scrollbar\ModernScrollBarUI$ScrollBarButton.class
 com\unknownshop\swing\table\RowTableBill$3.class
@@ -188,6 +194,7 @@ com\unknownshop\fragment\menu\MenuAdmin$4.class
 com\unknownshop\fragment\product\ProductCard$2.class
 com\unknownshop\form\admin\DialogInfoAccount.class
 com\unknownshop\form\admin\PanelBillManager$5.class
+com\unknownshop\form\user\GetQR$1.class
 com\unknownshop\form\user\DialogPhoneOTP$4.class
 com\unknownshop\swing\combobox\ComboboxWhite$1.class
 com\unknownshop\form\user\TakePicture.class
@@ -225,6 +232,7 @@ com\unknownshop\fragment\header\SubHeaderNone$2.class
 com\unknownshop\form\admin\DialogInfoAccount$24.class
 com\unknownshop\util\XMail$1.class
 com\unknownshop\chart\blankchart\SeriesSize.class
+com\unknownshop\form\user\GetQR$2.class
 com\unknownshop\form\user\DialogPhoneOTP$5.class
 com\unknownshop\fragment\product\ProductCardDescription.class
 com\unknownshop\form\admin\DialogInfoAccount$11.class
@@ -269,6 +277,7 @@ combobox\ComboboxBlack$ComboUI$1.class
 com\unknownshop\form\DialogWelcome$1.class
 com\unknownshop\form\admin\DialogInfoProduct$13.class
 com\unknownshop\swing\scrollbar\ModernScrollBarUI.class
+com\unknownshop\form\user\TakePicture2$7.class
 com\unknownshop\main\MainForm$7.class
 com\unknownshop\form\admin\DialogInfoAccount$8.class
 combobox\ComboboxBlack$1.class
@@ -276,6 +285,7 @@ com\unknownshop\form\admin\HomeAdmin.class
 com\unknownshop\form\user\PanelCart$9.class
 com\unknownshop\fragment\menu\MenuUser$2.class
 com\unknownshop\swing\table\RowTableAccount.class
+com\unknownshop\util\XPaymentZalo.class
 com\unknownshop\chart\ModelLegend.class
 com\unknownshop\form\admin\DialogInfoAccount$5.class
 com\unknownshop\form\user\DialogSignUp$11.class
@@ -287,6 +297,7 @@ com\unknownshop\form\admin\PanelProductManager$12.class
 com\unknownshop\swing\table\RowTableBill$1.class
 com\unknownshop\form\user\TakePicture$6.class
 com\unknownshop\swing\table\Profile.class
+com\unknownshop\form\user\TakePicture2$5.class
 com\unknownshop\fragment\header\SubHeaderAdmin$2.class
 com\unknownshop\form\admin\PanelStatisticDetails$17.class
 com\unknownshop\form\user\DialogForgotPassword$3.class
@@ -295,6 +306,7 @@ com\unknownshop\swing\table\TableHeader.class
 com\unknownshop\fragment\menu\MenuUser$5.class
 com\unknownshop\util\XJdbc.class
 com\unknownshop\form\admin\PanelStatisticDetails$14.class
+com\unknownshop\form\user\TakePicture2$2.class
 com\unknownshop\fragment\header\SubHeaderAdmin$5.class
 com\unknownshop\form\user\PanelCart$6.class
 com\unknownshop\chart\Chart$2.class
@@ -314,6 +326,7 @@ com\unknownshop\form\admin\DialogInfoAccount$27.class
 com\unknownshop\form\admin\PanelStatisticDetails$3.class
 com\unknownshop\form\DialogChangeAccount$7.class
 com\unknownshop\form\DialogReSignIn$2.class
+com\unknownshop\form\user\TakePicture2$4.class
 com\unknownshop\swing\combobox\ComboboxWhite$ComboUI$ArrowButton.class
 com\unknownshop\form\admin\PanelAccountManager$3.class
 com\unknownshop\form\user\DialogForgotPassword$7.class
@@ -334,6 +347,7 @@ combobox\ComboboxBlack$ComboUI$3.class
 com\unknownshop\form\PanelAccount$1.class
 com\unknownshop\main\MainForm$5.class
 com\unknownshop\util\XMail.class
+com\unknownshop\form\user\DialogSignIn$12.class
 com\unknownshop\main\MainForm.class
 com\unknownshop\form\user\PanelListPageProduct.class
 com\unknownshop\form\admin\DialogInfoAccount$1.class
@@ -345,6 +359,7 @@ com\unknownshop\form\admin\PanelAccountManager$8.class
 com\unknownshop\form\admin\DialogInfoAccount$2.class
 com\unknownshop\form\admin\PanelAccountManager$9.class
 com\unknownshop\form\admin\PanelAccountManager$2.class
+com\unknownshop\form\user\DialogSignIn$11.class
 com\unknownshop\form\user\TakePicture$2.class
 com\unknownshop\util\XImage.class
 com\unknownshop\form\admin\PanelAccountManager$13.class
@@ -363,6 +378,7 @@ com\unknownshop\form\admin\PanelAccountManager$4.class
 com\unknownshop\form\admin\PanelProductManager.class
 com\unknownshop\swing\combobox\ComboboxWhite$ComboUI$2.class
 com\unknownshop\form\user\DialogSignUp$3.class
+com\unknownshop\form\user\TakePicture2.class
 com\unknownshop\form\admin\DialogInfoProduct$4.class
 com\unknownshop\chart\blankchart\BlankPlotChart.class
 com\unknownshop\form\user\DialogPhoneOTP.class

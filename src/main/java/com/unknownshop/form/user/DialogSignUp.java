@@ -1,7 +1,9 @@
 package com.unknownshop.form.user;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -14,26 +16,31 @@ import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMail;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 
 public class DialogSignUp extends javax.swing.JFrame {
-    
+
     private byte[] userImg;
     private UserDAO dao = new UserDAO();
-    
+
     public DialogSignUp() {
         initComponents();
-        setBackground(new Color(0,0,0,0));
+        setBackground(new Color(0, 0, 0, 0));
         init();
     }
 
@@ -403,9 +410,8 @@ public class DialogSignUp extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
 // -------------------- Start Event --------------------
-    
     // <editor-fold defaultstate="collapsed" desc="Event btnClose">
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         XPanel.mainForm.setEnabled(true);
@@ -419,13 +425,13 @@ public class DialogSignUp extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Username">
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        
+
     }//GEN-LAST:event_txtUsernameFocusGained
 
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        if(txtUsername.getText().trim().length()==0){
+        if (txtUsername.getText().trim().length() == 0) {
             lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }else{
+        } else {
             lblErrorUsername.setText(" ");
         }
     }//GEN-LAST:event_txtUsernameFocusLost
@@ -437,12 +443,12 @@ public class DialogSignUp extends javax.swing.JFrame {
 
     private void txtFullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullnameFocusLost
         String pattern = "^([^[!@#$%&*()_+=|<>?{}\\[\\]~-]|^\\d|^\\s]*\\s?)*$";
-        if(txtFullname.getText().trim().length()==0){
+        if (txtFullname.getText().trim().length() == 0) {
             lblErrorFullname.setText("Chưa nhập họ tên!");
-        }else{
-            if(txtFullname.getText().matches(pattern)==false){
+        } else {
+            if (txtFullname.getText().matches(pattern) == false) {
                 lblErrorFullname.setText("Tên không được chứa số hoặc ký tự đặc biệt!");
-            }else{
+            } else {
                 lblErrorFullname.setText(" ");
             }
         }
@@ -454,11 +460,11 @@ public class DialogSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusGained
 
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        if(txtPassword.getText().trim().length()==0){
+        if (txtPassword.getText().trim().length() == 0) {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
-        }else{
+        } else {
             lblErrorPassword.setText(" ");
-            if(txtRePassword.getText().trim().length() != 0){
+            if (txtRePassword.getText().trim().length() != 0) {
                 txtRePasswordFocusLost(evt);
             }
         }
@@ -470,12 +476,12 @@ public class DialogSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRePasswordFocusGained
 
     private void txtRePasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRePasswordFocusLost
-        if(txtRePassword.getText().trim().length()==0){
+        if (txtRePassword.getText().trim().length() == 0) {
             lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
-        }else if(!txtRePassword.getText().equals(txtPassword.getText())){
+        } else if (!txtRePassword.getText().equals(txtPassword.getText())) {
             lblErrorRePassword.setText("Mật khẩu nhập lại không trùng khớp!");
-        }else{
-             lblErrorRePassword.setText(" ");
+        } else {
+            lblErrorRePassword.setText(" ");
         }
     }//GEN-LAST:event_txtRePasswordFocusLost
     // </editor-fold> 
@@ -486,12 +492,12 @@ public class DialogSignUp extends javax.swing.JFrame {
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         String pattern = "\\w+\\@\\w+(\\.\\w+)+";
-        if(txtEmail.getText().trim().length()==0){
+        if (txtEmail.getText().trim().length() == 0) {
             lblErrorEmail.setText("Chưa nhập Email!");
-        }else{
-           if(txtEmail.getText().matches(pattern) == false){
+        } else {
+            if (txtEmail.getText().matches(pattern) == false) {
                 lblErrorEmail.setText("Email không đúng định dạng");
-            }else{
+            } else {
                 lblErrorEmail.setText(" ");
             }
         }
@@ -510,10 +516,8 @@ public class DialogSignUp extends javax.swing.JFrame {
         XHover.exitButton(btnChange);
     }//GEN-LAST:event_btnChangeMouseExited
 
-   // </editor-fold> 
-    
+    // </editor-fold> 
 // -------------------- End Event --------------------
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -576,48 +580,65 @@ public class DialogSignUp extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
-
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form">    
     private void init() {
         this.clearError();
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức đăng ký tài khoản">    
     private void signUp() {
         nonError();
-        if(checkError()) return;
+        if (checkError()) {
+            return;
+        }
         Users u = getForm();
         // Tạo luồng và hiện dialog loading
         DialogLoading dlog = new DialogLoading();
         dlog.setVisible(true);
-        new Thread(){
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 setEnabled(false);
                 int result = dao.insert(u);
-                if( result == 0){
+                if (result == 0) {
                     setEnabled(true);
                     dlog.setVisible(false);
                     lblErrorUsername.setText("Tài khoản này đã có trong hệ thống!");
                     txtUsername.requestFocus();
-                }else if(result == -1){
+                } else if (result == -1) {
                     setEnabled(true);
                     dlog.setVisible(false);
                     lblErrorEmail.setText("Email đã được sử dụng!");
                     txtEmail.requestFocus();
-                }else{
-                       try {
+                } else {
+                    try {
                         String data = txtUsername.getText() + "+" + txtPassword.getText();
                         QRCodeWriter qrCodeWriter = new QRCodeWriter();
                         BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
                         String outputFile = "./qr_code.png";
                         Path path = (Path) FileSystems.getDefault().getPath(outputFile);
                         MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
-                    } catch (WriterException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                        String pathToStore = "./qr_code.png";
+                        BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, 400, 400);
+
+                        MatrixToImageWriter.writeToPath(bitMatrix, "jpg", Paths.get(pathToStore));
+                        MatrixToImageConfig imageConfig = new MatrixToImageConfig(MatrixToImageConfig.BLACK, MatrixToImageConfig.WHITE);
+                        BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, imageConfig);
+                        BufferedImage logoImage = ImageIO.read(new File("./logo.png"));
+                        int finalImageHeight = qrImage.getHeight() - logoImage.getHeight();
+                        int finalImageWidth = qrImage.getWidth() - logoImage.getWidth();
+                        //Merging both images 
+                        Color mainColor = new Color(51, 102, 153);
+                        BufferedImage finalImage = new BufferedImage(qrImage.getHeight(), qrImage.getWidth(), BufferedImage.TYPE_INT_ARGB);
+                        Graphics2D graphics = (Graphics2D) finalImage.getGraphics();
+                        graphics.drawImage(qrImage, 0, 0, null);
+                        graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+                        graphics.drawImage(logoImage, (int) Math.round(finalImageWidth / 2), (int) Math.round(finalImageHeight / 2), null);
+                        graphics.setColor(mainColor);
+                        ImageIO.write(finalImage, "png", new File(pathToStore));
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     XMail.sendQRCode(txtEmail.getText());
                     clearForm();
@@ -627,27 +648,28 @@ public class DialogSignUp extends javax.swing.JFrame {
                     dispose();
                 }
             }
-        }.start();
-    }
-    // </editor-fold>  
-    
+        }
+                .start();
+    } // </editor-fold>  
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
-    private boolean checkError(){
-        if(!(lblErrorEmail.getText().equals(" ") &&
-                lblErrorFullname.getText().equals(" ") &&  
-                lblErrorPassword.getText().equals(" ") &&
-                lblErrorRePassword.getText().equals(" ") &&
-                lblErrorUsername.getText().equals(" "))) return true;
-        else if(lblImage.getToolTipText().equals("none")){
+
+    private boolean checkError() {
+        if (!(lblErrorEmail.getText().equals(" ")
+                && lblErrorFullname.getText().equals(" ")
+                && lblErrorPassword.getText().equals(" ")
+                && lblErrorRePassword.getText().equals(" ")
+                && lblErrorUsername.getText().equals(" "))) {
+            return true;
+        } else if (lblImage.getToolTipText().equals("none")) {
             XMess.alert(this, "Bạn chưa chọn ảnh đại diện!");
             return true;
         }
         return false;
     }
     // </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form"> 
-    private Users getForm(){
+    private Users getForm() {
         Users user = new Users();
         user.setUsername(txtUsername.getText());
         user.setPassword(txtPassword.getText());
@@ -658,7 +680,7 @@ public class DialogSignUp extends javax.swing.JFrame {
         return user;
     }
     // </editor-fold>    
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa lable lỗi"> 
     private void clearError() {
         lblErrorPassword.setText("  ");
@@ -668,7 +690,7 @@ public class DialogSignUp extends javax.swing.JFrame {
         lblErrorRePassword.setText("  ");
     }
     // </editor-fold>    
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa textfield"> 
     private void clearForm() {
         txtUsername.setText("");
@@ -677,34 +699,34 @@ public class DialogSignUp extends javax.swing.JFrame {
         txtFullname.setText("");
         txtEmail.setText("");
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/noImage.jpg"))
-                            .getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH)));
+                .getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH)));
         lblImage.setToolTipText("none");
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
-    private void nonError(){
-        if(lblErrorUsername.getText().equals("  ")){
+    private void nonError() {
+        if (lblErrorUsername.getText().equals("  ")) {
             lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }  
-        if(lblErrorPassword.getText().equals("  ")){
+        }
+        if (lblErrorPassword.getText().equals("  ")) {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
         }
-        if(lblErrorRePassword.getText().equals("  ")){
+        if (lblErrorRePassword.getText().equals("  ")) {
             lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
         }
-        if(lblErrorEmail.getText().equals("  ")){
+        if (lblErrorEmail.getText().equals("  ")) {
             lblErrorEmail.setText("Chưa nhập email!");
         }
-        if(lblErrorFullname.getText().equals("  ")){
+        if (lblErrorFullname.getText().equals("  ")) {
             lblErrorFullname.setText("Chưa nhập tên ngươi dùng!");
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
     private void getImage() {
-        boolean check = XMess.confirm(this, "Lấy ảnh qua webcame?");
+        boolean check = XMess.confirm(this, "Lấy ảnh qua webcam?");
         if (check == false) {
             JFileChooser fileChooser = new JFileChooser();
             if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -723,26 +745,25 @@ public class DialogSignUp extends javax.swing.JFrame {
         }
     }
     // </editor-fold>   
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức giới hạn kí tự nhập vào">
-    private void limitLength(JTextComponent txt, int length, KeyEvent evt){
+    private void limitLength(JTextComponent txt, int length, KeyEvent evt) {
         boolean limited = txt.getText().length() == length;
-        if (limited){
+        if (limited) {
             evt.consume();
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
     public void setIcon(Image image, byte[] byteImg) {
         ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
                 getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
         lblImage.setIcon(icon);
-        lblImage.setText(""); 
+        lblImage.setText("");
         userImg = byteImg;
     }
     // </editor-fold>    
-    
-// ---------------------- End Method ----------------------
 
+// ---------------------- End Method ----------------------
 }

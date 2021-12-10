@@ -1,7 +1,9 @@
 package com.unknownshop.form;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -17,12 +19,19 @@ import com.unknownshop.util.XImage;
 import com.unknownshop.util.XMail;
 import com.unknownshop.util.XMess;
 import com.unknownshop.util.XPanel;
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -720,7 +729,7 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     }
     // </editor-fold>    
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức quét QR code">
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy QR code">
     private void getQRCode() {
         try {
             Users user = new Users();
@@ -735,6 +744,27 @@ public class DialogChangeAccount extends javax.swing.JFrame {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            String pathToStore = "./qr_code.png";
+            BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, 400, 400);
+            try {
+                MatrixToImageWriter.writeToPath(bitMatrix, "jpg", Paths.get(pathToStore));
+                MatrixToImageConfig imageConfig = new MatrixToImageConfig(MatrixToImageConfig.BLACK, MatrixToImageConfig.WHITE);
+                BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, imageConfig);
+                BufferedImage logoImage = ImageIO.read(new File("./logo.png"));
+                int finalImageHeight = qrImage.getHeight() - logoImage.getHeight();
+                int finalImageWidth = qrImage.getWidth() - logoImage.getWidth();
+                //Merging both images 
+                Color mainColor = new Color(51, 102, 153);
+                BufferedImage finalImage = new BufferedImage(qrImage.getHeight(), qrImage.getWidth(), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D graphics = (Graphics2D) finalImage.getGraphics();
+                graphics.drawImage(qrImage, 0, 0, null);
+                graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+                graphics.drawImage(logoImage, (int) Math.round(finalImageWidth / 2), (int) Math.round(finalImageHeight / 2), null);
+                graphics.setColor(mainColor);
+                ImageIO.write(finalImage, "png", new File(pathToStore));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }  
         } catch (WriterException ex) {
             ex.printStackTrace();
         }

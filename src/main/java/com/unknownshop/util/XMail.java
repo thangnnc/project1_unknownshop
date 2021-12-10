@@ -33,7 +33,7 @@ public class XMail {
                             return new PasswordAuthentication(user, pass);
                         }
                     });
-                String from = "phannguyendangtruongprovip@gmail.com";
+                String from = user;
                 String to = toEmail;
                 String subject = "Ma khoi phuc mat khau cua ban";
                 String body = String.valueOf("Day la ma khoi phuc mat khau cua ban.\nLuu y khong chia se ma voi nguoi khac duoi moi hinh thuc!\nOTP : "+OTP);

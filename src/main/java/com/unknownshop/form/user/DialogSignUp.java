@@ -606,27 +606,8 @@ public class DialogSignUp extends javax.swing.JFrame {
                     dlog.setVisible(false);
                     lblErrorEmail.setText("Email đã được sử dụng!");
                     txtEmail.requestFocus();
-<<<<<<< Updated upstream
-                }else{
-                       try {
-                        String data = txtUsername.getText() + "+" + txtPassword.getText();
-                        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-                        BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
-                        String outputFile = "./qr_code.png";
-                        Path path = (Path) FileSystems.getDefault().getPath(outputFile);
-                        MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
-                    } catch (WriterException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-=======
                 } else {
-                    try {
-                        XMail.createQR(txtUsername.getText(),txtPassword.getText());
-                    } catch (Exception e) {
-                        e.printStackTrace();
->>>>>>> Stashed changes
-                    }
+                    XMail.createQR(txtUsername.getText(),txtPassword.getText());
                     XMail.sendQRCode(txtEmail.getText());
                     clearForm();
                     XPanel.mainForm.setEnabled(true);
@@ -635,15 +616,10 @@ public class DialogSignUp extends javax.swing.JFrame {
                     dispose();
                 }
             }
-<<<<<<< Updated upstream
         }.start();
     }
     // </editor-fold>  
-=======
-        }
-                .start();
-    } // </editor-fold>  
->>>>>>> Stashed changes
+        
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
     private boolean checkError(){

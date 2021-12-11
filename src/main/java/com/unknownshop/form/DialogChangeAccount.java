@@ -716,35 +716,13 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         userImg = byteImg;
     }
     // </editor-fold>    
-<<<<<<< Updated upstream
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức quét QR code">
-    private void getQRCode() {
-        try {
-            Users user = new Users();
-            dao.selectByUserName(txtUsername.getText(), user);
-            String data = user.getUsername()+"+"+user.getPassword();
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
-            String outputFile = "./qr_code.png";
-            Path path = (Path) FileSystems.getDefault().getPath(outputFile);
-            try {
-                MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        } catch (WriterException ex) {
-            ex.printStackTrace();
-        }
-=======
-
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy QR code">
     private void getQRCode() {
         Users user = new Users();
         dao.selectByUserName(txtUsername.getText(), user);
         XMail.createQR(user.getUsername(), user.getPassword());
 
->>>>>>> Stashed changes
     }
     // </editor-fold>  
 

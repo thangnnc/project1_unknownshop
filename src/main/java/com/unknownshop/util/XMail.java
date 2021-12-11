@@ -33,20 +33,19 @@ import javax.mail.internet.MimeMultipart;
 
 public class XMail {
 
-    public static void sendOTP(String toEmail, int OTP) {
-        try {
-            Properties p = new Properties();
-            p.put("mail.smtp.auth", "true");
-            p.put("mail.smtp.starttls.enable", "true");
-            p.put("mail.smtp.host", "smtp.gmail.com");
-            p.put("mail.smtp.port", 587);
+   public static void sendOTP(String toEmail, int OTP){
+        try{
+                Properties p = new Properties();
+                p.put("mail.smtp.auth", "true");
+                p.put("mail.smtp.starttls.enable", "true");
+                p.put("mail.smtp.host", "smtp.gmail.com");
+                p.put("mail.smtp.port", 587);
 
-            final String user = "thangnncps14579@gmail.com";
-            final String pass = "ThangThang123";
+                final String user = "thangnncps14579@gmail.com";
+                final String pass ="ThangThang123";
 
-            Session s = Session.getInstance(p,
+                Session s = Session.getInstance(p,
                     new javax.mail.Authenticator() {
-<<<<<<< Updated upstream
                         protected PasswordAuthentication getPasswordAuthentication() {
                             return new PasswordAuthentication(user, pass);
                         }
@@ -65,38 +64,12 @@ public class XMail {
                 Transport.send(msg);
             }catch(Exception e){
                     e.printStackTrace();
-=======
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(user, pass);
-                }
-            });
-            String from = user;
-            String to = toEmail;
-            String subject = "Ma khoi phuc mat khau cua ban";
-            String body = String.valueOf("Day la ma khoi phuc mat khau cua ban.\nLuu y khong chia se ma voi nguoi khac duoi moi hinh thuc!\nOTP : " + OTP);
-            Message msg = new MimeMessage(s);
-            msg.setFrom(new InternetAddress(from));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            msg.setSubject(subject);
-            msg.setText(body);
-            MimeBodyPart contentPart = new MimeBodyPart();
-            contentPart.setContent("", "text/html; charset = utf-8");
-            Transport.send(msg);
-        } catch (Exception e) {
-            e.printStackTrace();
->>>>>>> Stashed changes
 
-        }
+            }
     }
-<<<<<<< Updated upstream
-    
-    public static void sendQRCode(String email){
-        try{
-=======
 
     public static void sendQRCode(String email) {
         try {
->>>>>>> Stashed changes
             Properties p = new Properties();
             p.put("mail.smtp.auth", "true");
             p.put("mail.smtp.starttls.enable", "true");
@@ -176,4 +149,5 @@ public class XMail {
            ex.printStackTrace();
         }
     }
+
 }

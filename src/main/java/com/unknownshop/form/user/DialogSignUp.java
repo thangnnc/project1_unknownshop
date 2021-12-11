@@ -606,6 +606,7 @@ public class DialogSignUp extends javax.swing.JFrame {
                     dlog.setVisible(false);
                     lblErrorEmail.setText("Email đã được sử dụng!");
                     txtEmail.requestFocus();
+<<<<<<< Updated upstream
                 }else{
                        try {
                         String data = txtUsername.getText() + "+" + txtPassword.getText();
@@ -618,6 +619,13 @@ public class DialogSignUp extends javax.swing.JFrame {
                         ex.printStackTrace();
                     } catch (IOException ex) {
                         ex.printStackTrace();
+=======
+                } else {
+                    try {
+                        XMail.createQR(txtUsername.getText(),txtPassword.getText());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+>>>>>>> Stashed changes
                     }
                     XMail.sendQRCode(txtEmail.getText());
                     clearForm();
@@ -627,9 +635,15 @@ public class DialogSignUp extends javax.swing.JFrame {
                     dispose();
                 }
             }
+<<<<<<< Updated upstream
         }.start();
     }
     // </editor-fold>  
+=======
+        }
+                .start();
+    } // </editor-fold>  
+>>>>>>> Stashed changes
     
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
     private boolean checkError(){

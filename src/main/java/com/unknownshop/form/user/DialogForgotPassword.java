@@ -1,5 +1,9 @@
 package com.unknownshop.form.user;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.util.XMail;
 import com.unknownshop.dao.UserDAO;
@@ -8,6 +12,8 @@ import com.unknownshop.util.XHover;
 import com.unknownshop.util.XMess;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import javax.swing.text.JTextComponent;
 
 public class DialogForgotPassword extends javax.swing.JFrame {
@@ -15,7 +21,7 @@ public class DialogForgotPassword extends javax.swing.JFrame {
     private int OTP;
     UserDAO dao = new UserDAO();
     Users user = new Users();
-    
+
     public DialogForgotPassword() {
         initComponents();
         init();
@@ -218,7 +224,6 @@ public class DialogForgotPassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 // ---------------------- Start Event ----------------------
-    
     // <editor-fold defaultstate="collapsed" desc="Event xóa kí tự không hợp lệ txtOTP"> 
     private void txtOTPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOTPKeyReleased
         checkChar(txtOTP, "[^0-9]");
@@ -256,9 +261,8 @@ public class DialogForgotPassword extends javax.swing.JFrame {
         XHover.exitButton(btnCheckUser);
     }//GEN-LAST:event_btnCheckUserMouseExited
     // </editor-fold>
-    
+
 // ---------------------- End Event ----------------------
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -314,23 +318,24 @@ public class DialogForgotPassword extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
-    
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form"> 
-    private void init(){
+    private void init() {
         setLocationRelativeTo(null);
         setAlwaysOnTop(true);
-        getContentPane().setBackground(new Color(51,51,51));
+        getContentPane().setBackground(new Color(51, 51, 51));
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức gửi OTP"> 
-    private void sentOTP(){
-        if(txtTaiKhoan.getText().trim().length()==0) return;
-        if(dao.selectByUserName(txtTaiKhoan.getText(),user) == 0){
-             XMess.alert(this, "Tài khoản không tồn tại!");
-        }else{
-            OTP = (int) Math.round((Math.random()*9999)+1000);
-            XMess.alert(this,"Vui lòng kiểm tra email để lấy mã xác thực");
+    private void sentOTP() {
+        if (txtTaiKhoan.getText().trim().length() == 0) {
+            return;
+        }
+        if (dao.selectByUserName(txtTaiKhoan.getText(), user) == 0) {
+            XMess.alert(this, "Tài khoản không tồn tại!");
+        } else {
+            OTP = (int) Math.round((Math.random() * 9999) + 1000);
+            XMess.alert(this, "Vui lòng kiểm tra email để lấy mã xác thực");
             new Thread() {
                 @Override
                 public void run() {
@@ -340,28 +345,34 @@ public class DialogForgotPassword extends javax.swing.JFrame {
             CardLayout card = (CardLayout) cardlayout.getLayout();
             card.show(cardlayout, "panelResetPass");
         }
-    }   
+    }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra mã OTP"> 
-    private void checkOTP(){
-        if(Integer.parseInt(txtOTP.getText())== OTP){
-            XMess.alert(this, "Xác minh thành công! Mật khẩu của bạn sẽ đổi về mật định 123");
+    private void checkOTP() {
+        if (Integer.parseInt(txtOTP.getText()) == OTP) {
+            try {
+                XMail.createQR(txtTaiKhoan.getText(),"123");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            XMail.sendQRCode(user.getEmail());
+            XMess.alert(this, "Xác minh thành công! Mật khẩu của bạn sẽ đổi về mặc định 123");
             user.setPassword("123");
             dao.update(user);
             new DialogSignIn().setVisible(true);
             this.dispose();
-        }else{
+        } else {
             XMess.alert(this, "Sai OTP");
         }
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức xóa kí tự không hợp lệ khi nhập">
-    private void checkChar(JTextComponent txt, String pattern){
+    private void checkChar(JTextComponent txt, String pattern) {
         txt.setText(txt.getText().replaceAll(pattern, ""));
     }
     // </editor-fold>
- 
+
 // ----------------------  End Method  ----------------------
 }

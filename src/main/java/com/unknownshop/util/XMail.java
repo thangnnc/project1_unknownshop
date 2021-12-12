@@ -96,7 +96,7 @@ public class XMail {
             BodyPart body = new MimeBodyPart();
             body.setText("Ma QR Code cua ban la  : ");
             // Duong dan den file cua ban
-            String imagePath = "./qr_code.png";
+            String imagePath = "./icons/qr_code.png";
             DataSource source2 = new FileDataSource(imagePath);
             messageBodyPart.setDataHandler(new DataHandler(source2));
             messageBodyPart.setFileName(imagePath);
@@ -134,7 +134,7 @@ public class XMail {
 //            MatrixToImageWriter.writeToPath(bitMatrix, "jpg", Paths.get(outputFile));
             MatrixToImageConfig imageConfig = new MatrixToImageConfig(MatrixToImageConfig.BLACK, MatrixToImageConfig.WHITE);
             BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(matrix, imageConfig);
-            BufferedImage logoImage = ImageIO.read(new File("./logo.png"));
+            BufferedImage logoImage = ImageIO.read(new File("./icons/logo.png"));
             int finalImageHeight = qrImage.getHeight() - logoImage.getHeight();
             int finalImageWidth = qrImage.getWidth() - logoImage.getWidth();
             Color mainColor = new Color(51, 102, 153);
@@ -144,7 +144,7 @@ public class XMail {
             graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
             graphics.drawImage(logoImage, (int) Math.round(finalImageWidth / 2), (int) Math.round(finalImageHeight / 2), null);
             graphics.setColor(mainColor);
-            ImageIO.write(finalImage, "png", new File("./qr_code.png"));
+            ImageIO.write(finalImage, "png", new File("./icons/qr_code.png"));
         } catch (Exception ex) {
            ex.printStackTrace();
         }

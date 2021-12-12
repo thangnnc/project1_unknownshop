@@ -24,7 +24,7 @@ public class XExcel {
     
     public static void writeExcel(List<Object[]> list, String name) throws FileNotFoundException, IOException{
             int objLength = list.get(0).length;
-            FileOutputStream file = new FileOutputStream(""+name+".xlsx");
+            FileOutputStream file = new FileOutputStream("/excel/"+name+".xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Sheet1");
             XSSFRow row;

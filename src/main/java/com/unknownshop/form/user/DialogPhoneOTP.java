@@ -10,8 +10,8 @@ import com.unknownshop.util.XPanel;
 
 public class DialogPhoneOTP extends javax.swing.JFrame {
     
-    private final String ACCOUNT_SID = "ACb89a1025483a4dcc9a516b52131e21c8";
-    private final String AUTH_TOKEN = "7935ced5ad2d031061150f2c0ca1bcf4";
+    private final String ACCOUNT_SID = "ACb026363721bae0f1ff08bd958ca9b281";
+    private final String AUTH_TOKEN = "2ed8942159fbb1b0f9ad9c79b410d1bb";
     private int OTP = 0;
     private String phone;
     public int check = -1;
@@ -176,7 +176,7 @@ public class DialogPhoneOTP extends javax.swing.JFrame {
                 String body = "\nMã xác nhận của bạn là : " + OTP + "\nKhông chia sẻ mã với người khác";
                 Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
                 Message.creator(new com.twilio.type.PhoneNumber("+84" + phone),
-                                "MG04ff40e2ad2124fbf016684b01f4a54f",
+                                "MGd0c0392f6936fa713639809bb32b2f95",
                                 body).create();
                 dlog.setVisible(false);
             }

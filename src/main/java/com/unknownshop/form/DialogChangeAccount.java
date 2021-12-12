@@ -30,10 +30,10 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     private UserDAO dao = new UserDAO();
     private byte[] userImg;
     private String role;
-    
+
     public DialogChangeAccount() {
         initComponents();
-        setBackground(new Color(0,0,0,0));
+        setBackground(new Color(0, 0, 0, 0));
         init();
     }
 
@@ -403,9 +403,8 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
 // -------------------- Start Event --------------------
-    
     // <editor-fold defaultstate="collapsed" desc="Event btnClose">
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         XPanel.mainForm.setEnabled(true);
@@ -419,13 +418,13 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Event Focus bắt lỗi Username">
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        
+
     }//GEN-LAST:event_txtUsernameFocusGained
 
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        if(txtUsername.getText().trim().length()==0){
+        if (txtUsername.getText().trim().length() == 0) {
             lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }else{
+        } else {
             lblErrorUsername.setText(" ");
         }
     }//GEN-LAST:event_txtUsernameFocusLost
@@ -437,12 +436,12 @@ public class DialogChangeAccount extends javax.swing.JFrame {
 
     private void txtFullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullnameFocusLost
         String pattern = "^([^[!@#$%&*()_+=|<>?{}\\[\\]~-]|^\\d|^\\s]*\\s?)*$";
-        if(txtFullname.getText().trim().length()==0){
+        if (txtFullname.getText().trim().length() == 0) {
             lblErrorFullname.setText("Chưa nhập họ tên!");
-        }else{
-            if(txtFullname.getText().matches(pattern)==false){
+        } else {
+            if (txtFullname.getText().matches(pattern) == false) {
                 lblErrorFullname.setText("Tên không được chứa số hoặc ký tự đặc biệt!");
-            }else{
+            } else {
                 lblErrorFullname.setText(" ");
             }
         }
@@ -454,11 +453,11 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusGained
 
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        if(txtPassword.getText().trim().length()==0){
+        if (txtPassword.getText().trim().length() == 0) {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
-        }else{
+        } else {
             lblErrorPassword.setText(" ");
-            if(txtRePassword.getText().trim().length() != 0){
+            if (txtRePassword.getText().trim().length() != 0) {
                 txtRePasswordFocusLost(evt);
             }
         }
@@ -470,12 +469,12 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRePasswordFocusGained
 
     private void txtRePasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRePasswordFocusLost
-        if(txtRePassword.getText().trim().length()==0){
+        if (txtRePassword.getText().trim().length() == 0) {
             lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
-        }else if(!txtRePassword.getText().equals(txtPassword.getText())){
+        } else if (!txtRePassword.getText().equals(txtPassword.getText())) {
             lblErrorRePassword.setText("Mật khẩu nhập lại không trùng khớp!");
-        }else{
-             lblErrorRePassword.setText(" ");
+        } else {
+            lblErrorRePassword.setText(" ");
         }
     }//GEN-LAST:event_txtRePasswordFocusLost
     // </editor-fold> 
@@ -486,12 +485,12 @@ public class DialogChangeAccount extends javax.swing.JFrame {
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         String pattern = "\\w+\\@\\w+(\\.\\w+)+";
-        if(txtEmail.getText().trim().length()==0){
+        if (txtEmail.getText().trim().length() == 0) {
             lblErrorEmail.setText("Chưa nhập Email!");
-        }else{
-           if(txtEmail.getText().matches(pattern) == false){
+        } else {
+            if (txtEmail.getText().matches(pattern) == false) {
                 lblErrorEmail.setText("Email không đúng định dạng");
-            }else{
+            } else {
                 lblErrorEmail.setText(" ");
             }
         }
@@ -510,10 +509,8 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         XHover.exitButton(btnChange);
     }//GEN-LAST:event_btnChangeMouseExited
 
-   // </editor-fold> 
-    
+    // </editor-fold> 
 // -------------------- End Event --------------------
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -575,9 +572,8 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
-
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên form">
-    public void init(){
+    public void init() {
         setAlwaysOnTop(true);
         // Chuyển lỗi về dạng 1 dấu cách
         lblErrorEmail.setText(" ");
@@ -599,31 +595,30 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         txtUsername.setEditable(false);
     }
     // </editor-fold> 
-    
+
 // _____________________ Form Tài Khoản ___________________
-    
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
-    private void nonError(){
-        if(lblErrorUsername.getText().equals("  ")){
+    private void nonError() {
+        if (lblErrorUsername.getText().equals("  ")) {
             lblErrorUsername.setText("Chưa nhập tên tài khoản!");
-        }  
-        if(lblErrorPassword.getText().equals("  ")){
+        }
+        if (lblErrorPassword.getText().equals("  ")) {
             lblErrorPassword.setText("Chưa nhập mật khẩu!");
         }
-        if(lblErrorRePassword.getText().equals("  ")){
+        if (lblErrorRePassword.getText().equals("  ")) {
             lblErrorRePassword.setText("Chưa nhập lại mật khẩu!");
         }
-        if(lblErrorEmail.getText().equals("  ")){
+        if (lblErrorEmail.getText().equals("  ")) {
             lblErrorEmail.setText("Chưa nhập email!");
         }
-        if(lblErrorFullname.getText().equals("  ")){
+        if (lblErrorFullname.getText().equals("  ")) {
             lblErrorFullname.setText("Chưa nhập tên ngươi dùng!");
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy thông tin trên form">  
-    private Users getForm(){
+    private Users getForm() {
         Users user = new Users();
         user.setUsername(txtUsername.getText());
         user.setFullname(txtFullname.getText());
@@ -631,42 +626,45 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         user.setEmail(txtEmail.getText());
         user.setImgUrl(userImg);
         user.setRole(role);
-        
+
         return user;
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra lỗi"> 
-    private boolean checkError(){
-        if(!(lblErrorEmail.getText().equals(" ") &&
-                    lblErrorFullname.getText().equals(" ") &&  
-                    lblErrorPassword.getText().equals(" ") &&
-                    lblErrorRePassword.getText().equals(" ") &&
-                    lblErrorUsername.getText().equals(" "))) return true;
-        else if(lblImage.getToolTipText().equals("none")){
+    private boolean checkError() {
+        if (!(lblErrorEmail.getText().equals(" ")
+                && lblErrorFullname.getText().equals(" ")
+                && lblErrorPassword.getText().equals(" ")
+                && lblErrorRePassword.getText().equals(" ")
+                && lblErrorUsername.getText().equals(" "))) {
+            return true;
+        } else if (lblImage.getToolTipText().equals("none")) {
             XMess.alert(this, "Bạn chưa chọn ảnh đại diện!");
             return true;
         }
         return false;
     }
     // </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức cập nhập tài khoản">  
-    private void update(){
+    private void update() {
         nonError();
-        if(checkError()) return;
+        if (checkError()) {
+            return;
+        }
         Users user = getForm();
-        if(XMess.confirm(this, "Bạn muốn cập nhật nhân viên này?")){
+        if (XMess.confirm(this, "Bạn muốn cập nhật nhân viên này?")) {
             // Tạo luồng và hiện dialog loading
-            new Thread(){
+            new Thread() {
                 @Override
-                public void run(){
+                public void run() {
                     DialogLoading dlog = new DialogLoading();
                     dlog.setVisible(true);
                     setEnabled(false);
-                    if(dao.update(user) == 0){
-                        XMess.alert(null,"Cập nhập tài khoản thất bại!");
-                    }else{
+                    if (dao.update(user) == 0) {
+                        XMess.alert(null, "Cập nhập tài khoản thất bại!");
+                    } else {
                         getQRCode();
                         XMail.sendQRCode(txtEmail.getText());
                         Auth.user = user;
@@ -676,7 +674,7 @@ public class DialogChangeAccount extends javax.swing.JFrame {
                         XPanel.mainForm.setEnabled(true);
                         dispose();
                         dlog.setVisible(false);
-                        XMess.alert(null,"Cập nhập tài khoản thành công!");
+                        XMess.alert(null, "Cập nhập tài khoản thành công!");
                         return;
                     }
                     setEnabled(true);
@@ -686,9 +684,9 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
-    private void getImage(){
+    private void getImage() {
         boolean check = XMess.confirm(this, "Lấy ảnh qua webcame?");
         if (check == false) {
             JFileChooser fileChooser = new JFileChooser();
@@ -708,38 +706,25 @@ public class DialogChangeAccount extends javax.swing.JFrame {
         }
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Phương thức lấy ảnh"> 
     public void setIcon(Image image, byte[] byteImg) {
         ImageIcon icon = new ImageIcon(new ImageIcon(image).getImage().
                 getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
         lblImage.setIcon(icon);
-        lblImage.setText(""); 
+        lblImage.setText("");
         userImg = byteImg;
     }
     // </editor-fold>    
     
-    // <editor-fold defaultstate="collapsed" desc="Phương thức quét QR code">
+    // <editor-fold defaultstate="collapsed" desc="Phương thức lấy QR code">
     private void getQRCode() {
-        try {
-            Users user = new Users();
-            dao.selectByUserName(txtUsername.getText(), user);
-            String data = user.getUsername()+"+"+user.getPassword();
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix matrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
-            String outputFile = "./qr_code.png";
-            Path path = (Path) FileSystems.getDefault().getPath(outputFile);
-            try {
-                MatrixToImageWriter.writeToPath(matrix, "PNG", (java.nio.file.Path) path);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        } catch (WriterException ex) {
-            ex.printStackTrace();
-        }
+        Users user = new Users();
+        dao.selectByUserName(txtUsername.getText(), user);
+        XMail.createQR(user.getUsername(), user.getPassword());
+
     }
     // </editor-fold>  
-    
-// ---------------------- End Method ----------------------
 
+// ---------------------- End Method ----------------------
 }

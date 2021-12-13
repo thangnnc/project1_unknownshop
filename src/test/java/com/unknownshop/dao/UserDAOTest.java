@@ -50,7 +50,7 @@ public class UserDAOTest {
         assertEquals(expected, actual);
     }
 
-    @Test // Test case trùng tên tài khoản(username)
+    @Test // Test case thêm user trống
     public void testInsertEmptyUser() {
         System.out.println("Test insert empty user");
         // Tài khoản trùng tên

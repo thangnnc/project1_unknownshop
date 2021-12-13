@@ -1,9 +1,5 @@
 package com.unknownshop.form.user;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.util.XMail;
 import com.unknownshop.dao.UserDAO;
@@ -12,8 +8,6 @@ import com.unknownshop.util.XHover;
 import com.unknownshop.util.XMess;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import javax.swing.text.JTextComponent;
 
 public class DialogForgotPassword extends javax.swing.JFrame {
@@ -34,14 +28,12 @@ public class DialogForgotPassword extends javax.swing.JFrame {
         cardlayout = new javax.swing.JPanel();
         panelQuenMatKhau = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        txtTaiKhoan = new javax.swing.JTextField();
         btnCheckUser = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        txtTaiKhoan = new com.unknownshop.swing.textfield.TextField();
         panelResetPass = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtOTP = new javax.swing.JTextField();
         btnCheckOTP = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        txtOTP = new com.unknownshop.swing.textfield.TextField();
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,8 +48,6 @@ public class DialogForgotPassword extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("UNKNOW STORE");
-
-        txtTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnCheckUser.setBackground(new java.awt.Color(0, 102, 204));
         btnCheckUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -79,41 +69,39 @@ public class DialogForgotPassword extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Tài Khoản:");
+        txtTaiKhoan.setBackground(new java.awt.Color(51, 51, 51));
+        txtTaiKhoan.setForeground(new java.awt.Color(255, 255, 255));
+        txtTaiKhoan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTaiKhoan.setLabelText("Nhập Tên Tài Khoản");
 
         javax.swing.GroupLayout panelQuenMatKhauLayout = new javax.swing.GroupLayout(panelQuenMatKhau);
         panelQuenMatKhau.setLayout(panelQuenMatKhauLayout);
         panelQuenMatKhauLayout.setHorizontalGroup(
             panelQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelQuenMatKhauLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelQuenMatKhauLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelQuenMatKhauLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191))
-            .addGroup(panelQuenMatKhauLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(190, 190, 190))
         );
         panelQuenMatKhauLayout.setVerticalGroup(
             panelQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelQuenMatKhauLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         cardlayout.add(panelQuenMatKhau, "panelQuenMK");
@@ -124,13 +112,6 @@ public class DialogForgotPassword extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("UNKNOW STORE");
-
-        txtOTP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtOTP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtOTPKeyReleased(evt);
-            }
-        });
 
         btnCheckOTP.setBackground(new java.awt.Color(0, 102, 204));
         btnCheckOTP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -152,41 +133,47 @@ public class DialogForgotPassword extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Xác thực OTP");
+        txtOTP.setBackground(new java.awt.Color(51, 51, 51));
+        txtOTP.setForeground(new java.awt.Color(255, 255, 255));
+        txtOTP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtOTP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtOTP.setLabelText("Nhập Mã OTP");
+        txtOTP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOTPKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelResetPassLayout = new javax.swing.GroupLayout(panelResetPass);
         panelResetPass.setLayout(panelResetPassLayout);
         panelResetPassLayout.setHorizontalGroup(
             panelResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResetPassLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
             .addGroup(panelResetPassLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelResetPassLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
+                    .addGroup(panelResetPassLayout.createSequentialGroup()
+                        .addGroup(panelResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelResetPassLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(txtOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelResetPassLayout.createSequentialGroup()
+                                .addGap(190, 190, 190)
+                                .addComponent(btnCheckOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResetPassLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCheckOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191))
         );
         panelResetPassLayout.setVerticalGroup(
             panelResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResetPassLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtOTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtOTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCheckOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         cardlayout.add(panelResetPass, "panelResetPass");
@@ -224,11 +211,7 @@ public class DialogForgotPassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 // ---------------------- Start Event ----------------------
-    // <editor-fold defaultstate="collapsed" desc="Event xóa kí tự không hợp lệ txtOTP"> 
-    private void txtOTPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOTPKeyReleased
-        checkChar(txtOTP, "[^0-9]");
-    }//GEN-LAST:event_txtOTPKeyReleased
-    // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Event btnClose">
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         new DialogSignIn().setVisible(true);
@@ -261,8 +244,15 @@ public class DialogForgotPassword extends javax.swing.JFrame {
         XHover.exitButton(btnCheckUser);
     }//GEN-LAST:event_btnCheckUserMouseExited
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Event giới hạn kí tự nhập vào txtOTP">
+    private void txtOTPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOTPKeyReleased
+        checkChar(txtOTP, "[^0-9]");
+    }//GEN-LAST:event_txtOTPKeyReleased
+    // </editor-fold>
 
 // ---------------------- End Event ----------------------
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -286,13 +276,6 @@ public class DialogForgotPassword extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DialogForgotPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -308,16 +291,15 @@ public class DialogForgotPassword extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JPanel cardlayout;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel panelQuenMatKhau;
     private javax.swing.JPanel panelResetPass;
-    private javax.swing.JTextField txtOTP;
-    private javax.swing.JTextField txtTaiKhoan;
+    private com.unknownshop.swing.textfield.TextField txtOTP;
+    private com.unknownshop.swing.textfield.TextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
+    
     // <editor-fold defaultstate="collapsed" desc="Phương thức khai báo giá trị trên form"> 
     private void init() {
         setLocationRelativeTo(null);
@@ -350,6 +332,9 @@ public class DialogForgotPassword extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Phương thức kiểm tra mã OTP"> 
     private void checkOTP() {
+        if (txtOTP.getText().trim().length() == 0) {
+            return;
+        }
         if (Integer.parseInt(txtOTP.getText()) == OTP) {
             try {
                 XMail.createQR(txtTaiKhoan.getText(),"123");

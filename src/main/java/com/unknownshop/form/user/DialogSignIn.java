@@ -133,10 +133,12 @@ public class DialogSignIn extends javax.swing.JFrame {
             }
         });
 
+        lblQuenMK.setBackground(new java.awt.Color(51, 51, 51));
         lblQuenMK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblQuenMK.setForeground(new java.awt.Color(255, 255, 255));
         lblQuenMK.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblQuenMK.setText("Quên mật khẩu?");
+        lblQuenMK.setOpaque(true);
         lblQuenMK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblQuenMKMouseClicked(evt);

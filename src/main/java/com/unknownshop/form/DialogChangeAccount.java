@@ -1,10 +1,5 @@
 package com.unknownshop.form;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.unknownshop.constant.XConstant;
 import com.unknownshop.dao.UserDAO;
 import com.unknownshop.entity.Users;
@@ -19,9 +14,6 @@ import com.unknownshop.util.XPanel;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -572,6 +564,7 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 // ---------------------- Start Method ----------------------
+    
     // <editor-fold defaultstate="collapsed" desc="Phương thức điền thông tin lên form">
     public void init() {
         setAlwaysOnTop(true);
@@ -597,6 +590,7 @@ public class DialogChangeAccount extends javax.swing.JFrame {
     // </editor-fold> 
 
 // _____________________ Form Tài Khoản ___________________
+    
     // <editor-fold defaultstate="collapsed" desc="Phương thức bắt lỗi chưa nhập"> 
     private void nonError() {
         if (lblErrorUsername.getText().equals("  ")) {

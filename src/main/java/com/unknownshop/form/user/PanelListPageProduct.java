@@ -255,14 +255,14 @@ public class PanelListPageProduct extends javax.swing.JPanel {
         page = soSP/8;
         if(soDu != 0) page++;
         for (int i = 0; i < page; i++) {
-            List<Products> list10SP = new ArrayList<>();
+            List<Products> list8SP = new ArrayList<>();
             int index = 8*i;
             int end = (i == page - 1 && soDu != 0 ? soDu : 8);
             for (int j = index; j < index + end; j++) {
-                list10SP.add(list.get(j));
+                list8SP.add(list.get(j));
             }
             
-            pnlCard.add(new PanelPageProduct(list10SP),i+1+"");
+            pnlCard.add(new PanelPageProduct(list8SP),i+1+"");
             lblPage.setText("1/"+page);
         }
     }
